@@ -9,4 +9,5 @@ Rails.application.routes.draw do
   get "profile", to: "home#profile"
   get "webmaster", to: "home#webmaster"
   get "admin", to: "home#admin"
+  resources :session
 end

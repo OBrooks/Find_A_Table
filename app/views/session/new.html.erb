@@ -1,0 +1,21 @@
+<%= form_tag("/session", method: "post") do %>
+  <table style="width:70%">
+    <tr>
+      <th>Game</th>
+      <th>Adress</th>
+      <th>City</th>
+      <th>PayerNB</th>
+      <th>MaxPlayers</th>
+      <th>PlayerSkill</th>
+    </tr>
+    <tr>
+      <td><%= select_tag "game", options_from_collection_for_select(Game.order(:title), "id", "title"), prompt: "Select a game" %></td>
+      <td><%= text_field_tag(:adress) %></td>
+      <td><%= text_field_tag(:city) %></td>
+      <td><%= number_field_tag 'playernb', 0, min: 0%></td>
+      <td><%= number_field_tag 'maxplayers', 2, min: 2%></td>
+      <td><%= select_tag "playerskill", options_from_collection_for_select(Session.playerskills, "last", "first") %></td>
+    </tr>
+  </table>
+    <%= submit_tag("Go") %>
+<% end %>
