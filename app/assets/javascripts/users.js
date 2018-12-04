@@ -7,6 +7,7 @@ var ready = function () {
      */
 
     $('.start-conversation').click(function (e) {
+        console.log("inside début start-conversation")
         e.preventDefault();
 
         var sender_id = $(this).data('sid');
