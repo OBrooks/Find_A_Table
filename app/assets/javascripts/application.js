@@ -11,7 +11,11 @@
 // about supported directives.
 //
 //= require jquery
+//= require jquery_ujs
 //= require rails-ujs
 //= require activestorage
+//= require chat
+//= require private_pub
 //= require turbolinks
+//= require bootstrap-sprockets
 //= require_tree .

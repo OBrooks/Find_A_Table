@@ -19,4 +19,10 @@ class HomeController < ApplicationController
             redirect_to "home/index"
         end
     end
+
+    def list_users
+        @users = User.where.not("id = ?",current_user.id).order("created_at DESC")
+        @conversations = Conversation.involving(current_user).order("created_at DESC")
+    end
+
 end
