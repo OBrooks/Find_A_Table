@@ -69,3 +69,5 @@ gem 'font-awesome-rails'
 gem 'popper_js'
 gem 'jquery-ui-rails'
 gem 'faker'
+
+gem 'nokogiri'

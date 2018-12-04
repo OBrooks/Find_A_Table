@@ -5,9 +5,9 @@ class AddColumnsToUser < ActiveRecord::Migration[5.2]
     add_column :users, :nickname, :string
     add_column :users, :town, :string
     add_column :users, :adress, :text
-    add_column :users, :status, :integer
+    add_column :users, :status, :integer, :default => 1
     add_column :users, :gender, :string
-    add_column :users, :experience, :integer
-    add_column :users, :description, :text
+    add_column :users, :experience, :integer, :default => 0
+    add_column :users, :description, :text, :default => ""
   end
 end

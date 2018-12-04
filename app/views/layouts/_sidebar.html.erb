@@ -4,11 +4,11 @@
     <% if user_signed_in? %>
         <li>Bonjour,
             <%=current_user.nickname%> !</li>
-        <%if current_user.status == 3 %>
+        <%if current_user.webmaster? %>
             <li>
                 <%= link_to "Page du webmaster", webmaster_path %>
             </li>
-            <%elsif current_user.status == 2 %>
+            <%elsif current_user.status.administrateur? %>
                 <li>
                     <%= link_to "Page administrateur", admin_path %>
                 </li>
