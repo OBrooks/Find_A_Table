@@ -8,9 +8,39 @@
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
   </div>
 
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
     <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
   <% end %>
+
+  <div class="field mt-1">
+    <%= f.label :first_name %><br />
+    <%= f.text_field :first_name, autofocus: true, placeholder: "Votre prénom" %>
+  </div>
+
+  <div class="field mt-1">
+    <%= f.label :last_name %><br />
+    <%= f.text_field :last_name, autofocus: true, placeholder: "Votre nom" %>
+  </div>
+
+  <div class="field mt-1">
+    <%= f.label :nickname %><br />
+    <%= f.text_field :nickname, autofocus: true, placeholder: "Votre pseudo" %>
+  </div>
+
+  <div class="field mt-1">
+    <%= f.label :town %><br />
+    <%= f.text_field :town, autofocus: true, placeholder: "Votre ville" %>
+  </div>
+
+  <div class="field mt-1">
+    <%= f.label :adress %><br />
+    <%= f.text_field :adress, autofocus: true, placeholder: "Votre adresse" %>
+  </div>
+
+  <div class="field mt-1">
+    <%= f.label :description %><br />
+    <%= f.text_field :description, autofocus: true, placeholder: "Votre description" %>
+  </div>
 
   <div class="field">
     <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />

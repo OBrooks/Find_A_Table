@@ -1,6 +1,4 @@
 class HomeController < ApplicationController
-    def lp
-    end
 
     def index
     end
