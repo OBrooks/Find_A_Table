@@ -69,3 +69,5 @@ gem 'bootstrap-sass'
 gem 'font-awesome-rails'
 gem 'popper_js'
 gem 'faker'
+
+gem 'nokogiri'

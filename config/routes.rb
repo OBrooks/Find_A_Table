@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
-  root "home#lp"
-
+  root "home#index"
+  get "landingpage", to: "landingpage#lp"
   get "/games", to: "games#index"
   get "/games/:id", to: "games#show"
 
