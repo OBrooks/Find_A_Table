@@ -1,0 +1,26 @@
+<table style="width:70%">
+  <tr>
+    <th>ID</th>
+    <th>Host</th>
+    <th>Date</th>
+    <th>Game</th>
+    <th>City</th>
+    <th>PayerNB</th>
+    <th>MaxPlayers</th>
+    <th>Description</th>
+    <th>PlayerSkill</th>
+    <th>Status</th>
+  </tr>
+    <tr>
+      <td><%=@session.id%></td>
+      <td><%=@session.host.nickname%></td>
+      <td><%=@session.date%></td>
+      <td><%=@session.game.title%></td>
+      <td><%=@session.city%></td>
+      <td><%=@session.playernb%></td>
+      <td><%=@session.maxplayers%></td>
+      <td><%=@session.description%></td>
+      <td><%=@session.playerskill%></td>
+      <td><%=@session.status%></td>
+    </tr>
+</table>

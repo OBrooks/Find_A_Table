@@ -2,20 +2,24 @@
   <tr>
     <th>ID</th>
     <th>Host</th>
+    <th>Date</th>
     <th>Game</th>
     <th>City</th>
     <th>PayerNB</th>
     <th>MaxPlayers</th>
+    <th>PlayerSkill</th>
     <th>Status</th>
   </tr>
   <%@sessions.each do |session|%>
     <tr>
       <td><%=session.id%></td>
-      <td><%=session.host.email%></td>
+      <td><%=session.host.nickname%></td>
+      <td><%=session.date%></td>
       <td><%=session.game.title%></td>
       <td><%=session.city%></td>
       <td><%=session.playernb%></td>
-      <td><%=session.id%></td>
+      <td><%=session.maxplayers%></td>
+      <td><%=session.playerskill%></td>
       <td><%=session.status%></td>
     </tr>
   <%end%>

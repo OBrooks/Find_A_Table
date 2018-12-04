@@ -32,7 +32,7 @@ ActiveRecord::Schema.define(version: 2018_12_04_142940) do
     t.date "date"
     t.string "city"
     t.string "adress"
-    t.text "descritpion"
+    t.text "description"
     t.integer "playernb"
     t.integer "maxplayers"
     t.integer "status", default: 0

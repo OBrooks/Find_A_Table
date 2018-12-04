@@ -1,25 +1,20 @@
 <p>sidebar placeholder</p>
 
 <ul>
-    <% if user_signed_in? %>
-        <li>Bonjour,
-            <%=current_user.nickname%> !</li>
-        <%if current_user.webmaster? %>
-            <li>
-                <%= link_to "Page du webmaster", webmaster_path %>
-            </li>
-            <%elsif current_user.status.administrateur? %>
-                <li>
-                    <%= link_to "Page administrateur", admin_path %>
-                </li>
-                <%end%>
-                    <% end %>
-                        <li><button>Mes sessions</button></li>
-                        <li><button>Chercher une session</button></li>
-                        <li><button>Parcourir les sessions</button></li>
-                        <li><button>Calendrier</button></li>
-                        <li><button>Outils</button></li>
-                        <li><button>Blog</button></li>
-                        <!-- <li><button>Tabletop-RPG</button></li>
-                        <li><button>Retrogaming</button></li> -->
+  <% if user_signed_in? %>
+    <li>Bonjour, <%=current_user.nickname%> !</li>
+    <%if current_user.webmaster? %>
+      <li><%= link_to "Page du webmaster", webmaster_path %></li>
+    <%elsif current_user.admin? %>
+      <li><%= link_to "Page administrateur", admin_path %></li>
+    <%end%>
+  <% end %>
+  <li><button>Mes sessions</button></li>
+  <li><button>Chercher une session</button></li>
+  <li><button>Parcourir les sessions</button></li>
+  <li><button>Calendrier</button></li>
+  <li><button>Outils</button></li>
+  <li><button>Blog</button></li>
+  <!-- <li><button>Tabletop-RPG</button></li>
+  <li><button>Retrogaming</button></li> -->
 </ul>
