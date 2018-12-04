@@ -69,3 +69,7 @@ gem 'bootstrap-sass'
 gem 'font-awesome-rails'
 gem 'popper_js'
 gem 'faker'
+
+#messagerie
+gem 'private_pub'
+gem 'thin'
