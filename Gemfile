@@ -5,6 +5,7 @@ ruby '2.5.1'
 
 #jquery
 gem 'jquery-rails'
+gem 'jquery-ui-rails'
 #Devise gem
 gem 'devise'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -67,5 +68,4 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'bootstrap-sass'
 gem 'font-awesome-rails'
 gem 'popper_js'
-gem 'jquery-ui-rails'
 gem 'faker'
