@@ -1,0 +1,18 @@
+<p>Salut c'est l'index lol<p>
+
+<ul>
+    <% if user_signed_in? %>
+        <li>Bonjour, <%=current_user.nickname%> !</li>
+        <li> <%= link_to "Votre Profil", profile_path%> </li>
+        <li> <%= link_to "Editer vos infos", edit_user_registration_path%> </li>
+        <li> <%= link_to "Déconnexion", destroy_user_session_path, method: :delete %> </li>
+        <%if current_user.status == 3 %>
+            <li> <%= link_to "Page du webmaster", webmaster_path %> </li>
+        <%elsif current_user.status == 2 %>
+            <li> <%= link_to "Page administrateur", admin_path %> </li>
+        <%end%>
+    <% else %>
+        <li><button class="modal-inscription">Inscription</button></li>
+        <li><button class="modal-connection">Connexion</button></li>
+    <% end %>
+</ul>

@@ -1,0 +1,11 @@
+    <%= @games.each do |game| %>
+        <% game.title %>
+        <% game.description %>
+        <% game.min_players %>
+        <% game.max_players %>
+        <% game.image_url %>
+    <% end %>
+
+<h1>Il n'y a pas encore de jeu enregistré ! La base de données est en cours de construction </h1>
+<i class="fas fa-dice fa-3x"></i><br>
+<i class="fa fa-gamepad fa-3x" aria-hidden="true"></i>
