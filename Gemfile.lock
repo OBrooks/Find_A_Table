@@ -88,6 +88,7 @@ GEM
       railties (>= 4.1.0, < 6.0)
       responders
       warden (~> 1.2.3)
+    dotenv (0.7.0)
     em-http-request (1.1.5)
       addressable (>= 2.3.4)
       cookiejar (!= 0.3.1)
@@ -115,6 +116,9 @@ GEM
     ffi (1.9.25)
     font-awesome-rails (4.7.0.4)
       railties (>= 3.2, < 6.0)
+    foreman (0.64.0)
+      dotenv (~> 0.7.0)
+      thor (>= 0.13.6)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
     http_parser.rb (0.6.0)
@@ -261,6 +265,7 @@ DEPENDENCIES
   devise
   faker
   font-awesome-rails
+  foreman
   jbuilder (~> 2.5)
   jquery-rails
   jquery-ui-rails
