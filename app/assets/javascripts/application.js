@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require activestorage
 //= require bootstrap-sprockets
+//= require turbolinks
 //= require_tree .
 (function () {
     $(document).on('click', '.toggle-window', function (e) {
