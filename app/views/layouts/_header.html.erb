@@ -1,5 +1,29 @@
 
-<ul class="user_display_navbar">
+<div class="content-header">
+  <div class="header-logo">
+    <img src="https://i.kym-cdn.com/photos/images/newsfeed/000/885/429/ba9.gif" class="logo-picture">
+  </div>
+  <div class="">
+  </div>
+  <div class="header-avatar">
+  <% if user_signed_in? == false %>
+    <button class="modal-inscription">Inscription</button>
+    <button class="modal-connection">Connexion</button>
+  <% end %>
+  <% if user_signed_in? %>
+    <div class="dropdown">
+      <img src="https://www.freeiconspng.com/uploads/github-logo-icon-26.png" alt="avatar" id="avatar">
+      <div class="dropdown-content">
+        <p> <%= link_to "Votre Profil", profile_path%> </p>
+        <p> <%= link_to "Editer vos infos", edit_user_registration_path%> </p>
+        <p> <%= link_to "Déconnexion", destroy_user_session_path, method: :delete %> <p>
+      </div>
+    </div>
+  <% end %>
+  </div>
+</div>
+
+<!-- <ul class="user_display_navbar">
     <li>navbar placeholder</li>
     <%if user_signed_in? == false%>
         <li><button class="modal-inscription">Inscription</button></li>
@@ -7,7 +31,7 @@
     <%end%>
     <%if user_signed_in?%>
         <li class="dropdown">
-            <img src="https://www.freeiconspng.com/uploads/github-logo-icon-26.png" alt="Avatar" id="avatar"> 
+            <img src="https://www.freeiconspng.com/uploads/github-logo-icon-26.png" alt="Avatar" id="avatar">
             <div class="dropdown-content">
                 <p> <%= link_to "Votre Profil", profile_path%> </p>
                 <p> <%= link_to "Editer vos infos", edit_user_registration_path%> </p>
@@ -15,4 +39,4 @@
             </div>
         </li>
     <%end%>
-</ul>
+</ul> -->

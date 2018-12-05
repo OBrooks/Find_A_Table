@@ -1,30 +1,16 @@
-.user_display_navbar {
-    display: flex;
-    flex-direction: row;
-    list-style: none;
+.header-logo {
+  background-color: blue;
 }
 
-.avatar {
-    align-items: center;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    flex-grow: 0.1;
-    padding-right: 20px;
+.header-avatar {
+  background-color: red;
 }
 
 #avatar {
-    margin-right: 20px;
-    vertical-align: middle;
     width: 50px;
     height: 50px;
     border-radius: 50%;
-    background-color: rgb(155, 154, 154);
-}
-
-.dropdown {
-    position: relative;
-    display: inline-block;
+    background-color: rgba(255, 255, 255, 1);
 }
 
 .dropdown-content {
@@ -44,7 +30,7 @@
 }
 
 .dropdown-content a:hover {
-    background-color: #0000003f
+    background-color: #0000003f;
 }
 
 .dropdown:hover .dropdown-content {
