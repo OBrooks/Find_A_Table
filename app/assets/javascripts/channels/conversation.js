@@ -5,6 +5,7 @@ App.conversation = App.cable.subscriptions.create("ConversationChannel", {
     console.log("on est dans le received")
     console.log(data)
     console.log(data['message'])
+    $("#messages").append(data['message'])
     var conversation = $('#conversations-list').find("[data-conversation-id='" + data['conversation_id'] + "']");
     console.log("inside conversation.js ActionCable")
     if (data['window'] !== undefined) {

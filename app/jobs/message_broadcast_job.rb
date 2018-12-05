@@ -33,10 +33,13 @@ class MessageBroadcastJob < ApplicationJob
     puts ""
     puts "Supposé broadcast_to_sender début"
     puts "Le message body broadcast sender est #{message.body}"
-    render_message(message,user)
+    message2=ApplicationController.render(
+      partial: 'messages/message',
+      locals: { message: message, user: user }
+    )
     ActionCable.server.broadcast(
       "conversations-#{user.id}",
-      message: message.body,
+      message: message2,
       conversation_id: message.conversation_id
     )
     
@@ -47,11 +50,13 @@ class MessageBroadcastJob < ApplicationJob
   def broadcast_to_recipient(user, message)
     puts ""
     puts "Supposé broadcast_to_recipient début"
-    render_message(message,user)
+    message2=ApplicationController.render(
+      partial: 'messages/message',
+      locals: { message: message, user: user }
+    )
     ActionCable.server.broadcast(
       "conversations-#{user.id}",
-      window: render_window(message.conversation, user),
-      message: message.body,
+      message: message2,
       conversation_id: message.conversation_id
     )
     
