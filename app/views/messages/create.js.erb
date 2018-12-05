@@ -1,18 +1,3 @@
-<% publish_to @path do %>
-console.log("coucou dans le début du create.js.erb")
-    var id = "<%= @conversation.id %>";
-    var chatbox = $("#chatbox_" + id + " .chatboxcontent");
-    var sender_id = "<%= @message.user.id %>";
-    var reciever_id = $('meta[name=user-id]').attr("content");
-
-    chatbox.append("<%= j render( partial: @message ) %>");
-    chatbox.scrollTop(chatbox[0].scrollHeight);
-
-    if (sender_id != reciever_id) {
-        chatBox.chatWith(id);
-        chatbox.children().last().removeClass("self").addClass("other");
-        chatbox.scrollTop(chatbox[0].scrollHeight);
-        chatBox.notify();
-    }
-console.log("coucou dans le create.js.erb")
-<% end %>
+var conversation = $('#conversations-list').find("[data-conversation-id='" + "<%= @conversation.id %>" + "']");
+conversation.find('.messages-list').find('ul').append("<%= j(render 'messages/message', message: @message, user: current_user) %>");
+conversation.find('textarea').val('');

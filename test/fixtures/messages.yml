@@ -2,10 +2,10 @@
 
 one:
   body: MyText
-  conversation: one
   user: one
+  conversation: one
 
 two:
   body: MyText
-  conversation: two
   user: two
+  conversation: two

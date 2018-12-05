@@ -70,8 +70,5 @@ gem 'font-awesome-rails'
 gem 'popper_js'
 gem 'faker'
 
-#messagerie
-gem 'private_pub'
-gem 'thin'
-gem 'foreman'
 gem 'rails_12factor'
+#messagerie
