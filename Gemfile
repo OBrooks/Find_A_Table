@@ -71,4 +71,6 @@ gem 'popper_js'
 gem 'faker'
 
 gem 'rails_12factor'
+
 #messagerie
+gem 'redis'
