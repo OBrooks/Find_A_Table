@@ -33,7 +33,7 @@ ActiveRecord::Schema.define(version: 2018_12_05_151329) do
     t.string "image_url", default: "https://images.unsplash.com/photo-1522069213448-443a614da9b6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1352&q=80"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "time"
+    t.time "time"
     t.string "category"
   end
 
