@@ -58,10 +58,10 @@ ActiveRecord::Schema.define(version: 2018_12_04_132438) do
     t.string "nickname"
     t.string "town"
     t.text "adress"
-    t.integer "status"
+    t.integer "status", default: 1
     t.string "gender"
-    t.integer "experience"
-    t.text "description"
+    t.integer "experience", default: 0
+    t.text "description", default: ""
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
