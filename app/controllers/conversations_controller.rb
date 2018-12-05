@@ -1,31 +1,32 @@
 class ConversationsController < ApplicationController
-  before_action :authenticate_user!
-
-  layout false
-
   def create
-    if Conversation.between(params[:sender_id],params[:recipient_id]).present?
-      @conversation = Conversation.between(params[:sender_id],params[:recipient_id]).first
-    else
-      @conversation = Conversation.create!(conversation_params)
-    end
+    @conversation = Conversation.get(current_user.id, params[:user_id])
 
-    render json: { conversation_id: @conversation.id }
+    add_to_conversations unless conversated?
+
+    respond_to do |format|
+      format.js
+    end
   end
 
-  def show
+  def close
     @conversation = Conversation.find(params[:id])
-    @reciever = interlocutor(@conversation)
-    @messages = @conversation.messages
-    @message = Message.new
+
+    session[:conversations].delete(@conversation.id)
+
+    respond_to do |format|
+      format.js
+    end
   end
 
   private
-  def conversation_params
-    params.permit(:sender_id, :recipient_id)
+
+  def add_to_conversations
+    session[:conversations] ||= []
+    session[:conversations] << @conversation.id
   end
 
-  def interlocutor(conversation)
-    current_user == conversation.recipient ? conversation.sender : conversation.recipient
+  def conversated?
+    session[:conversations].include?(@conversation.id)
   end
 end

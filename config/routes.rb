@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+
+  mount ActionCable.server => '/cable'
+
   devise_for :users
 
     # authenticated :user do
@@ -11,10 +14,14 @@ Rails.application.routes.draw do
   #   end
   # end
   
-  get 'chat' => 'conversations#show'
-  resources :conversations do
-      resources :messages
+  resources :conversations, only: [:create] do
+    member do
+      post :close
+    end
+
+    resources :messages, only: [:create]
   end
+
 
   get "/games", to: "games#index"
   get "/games/:id", to: "games#show"

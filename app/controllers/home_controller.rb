@@ -21,9 +21,12 @@ class HomeController < ApplicationController
     end
 
     def list_users
-        @users = User.where.not("id = ?",current_user.id).order("created_at DESC")
-        @conversations = Conversation.involving(current_user).order("created_at DESC")
-    end
+         session[:conversations] ||= []
+
+    @users = User.all.where.not(id: current_user)
+    @conversations = Conversation.includes(:recipient, :messages)
+                                .find(session[:conversations])
+                                end
 
     def scrapping
         Gamescrap.new.perform
