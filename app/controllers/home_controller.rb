@@ -7,16 +7,16 @@ class HomeController < ApplicationController
     end
 
     def webmaster
-        if current_user.status == 3
+        if current_user.webmaster
         else 
-            redirect_to "home/index"
+            redirect_to root
         end
     end
 
     def admin
-        if current_user.status == 2
+        if current_user.admin
         else 
-            redirect_to "home/index"
+            redirect_to root
         end
     end
 
