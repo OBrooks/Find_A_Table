@@ -8,7 +8,7 @@
             <li>
                 <%= link_to "Page du webmaster", webmaster_path %>
             </li>
-            <%elsif current_user.status.administrateur? %>
+            <%elsif current_user.admin? %>
                 <li>
                     <%= link_to "Page administrateur", admin_path %>
                 </li>
@@ -17,6 +17,7 @@
                         <li><button>Mes sessions</button></li>
                         <li><button>Chercher une session</button></li>
                         <li><button>Parcourir les sessions</button></li>
+                        <li><%=button_to "Parcourir les jeux", games_path, method: :get%></li>
                         <li><button>Calendrier</button></li>
                         <li><button>Outils</button></li>
                         <li><button>Blog</button></li>

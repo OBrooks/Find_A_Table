@@ -1,15 +1,15 @@
 Rails.application.routes.draw do
   devise_for :users
 
-    authenticated :user do
+    # authenticated :user do
     root "home#index"
-  end
+  # end
 
-  unauthenticated :user do
-    devise_scope :user do
-      get "/" => "devise/sessions#new"
-    end
-  end
+  # unauthenticated :user do
+  #   devise_scope :user do
+  #     get "/" => "devise/sessions#new"
+  #   end
+  # end
   
   get 'chat' => 'conversations#show'
   resources :conversations do
@@ -24,6 +24,9 @@ Rails.application.routes.draw do
   get "webmaster", to: "home#webmaster"
   get "admin", to: "home#admin"
   get "list_users", to:"home#list_users"
+  post "scrapping", to: "home#scrapping"
 
   get "landingpage", to: "landingpage#lp"
+
+  
 end
