@@ -15,16 +15,17 @@
   transition-duration: 0.4s;
   margin-right: 10px;
   border-radius: 8px;
-  border: 2px solid #000000;
+  border: 1px solid #000000;
   display: flex;
   justify-content: center;
   align-items: center;
   font-family: $font-passero;
   font-size: 16px;
+  background-color: rgba(180, 181, 221, 1);
 }
 
 .btn-header:hover {
-  background-color: green;
+  background-color: rgba(255, 255, 255, 1);
 }
 
 .btn-header:active {
