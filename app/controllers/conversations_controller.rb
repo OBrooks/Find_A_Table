@@ -1,14 +1,12 @@
 class ConversationsController < ApplicationController
   def create
-    puts "in the start of create"
     @conversation = Conversation.get(current_user.id, params[:user_id])
 
     add_to_conversations unless conversated?
-    puts "in create before respond_to"
+
     respond_to do |format|
       format.js
     end
-    puts "in create after respond_to"
   end
 
   def close
