@@ -7,16 +7,16 @@ class HomeController < ApplicationController
     end
 
     def webmaster
-        if current_user.webmaster
+        if current_user.webmaster?
         else 
-            redirect_to root
+            redirect_to root_path
         end
     end
 
     def admin
-        if current_user.admin
+        if current_user.admin?
         else 
-            redirect_to root
+            redirect_to root_path
         end
     end
 
