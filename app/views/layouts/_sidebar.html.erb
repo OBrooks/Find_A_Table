@@ -1,6 +1,45 @@
-<p>sidebar placeholder</p>
 
-<ul>
+<% if user_signed_in? %>
+  <div class="row">
+    <h3 class="sidebar-hello">Bonjour, <%= current_user.nickname %> !</h3>
+  </div>
+  <% if current_user.webmaster? %>
+    <div class="row">
+      <%= link_to "Webmaster Dashboard", webmaster_path %>
+    </div>
+  <% elsif current_user.admin? %>
+    <div class="row">
+      <%= link_to "Admin Dashboard", admin_path %>
+    </div>
+  <% end %>
+<% end %>
+<div class="row">
+  <button class="btn-sidebar">Mes sessions</button>
+</div>
+<div class="row">
+  <button class="btn-sidebar">Chercher une session</button>
+</div>
+<div class="row">
+  <button class="btn-sidebar">Parcourir les sessions</button>
+</div>
+<div class="row">
+  <button class="btn-sidebar">Calendrier</button>
+</div>
+<div class="row">
+  <button class="btn-sidebar">Outils</button>
+</div>
+
+<!-- <div class="row">
+  <button>Blog</button>
+</div>
+<div class="row">
+  <button>TableTop RPG</button>
+</div>
+<div class="row">
+  <button>RetroGaming</button>
+</div> -->
+
+<!-- <ul>
     <% if user_signed_in? %>
         <li>Bonjour,
             <%=current_user.nickname%> !</li>
@@ -8,7 +47,7 @@
             <li>
                 <%= link_to "Page du webmaster", webmaster_path %>
             </li>
-            <%elsif current_user.admin? %>
+            <% elsif current_user.admin? %>
                 <li>
                     <%= link_to "Page administrateur", admin_path %>
                 </li>
@@ -21,6 +60,7 @@
                         <li><button>Calendrier</button></li>
                         <li><button>Outils</button></li>
                         <li><button>Blog</button></li>
-                        <!-- <li><button>Tabletop-RPG</button></li>
-                        <li><button>Retrogaming</button></li> -->
-</ul>
+
+                        <li><button>Tabletop-RPG</button></li>
+                        <li><button>Retrogaming</button></li>
+</ul> -->
