@@ -18,24 +18,56 @@ class Gamescrap
         temporary_array = []
         
         page_game = Nokogiri::HTML(open(url_game))
-        puts url_game
-        # page_game.xpath('/html/body/div[4]/header/div/div[2]/div[1]/div/h1/a').each do |section|
-        #     temporary_array << section.text
-        # end
+        #puts url_game
 
-        page_game.xpath('/html/body/div[4]/div/div[2]/div[1]/div[2]').each do |section|
-            temporary_array << section.content
+        #Title
+        page_game.xpath('/html/body/div[4]/header/div/div[2]/div[1]/div/h1/a').each do |section|
+            temporary_array << section.text
         end
-        puts temporary_array
 
-        page_game.xpath('/html/body/div[4]/div/div[2]/div[1]/div[2]').each do |section|
-            temporary_array << section.content
+        # #Description
+         c=0
+        page_game.css('div.column.medium-7').each do |section|
+            if c == 0
+                temporary_array << section.content
+                puts section.content
+            break
+            end 
         end
-        puts temporary_array
 
-        
+        #Image
+        page_game.css('div.medium-3.columns.image-limited.image-wrapper img').each do |section|
+            
+            temporary_array <<  section.attr('src')
+        end
 
-        
+        #Min & Max of players
+        page_game.css('ul.vertical.menu.columns li').each do |section|
+            if c == 0
+                #Min
+                temporary_array << section.content.split(" ")[0].to_i
+                #Max
+                temporary_array << section.content.split(" ")[2][0].to_i
+            break
+            end
+        end
+
+        #Time
+        page_game.xpath('/html/body/div[4]/div/div[3]/div/ul[1]/li[3]').each do |section|
+            temporary_array << section.content
+            puts section.content
+        end
+
+        #Category
+        categories = []
+        page_game.css('.label-group a').each do |section|
+            if c == 0
+                temporary_array << section.content
+            break
+            end
+        end
+
+        temporary_hash_game_description = {"Title" => temporary_array[0], "Description" => temporary_array[1], "Image" => temporary_array[2], "MinAge" => temporary_array[3], "MaxAge" => temporary_array[4], "Time" => temporary_array[5], "Categories" => temporary_array[6]}
     end
     
     def scrap_games_links(url)
