@@ -70,12 +70,9 @@ gem 'font-awesome-rails'
 gem 'popper_js'
 gem 'faker'
 
-<<<<<<< HEAD
 #messagerie
 gem 'private_pub'
 gem 'thin'
 gem 'foreman'
 gem 'rails_12factor'
-=======
 gem 'nokogiri'
->>>>>>> paul
