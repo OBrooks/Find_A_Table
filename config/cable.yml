@@ -6,5 +6,5 @@ test:
 
 production:
   adapter: redis
-  url: redis://redistogo:07aedc725c2fd724d7703e36afac7056@barb.redistogo.com:10036/
+  url: redis://redistogo:6eba943014134d1e2e8c44ad8c094e7e@barb.redistogo.com:9974/
   channel_prefix: The_Gaming_Table_production
