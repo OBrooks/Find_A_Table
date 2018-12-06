@@ -9,14 +9,14 @@ class HomeController < ApplicationController
     def webmaster
         if current_user.webmaster?
         else 
-            redirect_to "home/index"
+            redirect_to root_path
         end
     end
 
     def admin
         if current_user.admin?
         else 
-            redirect_to "home/index"
+            redirect_to root_path
         end
     end
 
