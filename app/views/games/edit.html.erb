@@ -1,5 +1,23 @@
-<%= form_for @article, url: {action: "create"}, html: {class: "nifty_form"} do |f| %>
-  <%= f.text_field :title %>
-  <%= f.text_area :body, size: "60x12" %>
-  <%= f.submit "Create" %>
+<h2>Modifiez les informations du jeu</h2>
+<%= form_for @game do |f| %>
+  <p><b>Modification du nom du jeu </b></p> 
+  <%= f.text_field :title, value: @game.title %>
+  <br>
+  <p><b>Modification de la description du jeu </b></p>
+  <%= f.text_area :description, value: @game.description %>
+  <br>
+  <p><b>Modification de l'image du jeu </b></p>
+  <%= f.text_field :image_url, value: @game.image_url %>
+  <br>
+  <p><b>Modification du nombre de joueurs </b></p>
+  <span>Nombre minimum</span><%= f.number_field :min_players, value: @game.min_players %>
+  <span>Nombre maximum</span><%= f.number_field :max_players, value: @game.max_players %>
+  <br>
+  <p><b>Modification du temps de partie en minutes</b></p>
+  <%= f.number_field :time, value: @game.time %>
+  <br>
+  <p><b>Modification de la catégorie </b></p>
+  <%=f.select :category, Game.pluck(:category, :category)%>
+  <br>
+  <%= f.submit "Modifier" %>
 <% end %>
