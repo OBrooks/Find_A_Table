@@ -10,4 +10,8 @@ class GamesController < ApplicationController
         @game=Game.find(params[:id])
     end
 
+    def edit
+        @game=Game.find(params[:id])
+    end
+
 end
