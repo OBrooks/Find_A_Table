@@ -31,4 +31,12 @@ class HomeController < ApplicationController
     def scrapping
         Gamescrap.new.perform
     end
+
+    def favoris
+    @favoris=current_user.favorites
+        if params[:id] != nil
+            @games=Game.where(game_id: params[:id])
+        end
+    end
+
 end

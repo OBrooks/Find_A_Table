@@ -1,0 +1,15 @@
+<div class="col-lg-12">
+    <div class="clearfix d-flex flex-row flex-wrap">
+        <% if @favoris.length == 0 %>
+            <h2>Tu n'as pas encore d'images favoris !<br>N'hésites pas à retourner sur la <a href="/games" class="btn btn-danger">
+                <h2>page des jeux</h2>
+            </a> pour en ajouter ;)</h2>
+        <% else %>
+            <% @favoris.each do |favor| %>
+                <% @games.each do |game| %>
+                    <%= game.title %>
+                <% end %>
+            <% end %>
+        <% end %>
+    </div>
+</div>
