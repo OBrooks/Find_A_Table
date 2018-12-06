@@ -5,13 +5,13 @@
         </div>
         <div class = "col-lg-9">
             <div class = "row">
-                <h4><b><%= game.title %></b></h4>
+                <h4><b><a href = "<%=game_path(game.id)%>"><%= game.title %></a></b></h4>
             </div>
             <ul>
             <div class = "row">
                 <div class = "col">
                     <%if game.min_players == game.max_players%>
-                        <li><b>Jusqu'à <%=game.min_players%></b></li>
+                        <li><b>Jusqu'à <%=game.min_players%> joueurs</b></li>
                     <%else%> 
                         <li><b>De <%=game.min_players%> à <%=game.max_players%> joueurs</b></li>
                     <%end%>
