@@ -1,10 +1,34 @@
-    <%= @games.each do |game| %>
-    <ul class = >
-        <h4><b><%= game.title %></b></h4>
-        <% game.min_players %>
-        <% game.max_players %>
+<%= @games.each do |game| %>
+    <div class = "row">
+        <div class = "col-lg-3">
+            <img src = "<%= game.image_url%>" class = "games_image">
+        </div>
+        <div class = "col-lg-9">
+            <div class = "row">
+                <h4><b><%= game.title %></b></h4>
+            </div>
+            <ul>
+            <div class = "row">
+                <div class = "col">
+                    <%if game.min_players == game.max_players%>
+                        <li><b>Jusqu'à <%=game.min_players%></b></li>
+                    <%else%> 
+                        <li><b>De <%=game.min_players%> à <%=game.max_players%> joueurs</b></li>
+                    <%end%>
+                </div>
+                <div class = "col">
+                    <li><b>Durée de jeu : <%=game.time%></b></li>
+                </div>
+                <div class = "col">
+                    <li><b>Categorie  : <%= game.category%></b></li>
+                </div>
+            </div>
+            </ul>
         
-    <% end %>
+        </div>
+
+    </div>        
+<% end %>
 
 <h1>Il n'y a pas encore de jeu enregistré ! La base de données est en cours de construction </h1>
 <i class="fas fa-dice fa-3x"></i><br>
