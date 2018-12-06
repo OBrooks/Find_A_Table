@@ -1,5 +1,8 @@
 <li>
     <div class="row">
+        <div class="header-avatar">
+            <img src="https://i.kym-cdn.com/photos/images/newsfeed/000/885/429/ba9.gif" alt="avatar" id="avatar">
+        </div>
         <div class="<%= user.id == message.user_id ? 'message-sent' : 'message-received' %>" id="messages">
             <%= message.body %>
         </div>

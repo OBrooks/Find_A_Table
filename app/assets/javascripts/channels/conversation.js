@@ -5,12 +5,11 @@ App.conversation = App.cable.subscriptions.create("ConversationChannel", {
     console.log("on est dans le received")
     console.log(data)
     console.log(data['message'])
-    $("#messages").append(data['message'])
     var conversation = $('#conversations-list').find("[data-conversation-id='" + data['conversation_id'] + "']");
     console.log("inside conversation.js ActionCable")
     if (data['window'] !== undefined) {
       var conversation_visible = conversation.is(':visible');
-    console.log("inside conversation.js ActionCable window defined")
+      console.log("inside conversation.js ActionCable window defined")
       if (conversation_visible) {
         var messages_visible = (conversation).find('.panel-body').is(':visible');
         if (!messages_visible) {
