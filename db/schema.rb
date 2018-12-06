@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_06_155846) do
+ActiveRecord::Schema.define(version: 2018_12_06_161846) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -54,7 +54,7 @@ ActiveRecord::Schema.define(version: 2018_12_06_155846) do
     t.string "image_url", default: "https://images.unsplash.com/photo-1522069213448-443a614da9b6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1352&q=80"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.time "time"
+    t.string "time"
     t.string "category"
   end
 
@@ -104,10 +104,10 @@ ActiveRecord::Schema.define(version: 2018_12_06_155846) do
     t.string "nickname"
     t.string "town"
     t.text "adress"
-    t.integer "status"
+    t.integer "status", default: 1
     t.string "gender"
-    t.integer "experience"
-    t.text "description"
+    t.integer "experience", default: 0
+    t.text "description", default: ""
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
