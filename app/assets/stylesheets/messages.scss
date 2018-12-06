@@ -1,16 +1,95 @@
 // Place all the styles related to the messages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+// Inside messages-list (messages)
 ul {
     padding-left: 0px;
     list-style: none;
 }
 
 .messages-list {
-    max-height: 200px;
+    font-family: arial,
+    sans-serif;
+    height: 280px;
+    width: 280px;
     overflow-y: auto;
-    overflow-x: hidden;
+    padding: 7px;
+    border-left: 1px solid #cccccc;
+    border-right: 1px solid #cccccc;
+    border-bottom: 1px solid #eeeeee;
+    background: #e5e5e5;
+    line-height: 1.3em;
+    list-style: none;
 }
+#messages-list ul li {
+    padding: 0.5rem;
+    overflow: hidden;
+    display: flex;
+}
+
+.self {
+    justify-content: flex-end;
+    align-items: flex-end;
+        }
+
+.self .chatboxmessagecontent {
+    order: 1;
+    border-bottom-right-radius: 0;
+}
+
+.self .avatar {
+    order: 2;
+}
+
+
+.other .avatar:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 0;
+    height: 0;
+    border: 5px solid white;
+    border-left-color: transparent;
+    border-bottom-color: transparent;
+}
+
+.chatboxmessagecontent {
+    background: white;
+    padding: 10px;
+    border-radius: 2px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.chatboxmessagecontent p {
+    font-size: 12px;
+    margin: 0 0 0.2rem 0;
+    -ms-word-break: break-all;
+
+    /* Non standard for webkit */
+    word-break: break-word;
+
+    -webkit-hyphens: auto;
+    -moz-hyphens: auto;
+    hyphens: auto;
+}
+
+.chatboxmessagecontent time {
+    font-size: 9px;
+    color: #ccc;
+}
+
+.messages-list .avatar {
+    width: 40px;
+    position: relative;
+}
+
+.messages-list .avatar img {
+    display: block;
+    width: 100%;
+}
+
 
 .message-sent {
     position: relative;
@@ -18,7 +97,6 @@ ul {
     border-color: #BCE8F1;
     margin: 5px 20px;
     padding: 10px;
-    float: right;
 }
 
 .message-received {
@@ -26,5 +104,23 @@ ul {
     border-color: #EEEEEE;
     margin: 5px 20px;
     padding: 10px;
-    float: left;
+}
+
+// Form input
+
+.chatboxinput {
+    padding: 5px;
+    background-color: #ffffff;
+    border-left: 1px solid #cccccc;
+    border-right: 1px solid #cccccc;
+    border-bottom: 1px solid #cccccc;
+}
+.chatboxtextarea {
+    width: 262px;
+    height: 44px;
+    padding: 3px 0pt 3px 3px;
+    border: 1px solid #eeeeee;
+    margin: 1px;
+    overflow: hidden;
+    resize: none !important;
 }
