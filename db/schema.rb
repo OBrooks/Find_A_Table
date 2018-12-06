@@ -35,6 +35,7 @@ ActiveRecord::Schema.define(version: 2018_12_04_142940) do
     t.text "description"
     t.integer "playernb"
     t.integer "maxplayers"
+    t.integer "time"
     t.integer "status", default: 0
     t.integer "playerskill", default: 0
     t.datetime "created_at", null: false

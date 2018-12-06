@@ -9,6 +9,7 @@ class CreateSessions < ActiveRecord::Migration[5.2]
       t.text :description
       t.integer :playernb
       t.integer :maxplayers
+      t.integer :time
       t.integer :status, :default => 0
       t.integer :playerskill, :default => 0
       t.timestamps

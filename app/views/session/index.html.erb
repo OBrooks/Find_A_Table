@@ -7,20 +7,27 @@
     <th>City</th>
     <th>PayerNB</th>
     <th>MaxPlayers</th>
+    <th>Time</th>
     <th>PlayerSkill</th>
     <th>Status</th>
   </tr>
   <%@sessions.each do |session|%>
     <tr>
-      <td><%=session.id%></td>
-      <td><%=session.host.nickname%></td>
-      <td><%=session.date%></td>
-      <td><%=session.game.title%></td>
-      <td><%=session.city%></td>
-      <td><%=session.playernb%></td>
-      <td><%=session.maxplayers%></td>
-      <td><%=session.playerskill%></td>
-      <td><%=session.status%></td>
+      <td><%= session.id %></td>
+      <td><%= session.host.nickname %></td>
+      <td><%= session.date %></td>
+      <td><%= session.game.title %></td>
+      <td><%= session.city %></td>
+      <td><%= session.playernb %></td>
+      <td><%= session.maxplayers %></td>
+      <td><%= session.time %></td>
+      <td><%= session.playerskill %></td>
+      <td><%= session.status %></td>
+      <td><%= link_to 'Show', session_path(session) %></td>
+      <td><%= link_to 'Edit', edit_session_path(session) %></td>
+      <td><%= link_to 'Destroy', session_path(session),
+              method: :delete,
+              data: { confirm: 'Are you sure?' } %></td>
     </tr>
   <%end%>
 </table>

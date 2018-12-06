@@ -8,18 +8,20 @@
       <th>Description</th>
       <th>PayerNB</th>
       <th>MaxPlayers</th>
+      <th>Time</th>
       <th>PlayerSkill</th>
     </tr>
     <tr>
       <td><%= date_field_tag "date", @session.date , min: Date.today %></td>
-      <td><%= select_tag "game", options_from_collection_for_select(Game.order(:title), "id", "title", @session.game) %></td>
+      <td><%= select_tag "game", options_from_collection_for_select(Game.order(:title), "id", "title", @session.game), prompt: "Select something"%></td>
       <td><%= text_field_tag "adress", @session.adress%></td>
       <td><%= text_field_tag "city", @session.city %></td>
       <td><%= text_field_tag "description", @session.description %></td>
       <td><%= number_field_tag 'playernb', @session.playernb, min: 0%></td>
       <td><%= number_field_tag 'maxplayers', @session.maxplayers, min: 2%></td>
-      <td><%= select_tag "playerskill", options_from_collection_for_select(Session.playerskills, "last", "first", @session.playerskill) %></td>
+      <td><%= number_field_tag 'time', @session.time, min: 1, max: 12%></td>
+      <td><%= select_tag 'playerskill', options_from_collection_for_select(Session.playerskills, "last", "first", @session.playerskill), prompt: "Select something" %></td>
     </tr>
   </table>
-    <%= submit_tag("Go") %>
+    <%= submit_tag('Go') %>
 <% end %>

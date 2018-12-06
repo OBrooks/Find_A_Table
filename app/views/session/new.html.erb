@@ -8,6 +8,7 @@
       <th>Description</th>
       <th>PayerNB</th>
       <th>MaxPlayers</th>
+      <th>Time</th>
       <th>PlayerSkill</th>
     </tr>
     <tr>
@@ -16,8 +17,9 @@
       <td><%= text_field_tag 'adress' %></td>
       <td><%= text_field_tag 'city' %></td>
       <td><%= text_field_tag 'description' %></td>
-      <td><%= number_field_tag 'playernb', 0, min: 0%></td>
-      <td><%= number_field_tag 'maxplayers', 2, min: 2%></td>
+      <td><%= number_field_tag 'playernb', nil, min: 0%></td>
+      <td><%= number_field_tag 'maxplayers', nil, min: 2%></td>
+      <td><%= number_field_tag 'time', nil, min: 1, max: 12%></td>
       <td><%= select_tag 'playerskill', options_from_collection_for_select(Session.playerskills, 'last', 'first') %></td>
     </tr>
   </table>
