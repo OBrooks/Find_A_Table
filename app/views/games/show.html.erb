@@ -1,0 +1,30 @@
+ <div class = "row">
+        <div class = "col-lg-3">
+            <img src = "<%= @game.image_url%>" class = "@games_image">
+        </div>
+        <div class = "col-lg-9">
+            <div class = "row">
+                <h4><b><%=@game.title %></b></h4>
+            </div>
+            <ul>
+            <div class = "row">
+                <div class = "col">
+                    <%if @game.min_players == @game.max_players%>
+                        <li><b>Jusqu'à <%=@game.min_players%></b></li>
+                    <%else%> 
+                        <li><b>De <%=@game.min_players%> à <%=@game.max_players%> joueurs</b></li>
+                    <%end%>
+                </div>
+                <div class = "col">
+                    <li><b>Durée de jeu : <%=@game.time%></b></li>
+                </div>
+                <div class = "col">
+                    <li><b>Categorie  : <%= @game.category%></b></li>
+                </div>
+            </div>
+            </ul>
+        
+        </div>
+<div class = "row" class = "description">
+    <%=@game.description%>
+<div>

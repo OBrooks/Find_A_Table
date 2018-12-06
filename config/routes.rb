@@ -22,9 +22,7 @@ Rails.application.routes.draw do
     resources :messages, only: [:create]
   end
 
-
-  get "/games", to: "games#index"
-  get "/games/:id", to: "games#show"
+  resources :games
 
   get "index", to: "home#index"
   get "profile", to: "home#profile"
