@@ -21,9 +21,12 @@
                 <div class = "col">
                     <li><b>Categorie  : <%= @game.category%></b></li>
                 </div>
+                <div class = "col">
+                    <li><a href = "<%=edit_game_path(@game.id)%>">Modifier les informations du jeu</a></b></li>
+                </div>
+                
             </div>
             </ul>
-        
         </div>
 <div class = "row" class = "description">
     <%=@game.description%>
