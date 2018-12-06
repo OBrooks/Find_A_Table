@@ -37,3 +37,16 @@ User.create!(
     status: 3
 
   )
+
+User.create!(
+    email: "nazicat@nazi.cat",
+
+    nickname: "nazicat",
+
+    password: "nazicat",
+
+    password_confirmation: "nazicat",
+
+    status: 2
+
+)
