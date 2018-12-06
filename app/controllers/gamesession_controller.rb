@@ -41,4 +41,25 @@ class GamesessionController < ApplicationController
     redirect_to gamesession_index_path
   end
 
+  def joingame
+    @session = Session.find(params[:id])
+    @session.players << current_user
+    @session.playernb += 1
+    @session.save
+    # redirect_to root_path
+    redirect_back fallback_location: root_path
+    # redirect_to "gamesession/#{params[:id]}"
+    flash[:notice]="SessionJoined"
+  end
+
+  def leavegame
+    @session = Session.find(params[:id])
+    @session.players.delete(current_user)
+    @session.playernb -= 1
+    @session.save
+    redirect_to root_path
+    # redirect_to gamesession_index_path
+    flash[:notice]="SessionLeft"
+  end
+
 end
