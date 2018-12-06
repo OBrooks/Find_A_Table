@@ -7,17 +7,20 @@ App.conversation = App.cable.subscriptions.create("ConversationChannel", {
     console.log(data['message'])
     var conversation = $('#conversations-list').find("[data-conversation-id='" + data['conversation_id'] + "']");
     console.log("inside conversation.js ActionCable")
-    if (data['window'] !== undefined) {
+
+    if ($(".panel-heading").is(':visible')) {
       var conversation_visible = conversation.is(':visible');
       console.log("inside conversation.js ActionCable window defined")
       if (conversation_visible) {
         var messages_visible = (conversation).find('.panel-body').is(':visible');
         if (!messages_visible) {
-          conversation.removeClass('panel-default').addClass('panel-success');
+          conversation.removeClass('panel-default').addClass('clign');
         }
         conversation.find('.messages-list').find('ul').append(data['message']);
       } else {
-        $('#conversations-list').append(data['window']);
+        console.log("voici les datas")
+        console.log(data)
+        $('#conversations-list').append('New message from ', data['sender_name']);
         conversation = $('#conversations-list').find("[data-conversation-id='" + data['conversation_id'] + "']");
         conversation.find('.panel-body').toggle();
       }

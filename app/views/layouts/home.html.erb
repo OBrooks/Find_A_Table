@@ -14,34 +14,33 @@
 </head>
 
 <body>
-  <% flash.each do |message_type, message| %>
-  <div class="alert alert-<%= message_type %>">
-    <%= message %>
-  </div>
-  <% end %>
-  
-  <div class="container-fluid">
-      <header>
-          <%= render "layouts/header"%>
+
+    <div class="container-fluid container-page">
+        <header>
+            <%= render "layouts/header"%>
         </header>
+
         <div class="row row-content">
-            <div class="col-lg-2 border col-sidebar">
+
+          <div class="col-lg-2"></div>
+
+            <div class="position-fixed col-sidebar">
                 <%= render "layouts/sidebar" %>
             </div>
-            <div class="col-lg-10 border">
+
+            <div class="col-lg-10 col-main-content">
                 <%=render "layouts/modalconnection"%>
                 <%=render "layouts/modalinscription"%>
                 <%= yield %>
             </div>
         </div>
+
         <footer>
             <div class="row row-footer">
-                <div class="col border">
                     <%= render "layouts/footer" %>
-                </div>
-            </footer>
+        </footer>
+
         </div>
-        <audio id="chatAudio"><source src="/sounds/notification.mp3" type="audio/mpeg"></audio>
-    </body>
-    
-    </html>
+</body>
+
+</html>

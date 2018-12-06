@@ -37,10 +37,14 @@ class MessageBroadcastJob < ApplicationJob
       partial: 'messages/message',
       locals: { message: message, user: user }
     )
+    puts "User Id du sender is#{user.nickname}"
+    puts ""
+    puts "User Id du receiver is#{message.conversation.opposed_user(user).nickname}"
     ActionCable.server.broadcast(
       "conversations-#{user.id}",
       message: message2,
-      conversation_id: message.conversation_id
+      conversation_id: message.conversation_id,
+      sender_name: user.nickname
     )
     
         puts ""
@@ -54,10 +58,15 @@ class MessageBroadcastJob < ApplicationJob
       partial: 'messages/message',
       locals: { message: message, user: user }
     )
+    puts "User receiver is#{user.nickname}"
+    puts ""
+    puts "User du sender side recipient is#{message.conversation.opposed_user(user).nickname}"
     ActionCable.server.broadcast(
       "conversations-#{user.id}",
       message: message2,
-      conversation_id: message.conversation_id
+      conversation_id: message.conversation_id,
+      recipient_name: user.nickname,
+      sender_name: message.conversation.opposed_user(user).nickname
     )
     
     puts ""

@@ -12,7 +12,11 @@
       <% if user_signed_in? %>
       <div class="header-avatar">
         <div class="dropdown" id="header-dropdown">
-          <img src="https://i.kym-cdn.com/photos/images/newsfeed/000/885/429/ba9.gif" alt="avatar" id="avatar">
+          <% if current_user.profile_picture.attachment != nil %>
+            <%= image_tag current_user.profile_picture, id:"avatar" %>
+          <% else %>
+            <img src="https://i.kym-cdn.com/photos/images/newsfeed/000/885/429/ba9.gif" alt="avatar" id="avatar">
+          <% end %>
           <div class="dropdown-content" id="header-dropdown-content">
             <p> <%= link_to "Votre Profil", profile_path%> </p>
             <p> <%= link_to "Editer vos infos", edit_user_registration_path%> </p>

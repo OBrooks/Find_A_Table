@@ -7,3 +7,25 @@
   min-width: 80%;
   text-align: left;
 }
+
+.btn-admin {
+  margin: 3px;
+  padding-left: 6px;
+  font-family: $font-patrick;
+  font-size: 16px;
+  min-width: 80%;
+  text-align: left;
+  border-style: outset;
+  border-color: grey;
+  color: black;
+  background-color: white;
+  font-weight: normal;
+  text-decoration-line: none;
+}
+
+.btn-admin:hover {
+  color: black;
+  background-color: darkgrey;
+  font-weight: normal;
+  text-decoration-line: none;
+}
