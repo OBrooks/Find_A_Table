@@ -1,4 +1,5 @@
-class SessionController < ApplicationController
+class GamesessionController < ApplicationController
+
   def index
     @sessions = Session.all
   end
@@ -17,7 +18,7 @@ class SessionController < ApplicationController
     @ses = Session.new(host_id: current_user.id, game_id: params[:game], time: params[:time], date: params[:date], city: params[:city], adress: params[:adress], description: params[:description], playernb: params[:playernb].to_i, maxplayers: params[:maxplayers], status: params[:status].to_i, playerskill: params[:playerskill].to_i)
     if @ses.valid?
       @ses.save
-      redirect_to session_index_path
+      redirect_to gamesession_index_path
     else
       flash.now[:danger]="champsinvalide"
       render :new
@@ -31,13 +32,13 @@ class SessionController < ApplicationController
   def update
     @session = Session.find(params[:id])
     @session = @session.update(host_id: current_user.id, game_id: params[:game], time: params[:time].to_i, date: params[:date], city: params[:city], adress: params[:adress], description: params[:description], playernb: params[:playernb].to_i, maxplayers: params[:maxplayers], status: params[:status].to_i, playerskill: params[:playerskill].to_i)
-    redirect_to session_path
+    redirect_to gamesession_path
   end
 
   def destroy
     @session = Session.find(params[:id])
     @session.destroy
-    redirect_to session_index_path
+    redirect_to gamesession_index_path
   end
 
 end
