@@ -12,7 +12,7 @@
       <% if user_signed_in? %>
       <div class="header-avatar">
         <div class="dropdown" id="header-dropdown">
-          <img src="https://i.kym-cdn.com/photos/images/newsfeed/000/885/429/ba9.gif" alt="avatar" id="avatar">
+            <img onclick="headerDropdown()" src="https://i.kym-cdn.com/photos/images/newsfeed/000/885/429/ba9.gif" alt="avatar" id="avatar" class="dropbtn">
           <div class="dropdown-content" id="header-dropdown-content">
             <p> <%= link_to "Votre Profil", profile_path%> </p>
             <p> <%= link_to "Editer vos infos", edit_user_registration_path%> </p>
@@ -23,6 +23,7 @@
       <% end %>
   </div>
 </div>
+
 
 
 <!-- <ul class="user_display_navbar">

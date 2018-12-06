@@ -1,5 +1,3 @@
-$(document).ready(function(){
-    $("#header-dropdown").hover(function(){
-        $("#header-dropdown-content").slideToggle("fast");
-    });
-});
+function headerDropdown() {
+  $(document.getElementById("header-dropdown-content")).slideToggle( "fast" );
+}

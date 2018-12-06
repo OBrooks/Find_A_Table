@@ -1,3 +1,5 @@
+@import "theme/index";
+
 .header-avatar {
   margin: 0px;
   height: 56px;
@@ -7,10 +9,25 @@
 }
 
 #avatar {
-    width: 50px;
-    height: 50px;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    margin-right: 5px;
+    width: 45px;
+    height: 45px;
     border-radius: 50%;
     background-color: rgba(255, 255, 255, 0);
+}
+
+#avatar:hover {
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+  cursor: pointer;
+  width: 50px;
+  height: 50px;
+}
+
+#avatar:active {
+  filter: brightness(1.2);
 }
 
 .dropdown-content {

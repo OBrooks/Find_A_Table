@@ -1,3 +1,5 @@
+
+<div class="container">
 <%= @games.each do |game| %>
     <div class = "row">
         <div class = "col-lg-3">
@@ -12,7 +14,7 @@
                 <div class = "col">
                     <%if game.min_players == game.max_players%>
                         <li><b>Jusqu'à <%=game.min_players%> joueurs</b></li>
-                    <%else%> 
+                    <%else%>
                         <li><b>De <%=game.min_players%> à <%=game.max_players%> joueurs</b></li>
                     <%end%>
                 </div>
@@ -24,12 +26,13 @@
                 </div>
             </div>
             </ul>
-        
+
         </div>
 
-    </div>        
+    </div>
 <% end %>
 
-<h1>Il n'y a pas encore de jeu enregistré ! La base de données est en cours de construction </h1>
+<p>Il n'y a pas encore de jeu enregistré ! La base de données est en cours de construction </p>
 <i class="fas fa-dice fa-3x"></i><br>
 <i class="fa fa-gamepad fa-3x" aria-hidden="true"></i>
+</div>
