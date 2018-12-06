@@ -81,5 +81,3 @@ test:
 production:
   <<: *default
   database: The_Gaming_Table_production
-  username: The_Gaming_Table
-  password: <%= ENV['THE_GAMING_TABLE_DATABASE_PASSWORD'] %>

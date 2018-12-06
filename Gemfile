@@ -70,4 +70,9 @@ gem 'font-awesome-rails'
 gem 'popper_js'
 gem 'faker'
 
+gem 'rails_12factor'
 gem 'nokogiri'
+gem 'pry'
+
+#messagerie
+gem 'redis'

@@ -1,0 +1,18 @@
+header {
+  position:fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 56px;
+}
+
+.header-bar {
+  display: flex;
+  justify-content: flex-start;
+  background-color: rgba(120, 121, 151, 1);
+}
+
+.row-header {
+    min-height: 5vh;
+    z-index: 99;
+}

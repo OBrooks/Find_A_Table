@@ -1,39 +1,138 @@
 require 'rubygems'
 require 'nokogiri'
 require 'open-uri'
-
+require 'pry'
 
 class Gamescrap
     def initialize
-        @page_scrap = 1
-        @url = "https://www.trictrac.net/jeu-de-societe/liste/les-tops?page=#{@pagescrap}"
+        @url = "https://www.trictrac.net/jeu-de-societe/liste/les-tops?page=1"
+        @games_infos = []
     end
 
     def perform
-        save(@url)
+        if Game.first.nil?
+            scrap_games_links(@url)
+        end
     end
 
-    def save(url)
-        games_urls = []
-        page = Nokogiri::HTML(open(url))  
-        #html.whatinput-types-initial.whatinput-types-mouse body div#content div.row div#content-column.small-12.medium-8.large-9.columns div.items.divided.data div.item div.content a.header
-        path_game = page.css("a.header")
-        path_game.each do |game|
-            game_url = game.text
-            games_urls << game_url
-            puts game_url
+    def scrap_game_infos(url_game)
+        temporary_array = []
+        
+        page_game = Nokogiri::HTML(open(url_game))
+
+        #Title
+        if page_game.xpath('/html/body/div[4]/header/div/div[2]/div[1]/div/h1/a') == nil
+            temporary_array << 'Information indisponible'
+            puts "dommage"
+        else    
+            page_game.xpath('/html/body/div[4]/header/div/div[2]/div[1]/div/h1/a').each do |section|
+                temporary_array << section.text
+            end
         end
 
-        # crypto_value = []
-        # path_value= page.css("a.price")
-        # path_value.each do |section|
-        #     crypto_value << section.text
-        # end
+        #Description
+         c=0
+         if page_game.css('div.column.medium-7') == nil
+            temporary_array << 'Information indisponible'
+            puts "dommage"
+         else
+            page_game.css('div.column.medium-7').each do |section|
+                if c == 0
+                split_array = section.content.to_s.split(" ")
+                temporary_array << split_array.join(" ")
+                break
+                end 
+            end
+        end
         
-        # compteur = 0
-        # while compteur <= crypto_name.length
-        #     Crypto.create!(crypto_name: crypto_name[compteur], crypto_value: crypto_value[compteur])
-        #     compteur = compteur + 1
-        # end
+        #Image
+        if page_game.css('div.medium-3.columns.image-limited.image-wrapper img') == nil
+            temporary_array << 'Information indisponible'
+            puts "dommage"
+        else
+            page_game.css('div.medium-3.columns.image-limited.image-wrapper img').each do |section|
+                if section.attr('src')
+                    temporary_array <<  section.attr('src')
+                else
+                    temporary_array << 'Information indisponible'
+                end
+            end
+        end
+
+        #Min & Max of players
+        if page_game.css('ul.vertical.menu.columns li') == nil
+            temporary_array << 'Information indisponible'
+            puts "dommage"
+        else
+            page_game.css('ul.vertical.menu.columns li').each do |section|
+                if c == 0
+                    if section.content.split(" ").length == 1
+                        temporary_array << section.content.split(" ")[0][0].to_i
+                        temporary_array << section.content.split(" ")[0][0].to_i
+                    elsif section.content.split(" ").length == 3
+                        temporary_array << section.content.split(" ")[0].to_i
+                        temporary_array << section.content.split(" ")[2][0].to_i
+                    else 
+                        temporary_array << section.content.split(" ")[1][0].to_i
+                        temporary_array << section.content.split(" ")[1][0].to_i
+                    end
+                break
+                end
+            end
+        end
+
+        #Time
+        if page_game.xpath('/html/body/div[4]/div/div[3]/div/ul[1]/li[3]') == nil
+            temporary_array << 'Information indisponible'
+        else
+            page_game.xpath('/html/body/div[4]/div/div[3]/div/ul[1]/li[3]').each do |section|
+                temporary_array << section.content
+            end
+        end
+
+        #Category
+        categories = []
+        if page_game.css('.label-group a') == nil
+            temporary_array << 'Information indisponible'
+        else
+            page_game.css('.label-group a').each do |section|
+                if c == 0
+                    temporary_array << section.content
+                break
+                end
+            end
+        end
+
+        return temporary_hash_game_description = {"Title" => temporary_array[0], "Description" => temporary_array[1], "Image" => temporary_array[2], "Min" => temporary_array[3], "Max" => temporary_array[4], "Time" => temporary_array[5], "Category" => temporary_array[6]}
     end
+    
+    def scrap_games_links(url)
+        games_urls = []
+        main_page = Nokogiri::HTML(open(url))
+        path_game = main_page.css("a.header")
+        array_tempo = []
+        path_game.each do |game| 
+            game.each do |components|
+                if components[0] == "href"
+                    if components[1][0..5] == "https:"
+                       @games_infos << scrap_game_infos(components[1])
+                    end
+                end
+            end
+        end
+        print @games_infos
+        puts next_page = url[-1].to_i + 1
+        if next_page <= 1
+            dynamic_url = "#{url[0..-2]}" + "#{next_page}"
+            scrap_games_links(dynamic_url)
+        else 
+            create_db
+        end
+    end
+
+    def create_db
+        @games_infos.each do |game|
+            Game.create!(title: game["Title"], description: game["Description"], min_players: game["Min"], max_players: game["Max"], image_url: game["Image"], time: game["Time"], category: game["Category"])
+        end
+    end    
 end

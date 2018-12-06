@@ -1,4 +1,6 @@
 Rails.application.configure do
+  config.web_socket_server_url = "wss://find-a-table.herokuapp.com/cable" 
+  config.action_cable.allowed_request_origins = ['https://find-a-table.herokuapp.com', 'http://find-a-table.herokuapp.com']
   # Settings specified here will take precedence over those in config/application.rb.
 
   # Code is not reloaded between requests.
