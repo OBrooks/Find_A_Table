@@ -1,3 +1,13 @@
+footer {
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: blue;
+}
+
 .row-footer {
-  min-height: 5vh;
+    display: flex;
+    justify-content: flex-start;
+    background-color: rgba(251, 121, 120, 1);
+    height: 56px;
 }
