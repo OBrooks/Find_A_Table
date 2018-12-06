@@ -76,3 +76,6 @@ gem 'pry'
 
 #messagerie
 gem 'redis'
+
+#aws
+gem "aws-sdk-s3", require: false
