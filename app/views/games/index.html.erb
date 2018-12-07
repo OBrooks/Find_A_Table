@@ -9,7 +9,7 @@
 
   <% @games.each do |game| %>
     <div class="container">
-      <div class = "row col-game-sticker">
+      <div class = "row row-game-sticker">
           <div class="col-lg-3 col-game-pic">
               <% if game.game_picture.attachment != nil %>
                   <%= image_tag game.game_picture %>
