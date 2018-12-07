@@ -1,3 +1,8 @@
 <p>Ton profil <%=current_user.nickname%><p>
 <p>Ta description : <%=current_user.description%><p>
 <p>Ta ville : <%=current_user.town%><p>
+    <div class="avatar-profile">
+<% if current_user.profile_picture.attachment != nil %>
+<%= image_tag current_user.profile_picture %>
+<% end %>
+</div>
