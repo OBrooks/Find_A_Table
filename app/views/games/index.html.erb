@@ -1,8 +1,12 @@
 <h1><b><a href = "/games/new">Créer un nouveau jeu dans la banque de donnée</a></b></h1>
 <% @games.each do |game| %>
     <div class = "row">
-        <div class = "col-lg-3">
-            <img src = "<%= game.image_url%>" class = "games_image">
+        <div class="col-lg-3">
+            <% if game.game_picture.attachment != nil %>
+                <%= image_tag game.game_picture%>
+            <% else %>
+                <img src="<%= game.image_url%>" class="games_image" width="300px">
+            <% end %>
         </div>
         <div class = "col-lg-9">
             <div class = "row">

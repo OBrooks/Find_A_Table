@@ -11,7 +11,7 @@ class GamesController < ApplicationController
     end
 
     def create
-        Game.create!(title: params[:game][:title], description: params[:game][:description], image_url: params[:game][:image_url], min_players: params[:game][:min_players], max_players: params[:game][:max_players], time: "#{params[:game][:time]}" + " min", category: params[:game][:category])
+        Game.create!(title: params[:game][:title], description: params[:game][:description], image_url: params[:game][:image_url], game_picture: params[:game][:game_picture], min_players: params[:game][:min_players], max_players: params[:game][:max_players], time: "#{params[:game][:time]}" + " min", category: params[:game][:category])
         redirect_to games_path
     end
 
@@ -29,7 +29,7 @@ class GamesController < ApplicationController
 
     def update
         @game=Game.find(params[:id])
-        @game.update(title: params[:game][:title], description: params[:game][:description], image_url: params[:game][:image_url], min_players: params[:game][:min_players], max_players: params[:game][:max_players], time: "#{params[:game][:time]}" + " min", category: params[:game][:category])
+        @game.update(title: params[:game][:title], description: params[:game][:description], image_url: params[:game][:image_url], game_picture: params[:game][:game_picture], min_players: params[:game][:min_players], max_players: params[:game][:max_players], time: "#{params[:game][:time]}" + " min", category: params[:game][:category])
         redirect_to games_path
     end
 end
