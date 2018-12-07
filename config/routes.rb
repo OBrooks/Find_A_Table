@@ -24,15 +24,21 @@ Rails.application.routes.draw do
 
   resources :games
 
-  get "index", to: "home#index"
-  get "profile", to: "home#profile"
-  get "webmaster", to: "home#webmaster"
-  get "admin", to: "home#admin"
-  resources :gamesession
-  get "list_users", to:"home#list_users"
-  post "scrapping", to: "home#scrapping"
+  get "index",            to: "home#index"
+  get "profile",          to: "home#profile"
+  get "webmaster",        to: "home#webmaster"
+  get "admin",            to: "home#admin"
+  get "favoris",          to: "home#favoris"
+  get 'fav',              to: "home#fav"
+  get 'unfav',            to: "home#unfav"
 
-  get "landingpage", to: "landingpage#lp"
+  resources :gamesession
+
+  get "list_users",       to:"home#list_users"
+  post "scrapping",       to: "home#scrapping"
+
+
+  get "landingpage",      to: "landingpage#lp"
 
   
 end

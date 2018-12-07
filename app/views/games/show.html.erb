@@ -28,6 +28,11 @@
             </div>
             </ul>
         </div>
+<div class="review">
+    <% if current_user != nil %>
+    <%= render "home/favorites" %>
+    <% end %>
+</div>
 <div class = "row" class = "description">
     <%=@game.description%>
 <div>
