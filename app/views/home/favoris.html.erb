@@ -5,11 +5,10 @@
                 <h2>page des jeux</h2>
             </a> pour en ajouter ;)</h2>
         <% else %>
-            <% @favoris.each do |favor| %>
                 <% @games.each do |game| %>
                     <%= game.title %>
+                    <a href="/games/<%=game.id%>">Lien vers le jeu</a>
                 <% end %>
-            <% end %>
         <% end %>
     </div>
 </div>

@@ -8,6 +8,10 @@ class GamesController < ApplicationController
 
     def show
         @game=Game.find(params[:id])
+      @favorites=Favorite.all
+      if current_user != nil
+        @favorite=Favorite.find_by(user_id: current_user.id, game_id: params[:id])
+      end
     end
 
     def edit

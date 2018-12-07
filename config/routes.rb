@@ -29,6 +29,8 @@ Rails.application.routes.draw do
   get "webmaster",        to: "home#webmaster"
   get "admin",            to: "home#admin"
   get "favoris",          to: "home#favoris"
+  get 'fav',              to: "home#fav"
+  get 'unfav',            to: "home#unfav"
 
   resources :gamesession
 
