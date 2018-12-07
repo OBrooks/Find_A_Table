@@ -10,6 +10,9 @@
         </div>
       <% end %>
       <% if user_signed_in? %>
+      <div class="messages">
+        <%= link_to "<i class='fa fa-comments fa-3x' aria-hidden='true'></i>".html_safe, messages_path %>
+      </div>
       <div class="header-avatar">
         <div class="dropdown" id="header-dropdown">
           <% if current_user.profile_picture.attachment != nil %>

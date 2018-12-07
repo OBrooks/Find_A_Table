@@ -45,7 +45,7 @@ class HomeController < ApplicationController
     puts "Le @games est #{@games}"
     end
 
-    def fav
+    def add_to_favorites
         puts "#{params}"
       @user = User.find(params[:user_id])
       @game=Game.find(params[:game_id])
@@ -57,7 +57,7 @@ class HomeController < ApplicationController
     @favorite=Favorite.create!(user_id: current_user.id, game_id: params[:game_id])
   end
 
-    def unfav
+    def remove_from_favorites
       @user = User.find(params[:user_id])
       @game=Game.find(params[:game_id])
       puts "ça défav"
