@@ -23,6 +23,7 @@ Rails.application.routes.draw do
   end
 
   resources :games
+  get "search_games", to: "games#search_games"
 
   get "index", to: "home#index"
   get "profile", to: "home#profile"

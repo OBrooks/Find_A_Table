@@ -19,7 +19,7 @@
                     <li><b>Durée de jeu : <%=@game.time%></b></li>
                 </div>
                 <div class = "col">
-                    <li><b>Categorie  : <%= @game.category%></b></li>
+                    <li><b>Categorie  : <%= Category.find(@game.category_id).category_name%></b></li>
                 </div>
                 <div class = "col">
                     <li><a href = "<%=edit_game_path(@game.id)%>">Modifier les informations du jeu</a></b></li>

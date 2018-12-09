@@ -1,3 +1,9 @@
+<%# Barre de recherche %>
+<%=form_tag search_games_path do%>
+    <input class = "search full-width" id = "searchbar" name = "query" placeholder = "Rechercher un jeu" type ="text", autocomplete = "off">
+    <td><%= select_tag 'Catégorie', options_from_collection_for_select(Category.order(:id), 'id', 'category_name'), prompt: "Select a category" %></td>
+   
+<%end%>
 <h1><b><a href = "/games/new">Créer un nouveau jeu dans la banque de donnée</a></b></h1>
 <% @games.each do |game| %>
     <div class = "row">
@@ -21,7 +27,7 @@
                     <li><b>Durée de jeu : <%=game.time%></b></li>
                 </div>
                 <div class = "col">
-                    <li><b>Categorie  : <%= game.category%></b></li>
+                    <li><b>Categorie  : <%= Category.find(game.category_id).category_name%></b></li>
                 </div>
             </div>
             </ul>

@@ -17,7 +17,10 @@
   <%= f.number_field :time %>
   <br>
   <p><b>Catégorie </b></p>
-  <%=f.select :category, Game.pluck(:category, :category)%>
+  <%=f.select :category, Category.pluck(:category_name, :id)%>
+  <br>
+  <p>*Si la catégorie que vous voulez n'existe pas, vous pouvez la rajouter ici<p>
+  <%= f.text_field :category_id%>
   <br>
   <%= f.submit "Créer" %>
 <% end %>

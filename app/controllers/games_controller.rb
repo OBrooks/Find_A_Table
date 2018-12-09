@@ -6,6 +6,9 @@ class GamesController < ApplicationController
         end
     end
 
+    def search_games
+    end
+
     def new
         @game = Game.new
     end
