@@ -40,6 +40,8 @@ class Gamescrap
                 if c == 0
                 split_array = section.content.to_s.split(" ")
                 join_array = split_array.join(" ") 
+                puts "ICIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII"
+                puts join_array[0..18]
                     if join_array[0..18] == "Description du jeu"
                         join_array = join_array[19..-1]
                     end

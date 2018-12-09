@@ -1,23 +1,19 @@
-<h2>Modifiez les informations du jeu</h2>
-<%= form_for @game do |f| %>
-  <p><b>Modification du nom du jeu </b></p> 
-  <%= f.text_field :title, value: @game.title %>
-  <br>
-  <p><b>Modification de la description du jeu </b></p>
-  <%= f.text_area :description, value: @game.description %>
-  <br>
-  <p><b>Modification de l'image du jeu </b></p>
-  <%= f.text_field :image_url, value: @game.image_url %>
-  <br>
-  <p><b>Modification du nombre de joueurs </b></p>
-  <span>Nombre minimum</span><%= f.number_field :min_players, value: @game.min_players %>
-  <span>Nombre maximum</span><%= f.number_field :max_players, value: @game.max_players %>
-  <br>
-  <p><b>Modification du temps de partie en minutes</b></p>
-  <%= f.number_field :time, value: @game.time %>
-  <br>
-  <p><b>Modification de la catégorie </b></p>
-  <%=f.select :category, Game.pluck(:category, :category)%>
-  <br>
-  <%= f.submit "Modifier" %>
+
+<%= form_tag("/games/#{@game.id}", method: "patch") do %>
+      <p><b>Modification du nom du jeu </b></p> 
+      <%= text_field_tag "title", @game.title%>
+      <p><b>Modification de la description du jeu </b></p>
+      <%= text_area_tag "description", @game.description %>
+      <p><b>Modification de l'image du jeu </b></p>
+      <%= text_field_tag "image_url", @game.image_url %>
+      <p><b>Modification du nombre de joueurs </b></p>
+      <%= number_field_tag 'min_players', @game.min_players, min: 0%>
+      <%= number_field_tag 'man_players', @game.max_players, min: 0%>
+      <p><b>Modification du temps de partie en minutes</b></p>
+      <%= number_field_tag 'time', @game.time, min: 0%>
+      <p><b>Modification de la catégorie </b></p>
+      <%= select_tag "category_name", options_from_collection_for_select(Category.order(:category_name), "id", "category_name"), prompt: "Choisissez la catégorie"%>
+      <p>*Si la catégorie que vous voulez n'existe pas, vous pouvez la rajouter ici<p>
+      <%= text_field_tag "new_category"%>
+    <%= submit_tag('Modifier les informations du jeu') %>
 <% end %>

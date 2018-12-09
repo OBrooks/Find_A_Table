@@ -14,7 +14,15 @@ class GamesController < ApplicationController
     end
 
     def create
-        Game.create!(title: params[:game][:title], description: params[:game][:description], image_url: params[:game][:image_url], min_players: params[:game][:min_players], max_players: params[:game][:max_players], time: "#{params[:game][:time]}" + " min", category: params[:game][:category])
+        
+        @game = Game.create(title: params[:title], description: params[:description], image_url: params[:image_url], min_players: params[:min_players], max_players: params[:max_players], time: "#{params[:time]}" + " min")
+
+        if params[:new_category] != ""
+            @current_category = Category.create!(category_name: params[:new_category])
+            @game.update(category_id: @current_category.id)
+        else
+            @game.update(category_id: params[:category_name])
+        end
         redirect_to games_path
     end
 
@@ -28,7 +36,15 @@ class GamesController < ApplicationController
 
     def update
         @game=Game.find(params[:id])
-        @game.update(title: params[:game][:title], description: params[:game][:description], image_url: params[:game][:image_url], min_players: params[:game][:min_players], max_players: params[:game][:max_players], time: "#{params[:game][:time]}" + " min", category: params[:game][:category])
+        
+        @game.update(title: params[:title], description: params[:description], image_url: params[:image_url], min_players: params[:min_players], max_players: params[:max_players], time: "#{params[:time]}" + " min")
+
+        if params[:new_category] != ""
+            @current_category = Category.create!(category_name: params[:new_category])
+            @game.update(category_id: @current_category.id)
+        else
+            @game.update(category_id: params[:category_name])
+        end
         redirect_to games_path
     end
 end
