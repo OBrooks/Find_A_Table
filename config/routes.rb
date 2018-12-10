@@ -22,10 +22,11 @@ Rails.application.routes.draw do
     resources :messages, only: [:create]
   end
 
-  get "/messages",                          to: "conversations#show"  
+  get "/messages",                       to: "conversations#show"
+  get "conversation_user",               to: "conversations#conversation_user"
 
   resources :games
-  get "search_games", to: "games#search_games"
+  get "search_games",                   to: "games#search_games"
 
   get "index",                          to: "home#index"
   get "profile",                        to: "home#profile"
