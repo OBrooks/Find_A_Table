@@ -51,25 +51,3 @@ User.create!(
 
 )
 
-
-5.times do
-  Category.create!(category_name: Faker::Color.color_name)
-end
-
-1.upto(5) do |i|
-
-Game.create!(
-    title: "Game #{i}",
-
-    description: "Blablablabla",
-
-    min_players: Random.rand(1..4),
-
-    max_players: Random.rand(2..20),
-
-    time: Random.rand(1..3),
-
-    category_id: Random.rand(1..5)
-)
-end
-
