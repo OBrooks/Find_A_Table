@@ -8,5 +8,6 @@ class Session < ApplicationRecord
   validates :maxplayers, presence: true
   validates :playernb, presence: true
   validates :time, presence: true
-  has_and_belongs_to_many :players, class_name: "User"
+  has_many :requests
+  has_many :players, class_name: "User", through: :requests, source: :user
 end
