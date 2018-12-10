@@ -1,0 +1,17 @@
+<div class="panel panel-default" data-conversation-id="<%= @conversation.id %>">
+<div class="panel-body">
+
+    <div class="messages-list" id="messagelist">
+        <ul>
+            <%= render 'conversations/conversation_content', messages: @conversation.messages, user: @user %>
+        </ul>
+    </div>
+
+    <form class="new_message chatboxinput">
+        <input name="conversation_id" type="hidden" value="<%= @conversation.id %>">
+        <input name="user_id" type="hidden" value="<%= @user.id %>">
+        <textarea name="body" class="chatboxtextarea"></textarea>
+        <input type="submit" class="btn btn-success" value="Send">
+    </form>
+</div>
+</div>
