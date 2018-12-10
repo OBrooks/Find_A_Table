@@ -1,11 +1,15 @@
 
-<%= form_tag("/games/#{@game.id}", method: "patch") do %>
+<%= form_tag("/games/#{@game.id}", method: "patch", multipart: true) do %>
       <p><b>Modification du nom du jeu </b></p> 
       <%= text_field_tag "title", @game.title%>
       <p><b>Modification de la description du jeu </b></p>
       <%= text_area_tag "description", @game.description %>
-      <p><b>Modification de l'image du jeu </b></p>
+      <p><b>Modification de l'image du jeu : saisissez une url valide ou</b></p>
       <%= text_field_tag "image_url", @game.image_url %>
+      <p><b>uploadez une image</b></p>
+      <div class="form-group">
+        <%= file_field_tag 'game_picture', accept: 'image/png,image/gif,image/jpeg' %>
+      </div>
       <p><b>Modification du nombre de joueurs </b></p>
       <%= number_field_tag 'min_players', @game.min_players, min: 0%>
       <%= number_field_tag 'man_players', @game.max_players, min: 0%>
