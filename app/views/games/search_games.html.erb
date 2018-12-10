@@ -1,24 +1,14 @@
-<div class="container">
-
-<%# Barre de recherche %>
 <%=form_tag search_games_path do%>
     <input class = "search full-width" id = "searchbar" name = "query" placeholder = "Rechercher un jeu, appuyez sur entrée" type ="text", autocomplete = "off">
 <%end%>
 <button onclick="location.href='/advanced_search_games'"><i aria-hidden="true"></i>Recherche avancée</button>
-<div class="container">
-  <div class="row">
-    <div class="col-lg-12 d-flex justify-content-end">
-      <a class="add-game" href = "/games/new">Ajouter un jeu</a>
-    </div>
-  </div>
-</div>
 
-  <% @games.each do |game| %>
+<% @games.each do |game| %>
     <div class="container">
       <div class = "row row-game-sticker">
           <div class="col-lg-3 col-game-pic">
               <% if game.game_picture.attachment != nil %>
-                <%= image_tag game.game_picture, class: "games_image" %>
+                  <%= image_tag game.game_picture %>
               <% else %>
                   <img src="<%= game.image_url%>" class="games_image">
               <% end %>
@@ -48,4 +38,3 @@
       </div>
     </div>
   <% end %>
-</div>
