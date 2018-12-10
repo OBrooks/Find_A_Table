@@ -70,6 +70,7 @@ ActiveRecord::Schema.define(version: 2018_12_07_154203) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "time"
+    t.string "category"
     t.bigint "category_id"
     t.index ["category_id"], name: "index_games_on_category_id"
   end
@@ -120,10 +121,10 @@ ActiveRecord::Schema.define(version: 2018_12_07_154203) do
     t.string "nickname"
     t.string "town"
     t.text "adress"
-    t.integer "status"
+    t.integer "status", default: 1
     t.string "gender"
-    t.integer "experience"
-    t.text "description"
+    t.integer "experience", default: 0
+    t.text "description", default: ""
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

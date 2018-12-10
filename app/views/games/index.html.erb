@@ -1,8 +1,10 @@
+<div class="container">
+
 <%# Barre de recherche %>
 <%=form_tag search_games_path do%>
     <input class = "search full-width" id = "searchbar" name = "query" placeholder = "Rechercher un jeu" type ="text", autocomplete = "off">
     <td><%= select_tag 'Catégorie', options_from_collection_for_select(Category.order(:id), 'id', 'category_name'), prompt: "Select a category" %></td>
-   
+
 <%end%>
 
 <div class="container">
@@ -50,3 +52,4 @@
       </div>
     </div>
   <% end %>
+</div>
