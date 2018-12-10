@@ -6,4 +6,5 @@ class Session < ApplicationRecord
   validates :date, presence: true
   validates :city, presence: true
   has_and_belongs_to_many :players, class_name: "User"
+
 end
