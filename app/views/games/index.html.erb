@@ -16,7 +16,7 @@
       <div class = "row row-game-sticker">
           <div class="col-lg-3 col-game-pic">
               <% if game.game_picture.attachment != nil %>
-                  <%= image_tag game.game_picture %>
+                <%= image_tag game.game_picture, class: "games_image" %>
               <% else %>
                   <img src="<%= game.image_url%>" class="games_image">
               <% end %>

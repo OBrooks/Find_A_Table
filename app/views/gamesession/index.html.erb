@@ -1,4 +1,4 @@
-<table style="width:70%">
+<table style="width:100%">
   <tr>
     <th>ID</th>
     <th>Host</th>
@@ -28,6 +28,16 @@
       <td><%= link_to 'Destroy', gamesession_path(session),
               method: :delete,
               data: { confirm: 'Are you sure?' } %></td>
+      <% if session.players.include?(current_user)%>
+        <td><%=link_to "LeaveGame", leavegame_path(id: session.id)%></td>
+      <% else %>
+        <td><%=link_to "JoinGame", joingame_path(id: session.id)%></td>
+      <% end %>
     </tr>
   <%end%>
 </table>
+<% if current_user != nil %>
+<div class="row">
+  <button class="btn-sidebar" onclick="location.href='/gamesession/new'">Créer une nouvelle session</button>
+</div>
+<% end %>

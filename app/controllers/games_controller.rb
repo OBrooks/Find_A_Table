@@ -1,4 +1,5 @@
 class GamesController < ApplicationController
+    skip_before_action :verify_authenticity_token, only: :create
 
     def index
         if Game.all !=nil
@@ -34,7 +35,7 @@ class GamesController < ApplicationController
 
     def create
         
-        @game = Game.create(title: params[:title], description: params[:description], image_url: params[:image_url], min_players: params[:min_players], max_players: params[:max_players], time: "#{params[:time]}" + " min")
+        @game = Game.create(title: params[:title], description: params[:description], image_url: params[:image_url], game_picture: params[:game_picture], min_players: params[:min_players], max_players: params[:max_players], time: "#{params[:time]}" + " min")
 
         if params[:new_category] != ""
             @current_category = Category.create!(category_name: params[:new_category])
@@ -60,7 +61,7 @@ class GamesController < ApplicationController
     def update
         @game=Game.find(params[:id])
         
-        @game.update(title: params[:title], description: params[:description], image_url: params[:image_url], min_players: params[:min_players], max_players: params[:max_players], time: "#{params[:time]}" + " min")
+        @game.update(title: params[:title], description: params[:description], image_url: params[:image_url], game_picture: params[:game_picture], min_players: params[:min_players], max_players: params[:max_players], time: "#{params[:time]}" + " min")
 
         if params[:new_category] != ""
             @current_category = Category.create!(category_name: params[:new_category])

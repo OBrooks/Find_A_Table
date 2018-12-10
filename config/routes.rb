@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   #     get "/" => "devise/sessions#new"
   #   end
   # end
-  
+
   resources :conversations, only: [:create] do
     member do
       post :close
@@ -22,7 +22,8 @@ Rails.application.routes.draw do
     resources :messages, only: [:create]
   end
 
-  get "/messages",                          to: "conversations#show"  
+  get "messages",                       to: "conversations#show"
+  get "conversation_user",               to: "conversations#conversation_user"
 
   resources :games
   
@@ -46,5 +47,7 @@ Rails.application.routes.draw do
 
   get "landingpage",                    to: "landingpage#lp"
 
-  
+  get "joingame", to: "gamesession#joingame"
+  get "leavegame", to: "gamesession#leavegame"
+
 end
