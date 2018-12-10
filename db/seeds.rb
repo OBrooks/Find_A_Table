@@ -48,6 +48,5 @@ User.create!(
     password_confirmation: "nazicat",
 
     status: 2
-
 )
 
