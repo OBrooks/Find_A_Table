@@ -25,7 +25,9 @@ Rails.application.routes.draw do
   get "/messages",                          to: "conversations#show"  
 
   resources :games
-  get "search_games", to: "games#search_games"
+  
+  post "search_games", to: "games#search_games"
+  get "advanced_search_games", to: "games#advanced_search_games"
 
   get "index",                          to: "home#index"
   get "profile",                        to: "home#profile"
@@ -38,6 +40,7 @@ Rails.application.routes.draw do
   resources :gamesession
 
   get "list_users",                     to:"home#list_users"
+  post "webmaster",                     to: "home#scrapping"
   post "scrapping",                     to: "home#scrapping"
 
 

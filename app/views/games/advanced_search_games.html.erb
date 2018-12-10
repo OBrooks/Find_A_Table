@@ -1,0 +1,10 @@
+<h2>Recherche avancée</h2>
+<%=form_tag search_games_path do%>
+    <p><b>Recherche</b></p> 
+    <%= text_field_tag "advanced_query"%>
+    <p><b>Catégorie du jeu </b></p> 
+    <%= select_tag 'category', options_from_collection_for_select(Category.order(:id), 'id', 'category_name'), prompt: "Select a category" %>
+    <p><b>Nombre de joueurs maximum </b></p> 
+    <%= number_field_tag 'max_players', min: 0%>
+    <p><%= submit_tag('Rechercher') %></p>
+<%end%>
