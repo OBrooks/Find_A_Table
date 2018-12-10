@@ -69,8 +69,7 @@ ActiveRecord::Schema.define(version: 2018_12_07_154203) do
     t.string "image_url", default: "https://images.unsplash.com/photo-1522069213448-443a614da9b6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1352&q=80"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.time "time"
-    t.string "category"
+    t.string "time"
     t.bigint "category_id"
     t.index ["category_id"], name: "index_games_on_category_id"
   end

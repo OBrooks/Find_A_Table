@@ -1,11 +1,15 @@
 <h2>Créez un nouveau jeu</h2>
-<%= form_tag("/games", method: "create") do %>
+<%= form_tag("/games", method: "create", multipart: true) do %>
       <p><b>Nom du jeu </b></p> 
       <%= text_field_tag "title"%>
       <p><b>Description du jeu </b></p>
       <%= text_area_tag "description"%>
-      <p><b>URL de l'image du jeu </b></p>
+      <p><b>Saisissez une url valide pour l'image du jeu ou</b></p>
       <%= text_field_tag "image_url"%>
+      <p><b>uploadez une image valide</b></p>
+      <div class="form-group">
+        <%= file_field_tag 'game_picture', accept: 'image/png,image/gif,image/jpeg' %>
+      </div>
       <p><b>Nombre de joueurs </b></p>
       <%= number_field_tag 'min_players', min: 0%>
       <%= number_field_tag 'man_players', min: 0%>
