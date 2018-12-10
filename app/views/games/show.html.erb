@@ -7,30 +7,7 @@
         <img src="<%= @game.image_url%>" class="games_image" width="300px">
       <% end %>
     </div>
-    <div class = "col-lg-9">
-      <div class = "row">
-        <h4><b><%=@game.title %></b></h4>
-      </div>
       <ul>
-        <div class = "row">
-          <div class = "col">
-            <%if @game.min_players == @game.max_players%>
-              <li><b>Jusqu'à <%=@game.min_players%></b></li>
-            <%else%>
-              <li><b>De <%=@game.min_players%> à <%=@game.max_players%> joueurs</b></li>
-            <%end%>
-          </div>
-          <div class = "col">
-            <li><b>Durée de jeu : <%=@game.time%></b></li>
-          </div>
-          <div class = "col">
-            <li><b>Categorie  : <%= @game.category%></b></li>
-          </div>
-          <div class = "col">
-            <li><a href = "<%=edit_game_path(@game.id)%>">Modifier les informations du jeu</a></b></li>
-          </div>
-        </div>
-<<<<<<< HEAD
         <div class = "col-lg-9">
             <div class = "row">
                 <h4><b><%=@game.title %></b></h4>
@@ -57,10 +34,6 @@
             </div>
             </ul>
         </div>
-<div class = "row" class = "description">
-    <%=@game.description%>
-<div>
-=======
       </ul>
     </div>
   </div>
@@ -78,4 +51,3 @@
     </div>
   </div>
 </div>
->>>>>>> 019162873a4dee4bf9ff237c022438e31315f6e7

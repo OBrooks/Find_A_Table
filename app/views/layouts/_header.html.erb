@@ -18,15 +18,9 @@
       <div class="header-avatar">
         <div class="dropdown" id="header-dropdown">
           <% if current_user.profile_picture.attachment != nil %>
-<<<<<<< HEAD
-            <%= image_tag current_user.profile_picture, id:"avatar" %>
-          <% else %>
-            <img src="https://i.kym-cdn.com/photos/images/newsfeed/000/885/429/ba9.gif" alt="avatar" id="avatar">
-=======
             <%= image_tag current_user.profile_picture, id:"avatar", onclick:"headerDropdown()" %>
           <% else %>
             <img onclick="headerDropdown()" src="https://i.kym-cdn.com/photos/images/newsfeed/000/885/429/ba9.gif" alt="avatar" id="avatar">
->>>>>>> 019162873a4dee4bf9ff237c022438e31315f6e7
           <% end %>
           <div class="dropdown-content" id="header-dropdown-content">
             <p> <%= link_to "Votre Profil", profile_path%> </p>

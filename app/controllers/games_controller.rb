@@ -40,7 +40,6 @@ class GamesController < ApplicationController
 
     def update
         @game=Game.find(params[:id])
-<<<<<<< HEAD
         
         @game.update(title: params[:title], description: params[:description], image_url: params[:image_url], min_players: params[:min_players], max_players: params[:max_players], time: "#{params[:time]}" + " min")
 
@@ -50,9 +49,6 @@ class GamesController < ApplicationController
         else
             @game.update(category_id: params[:category_name])
         end
-=======
-        @game.update(title: params[:game][:title], description: params[:game][:description], image_url: params[:game][:image_url], game_picture: params[:game][:game_picture], min_players: params[:game][:min_players], max_players: params[:game][:max_players], time: "#{params[:game][:time]}" + " min", category: params[:game][:category])
->>>>>>> master
         redirect_to games_path
     end
 end

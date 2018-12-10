@@ -12,7 +12,6 @@
 
 ActiveRecord::Schema.define(version: 2018_12_07_154203) do
 
-
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -129,3 +128,7 @@ ActiveRecord::Schema.define(version: 2018_12_07_154203) do
   add_foreign_key "messages", "conversations"
   add_foreign_key "messages", "users"
 end
+
+De 2 à 1 joueurs
+Durée de jeu : 30 min
+Categorie : Jeux de cartes
