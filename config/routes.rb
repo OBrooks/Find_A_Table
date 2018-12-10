@@ -22,7 +22,7 @@ Rails.application.routes.draw do
     resources :messages, only: [:create]
   end
 
-  get "/messages",                          to: "conversations#show"  
+  get "/messages",                          to: "conversations#show"
 
   resources :games
   get "search_games", to: "games#search_games"
@@ -45,5 +45,8 @@ Rails.application.routes.draw do
 
   get "joingame", to: "gamesession#joingame"
   get "leavegame", to: "gamesession#leavegame"
+  get "placesearch", to: "home#placesearch"
+  get "placefind", to: "home#placefind"
+  get "mysessions", to: "home#mysessions"
 
 end

@@ -1,0 +1,70 @@
+<h1>Mes sessions</h1>
+<%if @myhostsessions == [] %>
+  <p>vous n'avez aucune sessions en cours</p>
+<%else%>
+  <table style="width:100%">
+    <tr>
+      <th>ID</th>
+      <th>Date</th>
+      <th>Game</th>
+      <th>City</th>
+      <th>PayerNB</th>
+      <th>MaxPlayers</th>
+      <th>Time</th>
+      <th>PlayerSkill</th>
+      <th>Status</th>
+    </tr>
+    <%@myhostsessions.each do |session|%>
+      <tr>
+        <td><%= session.id %></td>
+        <td><%= session.date %></td>
+        <td><%= session.game.title %></td>
+        <td><%= session.city %></td>
+        <td><%= session.playernb %></td>
+        <td><%= session.maxplayers %></td>
+        <td><%= session.time %></td>
+        <td><%= session.playerskill %></td>
+        <td><%= session.status %></td>
+        <td><%= link_to 'Show', gamesession_path(session) %></td>
+        <td><%= link_to 'Edit', edit_gamesession_path(session) %></td>
+        <td><%= link_to 'Destroy', gamesession_path(session),
+                method: :delete,
+                data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </table>
+<% end %>
+<%if @myplayersessions == [] %>
+  <p>vous n'avez aucune sessions en cours</p>
+<%else%>
+  <table style="width:100%">
+    <tr>
+      <th>ID</th>
+      <th>Host</th>
+      <th>Date</th>
+      <th>Game</th>
+      <th>City</th>
+      <th>PayerNB</th>
+      <th>MaxPlayers</th>
+      <th>Time</th>
+      <th>PlayerSkill</th>
+      <th>Status</th>
+    </tr>
+    <%@myplayersessions.each do |session|%>
+      <tr>
+        <td><%= session.id %></td>
+        <td><%= session.host.nickname %></td>
+        <td><%= session.date %></td>
+        <td><%= session.game.title %></td>
+        <td><%= session.city %></td>
+        <td><%= session.playernb %></td>
+        <td><%= session.maxplayers %></td>
+        <td><%= session.time %></td>
+        <td><%= session.playerskill %></td>
+        <td><%= session.status %></td>
+        <td><%= link_to 'Show', gamesession_path(session) %></td>
+        <td><%= link_to 'LeaveGame', leavegame_path(id: session.id) %></td>
+      </tr>
+    <% end %>
+  </table>
+<% end %>
