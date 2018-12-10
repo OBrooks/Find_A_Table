@@ -13,9 +13,14 @@
     </div>
   <% end %>
 <% end %>
+<% if user_signed_in? %>
 <div class="row">
   <button class="btn-sidebar">Mes sessions</button>
 </div>
+<div class="row">
+<button class="btn-sidebar" onclick="location.href='/favoris'"><i class="fa fa-heart favred" aria-hidden="true"></i> Mes favoris</button>
+</div>
+<% end %>
 <div class="row">
   <button class="btn-sidebar">Chercher une session</button>
 </div>
@@ -25,9 +30,11 @@
 <div class="row">
     <button class="btn-sidebar" onclick="location.href='/games'">Parcourir les jeux</button>
 </div>
+<% if user_signed_in? %>
 <div class="row">
   <button class="btn-sidebar">Calendrier</button>
 </div>
+<% end %>
 <div class="row">
   <button class="btn-sidebar">Outils</button>
 </div>

@@ -1,8 +1,10 @@
-<div class="row">
-  <div class="col d-flex header-bar justify-content-between">
+<div class="row header-bar">
+  <div class="col d-flex justify-content-start">
     <div class="header-logo">
       <img src="https://www.freeiconspng.com/uploads/github-logo-icon-26.png" class="logo-picture">
     </div>
+  </div>
+  <div class="col d-flex justify-content-end">
       <% if user_signed_in? == false %>
         <div class="header-buttons">
           <button class="modal-inscription btn-header">Inscription</button>
@@ -10,12 +12,15 @@
         </div>
       <% end %>
       <% if user_signed_in? %>
+      <div class="messages">
+        <%= link_to "<i class='fa fa-comments fa-3x' aria-hidden='true'></i>".html_safe, messages_path %>
+      </div>
       <div class="header-avatar">
         <div class="dropdown" id="header-dropdown">
           <% if current_user.profile_picture.attachment != nil %>
-            <%= image_tag current_user.profile_picture, id:"avatar" %>
+            <%= image_tag current_user.profile_picture, id:"avatar", onclick:"headerDropdown()" %>
           <% else %>
-            <img src="https://i.kym-cdn.com/photos/images/newsfeed/000/885/429/ba9.gif" alt="avatar" id="avatar">
+            <img onclick="headerDropdown()" src="https://i.kym-cdn.com/photos/images/newsfeed/000/885/429/ba9.gif" alt="avatar" id="avatar">
           <% end %>
           <div class="dropdown-content" id="header-dropdown-content">
             <p> <%= link_to "Votre Profil", profile_path%> </p>

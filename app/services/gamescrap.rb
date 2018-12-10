@@ -39,6 +39,10 @@ class Gamescrap
             page_game.css('div.column.medium-7').each do |section|
                 if c == 0
                 split_array = section.content.to_s.split(" ")
+                join_array = split_array.join(" ") 
+                    if join_array[0..17] == "Description du jeu"
+                        join_array = join_array[18..-1]
+                    end
                 temporary_array << split_array.join(" ")
                 break
                 end 
@@ -132,7 +136,13 @@ class Gamescrap
 
     def create_db
         @games_infos.each do |game|
-            Game.create!(title: game["Title"], description: game["Description"], min_players: game["Min"], max_players: game["Max"], image_url: game["Image"], time: game["Time"], category: game["Category"])
+            if Category.first.nil?
+                Category.create!(category_name: game["Category"])
+            elsif Category.find_by(category_name: game["Category"])
+            else
+                Category.create!(category_name: game["Category"])
+            end
+            Game.create!(title: game["Title"], description: game["Description"], min_players: game["Min"], max_players: game["Max"], image_url: game["Image"], time: game["Time"], category_id: Category.find_by(category_name: game["Category"]).id)
         end
     end    
 end

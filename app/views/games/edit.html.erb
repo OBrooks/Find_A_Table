@@ -1,5 +1,19 @@
-<%= form_for @article, url: {action: "create"}, html: {class: "nifty_form"} do |f| %>
-  <%= f.text_field :title %>
-  <%= f.text_area :body, size: "60x12" %>
-  <%= f.submit "Create" %>
+
+<%= form_tag("/games/#{@game.id}", method: "patch") do %>
+      <p><b>Modification du nom du jeu </b></p> 
+      <%= text_field_tag "title", @game.title%>
+      <p><b>Modification de la description du jeu </b></p>
+      <%= text_area_tag "description", @game.description %>
+      <p><b>Modification de l'image du jeu </b></p>
+      <%= text_field_tag "image_url", @game.image_url %>
+      <p><b>Modification du nombre de joueurs </b></p>
+      <%= number_field_tag 'min_players', @game.min_players, min: 0%>
+      <%= number_field_tag 'man_players', @game.max_players, min: 0%>
+      <p><b>Modification du temps de partie en minutes</b></p>
+      <%= number_field_tag 'time', @game.time, min: 0%>
+      <p><b>Modification de la catégorie </b></p>
+      <%= select_tag "category_name", options_from_collection_for_select(Category.order(:category_name), "id", "category_name"), prompt: "Choisissez la catégorie"%>
+      <p>*Si la catégorie que vous voulez n'existe pas, vous pouvez la rajouter ici<p>
+      <%= text_field_tag "new_category"%>
+    <%= submit_tag('Modifier les informations du jeu') %>
 <% end %>

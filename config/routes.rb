@@ -22,17 +22,26 @@ Rails.application.routes.draw do
     resources :messages, only: [:create]
   end
 
+  get "/messages",                          to: "conversations#show"  
+
   resources :games
+  get "search_games", to: "games#search_games"
 
-  get "index", to: "home#index"
-  get "profile", to: "home#profile"
-  get "webmaster", to: "home#webmaster"
-  get "admin", to: "home#admin"
+  get "index",                          to: "home#index"
+  get "profile",                        to: "home#profile"
+  get "webmaster",                      to: "home#webmaster"
+  get "admin",                          to: "home#admin"
+  get "favoris",                        to: "home#favoris"
+  get 'add_to_favorites',               to: "home#add_to_favorites"
+  get 'remove_from_favorites',          to: "home#remove_from_favorites"
+
   resources :gamesession
-  get "list_users", to:"home#list_users"
-  post "scrapping", to: "home#scrapping"
 
-  get "landingpage", to: "landingpage#lp"
+  get "list_users",                     to:"home#list_users"
+  post "scrapping",                     to: "home#scrapping"
+
+
+  get "landingpage",                    to: "landingpage#lp"
 
   get "joingame", to: "gamesession#joingame"
   get "leavegame", to: "gamesession#leavegame"
