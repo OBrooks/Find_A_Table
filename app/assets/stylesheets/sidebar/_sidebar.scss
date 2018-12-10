@@ -7,11 +7,17 @@
 }
 
 .col-sidebar {
-  top: 56px;
+  z-index: 2;
+  top: 55px;
   left: 0;
   bottom: 0;
   width: 16.666%;
-  background-color: rgba(50, 50, 50, .7);
+  border-right-style: solid;
+  border-width: 1px;
+  border-color: white;
+  background-color: $bg-nav;
+  background: linear-gradient(180deg, rgba(130,160,190,1) 0%, rgba(130,160,190,1) 17%, rgba(130,160,190,0) 100%);
+
 }
 
 .sidebar-hello {
