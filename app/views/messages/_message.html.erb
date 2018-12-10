@@ -1,14 +1,17 @@
-<li>
+<div class="container-fluid">
+  <li>
     <div class="row">
+      <div class="col">
         <div class="avatar">
             <img src="https://i.kym-cdn.com/photos/images/newsfeed/000/885/429/ba9.gif" alt="avatar" id="avatar">
         </div>
-<div class="chatboxmessagecontent <%= user.id == message.user_id ? 'message-sent' : 'message-received' %> self_or_other(message)"
-    id="messages">
-            <p><%= message.body %></p>
+        <div class="chatboxmessagecontent <%= user.id == message.user_id ? 'message-sent' : 'message-received' %> self_or_other(message)" id="messages">
+          <p><%= message.body %></p>
             <time datetime="<%= message.created_at %>" title="<%= message.created_at.strftime(" %d %b %Y at %I:%M%p") %>">
-                <%= message_interlocutor(message).nickname %> • <%= message.created_at.strftime("%H:%M %p") %>
+              <%= message_interlocutor(message).nickname %> • <%= message.created_at.strftime("%H:%M %p") %>
             </time>
         </div>
+      </div>
     </div>
-</li>
+  </li>
+</div>

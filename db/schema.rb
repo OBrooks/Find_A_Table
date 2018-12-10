@@ -10,7 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 2018_12_07_154203) do
+=======
+ActiveRecord::Schema.define(version: 2018_12_06_164459) do
+>>>>>>> 019162873a4dee4bf9ff237c022438e31315f6e7
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,12 +40,15 @@ ActiveRecord::Schema.define(version: 2018_12_07_154203) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
+<<<<<<< HEAD
   create_table "categories", force: :cascade do |t|
     t.string "category_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
+=======
+>>>>>>> 019162873a4dee4bf9ff237c022438e31315f6e7
   create_table "conversations", force: :cascade do |t|
     t.integer "recipient_id"
     t.integer "sender_id"
@@ -52,6 +59,15 @@ ActiveRecord::Schema.define(version: 2018_12_07_154203) do
     t.index ["sender_id"], name: "index_conversations_on_sender_id"
   end
 
+  create_table "favorites", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "game_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["game_id"], name: "index_favorites_on_game_id"
+    t.index ["user_id"], name: "index_favorites_on_user_id"
+  end
+
   create_table "games", force: :cascade do |t|
     t.string "title"
     t.text "description"
@@ -60,9 +76,14 @@ ActiveRecord::Schema.define(version: 2018_12_07_154203) do
     t.string "image_url", default: "https://images.unsplash.com/photo-1522069213448-443a614da9b6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1352&q=80"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+<<<<<<< HEAD
     t.string "time"
     t.bigint "category_id"
     t.index ["category_id"], name: "index_games_on_category_id"
+=======
+    t.time "time"
+    t.string "category"
+>>>>>>> 019162873a4dee4bf9ff237c022438e31315f6e7
   end
 
   create_table "messages", force: :cascade do |t|
@@ -106,16 +127,19 @@ ActiveRecord::Schema.define(version: 2018_12_07_154203) do
     t.string "nickname"
     t.string "town"
     t.text "adress"
-    t.integer "status", default: 1
+    t.integer "status"
     t.string "gender"
-    t.integer "experience", default: 0
-    t.text "description", default: ""
+    t.integer "experience"
+    t.text "description"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+<<<<<<< HEAD
   add_foreign_key "games", "categories"
+=======
+>>>>>>> 019162873a4dee4bf9ff237c022438e31315f6e7
   add_foreign_key "messages", "conversations"
   add_foreign_key "messages", "users"
 end

@@ -7,8 +7,15 @@
   <%= f.text_area :description, value: @game.description %>
   <br>
   <p><b>Modification de l'image du jeu </b></p>
+
+  <p>Renseignez une url d'image</p>
   <%= f.text_field :image_url, value: @game.image_url %>
-  <br>
+<br> <br>
+  <p>Ou uploadez l'image</p>
+      <%= f.label :upload %><br />
+      <%= f.file_field :game_picture, autofocus: true %>
+<br>
+
   <p><b>Modification du nombre de joueurs </b></p>
   <span>Nombre minimum</span><%= f.number_field :min_players, value: @game.min_players %>
   <span>Nombre maximum</span><%= f.number_field :max_players, value: @game.max_players %>
