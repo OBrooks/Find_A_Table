@@ -1,11 +1,13 @@
- <div class = "row">
-        <div class = "col-lg-3">
-        <% if @game.game_picture.attachment != nil %>
-            <%= image_tag @game.game_picture%>
-        <% else %>
-            <img src="<%= @game.image_url%>" class="games_image" width="300px">
-        <% end %>
-        </div>
+<div class="container">
+  <div class = "row row-game-sticker">
+    <div class = "col-lg-3 col-game-pic">
+      <% if @game.game_picture.attachment != nil %>
+        <%= image_tag @game.game_picture%>
+      <% else %>
+        <img src="<%= @game.image_url%>" class="games_image" width="300px">
+      <% end %>
+    </div>
+      <ul>
         <div class = "col-lg-9">
             <div class = "row">
                 <h4><b><%=@game.title %></b></h4>
@@ -23,7 +25,7 @@
                     <li><b>Durée de jeu : <%=@game.time%></b></li>
                 </div>
                 <div class = "col">
-                    <li><b>Categorie  : <%= @game.category%></b></li>
+                    <li><b>Categorie  : <%= Category.find(@game.category_id).category_name%></b></li>
                 </div>
                 <div class = "col">
                     <li><a href = "<%=edit_game_path(@game.id)%>">Modifier les informations du jeu</a></b></li>
@@ -32,11 +34,20 @@
             </div>
             </ul>
         </div>
-<div class="review">
-    <% if current_user != nil %>
-    <%= render "home/favorites" %>
-    <% end %>
+      </ul>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row row-btn-bar">
+      <div class="review">
+        <% if current_user != nil %>
+          <%= render "home/favorites" %>
+        <% end %>
+      </div>
+    </div>
+    <div class = "row">
+      <p class = "description"><%=@game.description%></p>
+    </div>
+  </div>
 </div>
-<div class = "row" class = "description">
-    <%=@game.description%>
-<div>

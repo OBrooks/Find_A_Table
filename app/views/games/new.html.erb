@@ -1,29 +1,19 @@
-<h2>Créez un nouveau jeu dans la banque de donnée</h2>
-<%= form_for @game do |f| %>
-  <p><b>Nom du jeu </b></p> 
-  <%= f.text_field :title %>
-  <br>
-  <p><b>Description du jeu </b></p>
-  <%= f.text_area :description %>
-  <br>
-
-  <p>Renseignez une url d'image</p>
-  <%= f.text_field :image_url, value: @game.image_url %>
-  <br> <br>
-  <p>Ou uploadez l'image</p>
-  <%= f.label :upload %><br />
-  <%= f.file_field :game_picture, autofocus: true %>
-  <br>
-
-  <p><b>Nombre de joueurs </b></p>
-  <span>Nombre minimum</span><%= f.number_field :min_players%>
-  <span>Nombre maximum</span><%= f.number_field :max_players %>
-  <br>
-  <p><b>Temps de partie en minutes</b></p>
-  <%= f.number_field :time %>
-  <br>
-  <p><b>Catégorie </b></p>
-  <%=f.select :category, Game.pluck(:category, :category)%>
-  <br>
-  <%= f.submit "Créer" %>
+<h2>Créez un nouveau jeu</h2>
+<%= form_tag("/games", method: "create") do %>
+      <p><b>Nom du jeu </b></p> 
+      <%= text_field_tag "title"%>
+      <p><b>Description du jeu </b></p>
+      <%= text_area_tag "description"%>
+      <p><b>URL de l'image du jeu </b></p>
+      <%= text_field_tag "image_url"%>
+      <p><b>Nombre de joueurs </b></p>
+      <%= number_field_tag 'min_players', min: 0%>
+      <%= number_field_tag 'man_players', min: 0%>
+      <p><b>Temps de partie en minutes</b></p>
+      <%= number_field_tag 'time', min: 0%>
+      <p><b>Catégorie de jeu</b></p>
+      <%= select_tag "category_name", options_from_collection_for_select(Category.order(:category_name), "id", "category_name"), prompt: "Choisissez la catégorie"%>
+      <p>*Si la catégorie que vous voulez n'existe pas, vous pouvez la rajouter ici<p>
+      <%= text_field_tag "new_category"%>
+    <p><%= submit_tag('Ajouter le jeu à la base de donnée') %></p>
 <% end %>

@@ -51,22 +51,3 @@ User.create!(
 
 )
 
-1.upto(5) do |i|
-
-  Game.create(
-
-    title: "Game #{i}",
-
-    description: "Blablablablablabla#{i}",
-
-    min_players: "#{i}",
-
-    max_players: "#{i*2}",
-
-    time: "60",
-    
-    category: "Jeux de carte #{i}"
-
-  )
-
-end

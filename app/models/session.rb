@@ -5,4 +5,5 @@ class Session < ApplicationRecord
   enum playerskill: {any: 0, noob: 1, veteran: 2, expert: 3}
   validates :date, presence: true
   validates :city, presence: true
+  has_and_belongs_to_many :players, class_name: "User"
 end

@@ -1,16 +1,31 @@
 .header-avatar {
   margin: 0px;
   height: 56px;
+  width: 56px;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 #avatar {
-    width: 50px;
-    height: 50px;
+    -webkit-transition-duration: 0.2s; /* Safari */
+    transition-duration: 0.2s;
+    width: 46px;
+    height: 46px;
     border-radius: 50%;
     background-color: rgba(255, 255, 255, 0);
+}
+
+#avatar:hover {
+  -webkit-transition-duration: 0.2s; /* Safari */
+  transition-duration: 0.2s;
+  cursor: pointer;
+  width: 50px;
+  height: 50px;
+}
+
+#avatar:active {
+  filter: brightness(1.2);
 }
 
 .dropdown-content {

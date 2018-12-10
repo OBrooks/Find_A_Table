@@ -69,5 +69,4 @@ class HomeController < ApplicationController
     @favorite.destroy
   end
 
-#
 end
