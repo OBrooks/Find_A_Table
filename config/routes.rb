@@ -26,7 +26,9 @@ Rails.application.routes.draw do
   get "conversation_user",               to: "conversations#conversation_user"
 
   resources :games
-  get "search_games",                   to: "games#search_games"
+  
+  post "search_games", to: "games#search_games"
+  get "advanced_search_games", to: "games#advanced_search_games"
 
   get "index",                          to: "home#index"
   get "profile",                        to: "home#profile"
@@ -39,6 +41,7 @@ Rails.application.routes.draw do
   resources :gamesession
 
   get "list_users",                     to:"home#list_users"
+  post "webmaster",                     to: "home#scrapping"
   post "scrapping",                     to: "home#scrapping"
 
 
@@ -46,5 +49,11 @@ Rails.application.routes.draw do
 
   get "joingame", to: "gamesession#joingame"
   get "leavegame", to: "gamesession#leavegame"
+  get "acceptrequest", to: "gamesession#acceptrequest"
+  get "denyrequest", to: "gamesession#denyrequest"
+  get "removerequest", to: "gamesession#removerequest"
+  get "placesearch", to: "home#placesearch"
+  get "placefind", to: "home#placefind"
+  get "mysessions", to: "home#mysessions"
 
 end

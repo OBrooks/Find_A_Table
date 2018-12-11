@@ -1,5 +1,18 @@
+body {
+  background-image: url("https://images6.alphacoders.com/451/451028.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+.container-page {
+  background-color: rgba(0,0,0,0);
+}
 
 .row-content {
   min-height: 90vh;
   margin-top: 56px;
 }
+
+.row { width: 100%; }
+.col { display:inline-block !important; }

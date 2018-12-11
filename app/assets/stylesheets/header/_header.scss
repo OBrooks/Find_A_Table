@@ -1,16 +1,19 @@
+@import "theme/index";
+
 header {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   height: 56px;
-  z-index: 100;
-}
+  width: 100%;
+  z-index: 1;
+  border-bottom-style: solid;
+  border-width: 1px;
+  border-color: white;
+  background-color: $bg-nav;
+  background: linear-gradient(90deg, rgba(130,160,190,1) 0%, rgba(130,160,190,1) 17%, rgba(130,160,190,0) 100%);
 
-.header-bar {
-  display: flex;
-  justify-content: flex-start;
-  background-color: rgba(120, 121, 151, 1);
 }
 
 .row-header {

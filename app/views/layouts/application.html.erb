@@ -19,19 +19,18 @@
     <%= message %>
   </div>
   <% end %>
+
+  <header>
+    <%= render "layouts/header"%>
+  </header>
+
   <div class="container-fluid container-page">
-      <header>
-          <%= render "layouts/header"%>
-      </header>
 
       <div class="row row-content">
-
         <div class="col-lg-2"></div>
-
           <div class="position-fixed col-sidebar">
               <%= render "layouts/sidebar" %>
           </div>
-
           <div class="col-lg-10 col-main-content">
               <%=render "layouts/modalconnection"%>
               <%=render "layouts/modalinscription"%>
@@ -39,12 +38,12 @@
           </div>
       </div>
 
-      <footer>
-          <div class="row row-footer">
-                  <%= render "layouts/footer" %>
-      </footer>
+    </div>
 
-      </div>
+    <footer>
+      <%= render "layouts/footer" %>
+    </footer>
+
         <audio id="chatAudio"><source src="/sounds/notification.mp3" type="audio/mpeg"></audio>
     </body>
 

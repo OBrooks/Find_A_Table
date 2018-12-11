@@ -24,7 +24,7 @@ class Gamescrap
         if page_game.xpath('/html/body/div[4]/header/div/div[2]/div[1]/div/h1/a') == nil
             temporary_array << 'Information indisponible'
             puts "dommage"
-        else    
+        else
             page_game.xpath('/html/body/div[4]/header/div/div[2]/div[1]/div/h1/a').each do |section|
                 temporary_array << section.text
             end
@@ -40,10 +40,10 @@ class Gamescrap
                 if c == 0
                 split_array = section.content.to_s.split(" ")
                 join_array = split_array.join(" ") 
-                    if join_array[0..17] == "Description du jeu"
+                    if join_array[0..17].to_s == "Description du jeu"
                         join_array = join_array[18..-1]
                     end
-                temporary_array << split_array.join(" ")
+                temporary_array << join_array
                 break
                 end 
             end
@@ -74,8 +74,13 @@ class Gamescrap
                         temporary_array << section.content.split(" ")[0][0].to_i
                         temporary_array << section.content.split(" ")[0][0].to_i
                     elsif section.content.split(" ").length == 3
-                        temporary_array << section.content.split(" ")[0].to_i
-                        temporary_array << section.content.split(" ")[2][0].to_i
+                        if section.content.split(" ")[0].to_i < section.content.split(" ")[2][0].to_i
+                            temporary_array << section.content.split(" ")[0].to_i
+                            temporary_array << section.content.split(" ")[2][0].to_i
+                        else 
+                            temporary_array << section.content.split(" ")[2][0].to_i
+                            temporary_array << section.content.split(" ")[0].to_i
+                        end
                     else 
                         temporary_array << section.content.split(" ")[1][0].to_i
                         temporary_array << section.content.split(" ")[1][0].to_i

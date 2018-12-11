@@ -8,6 +8,25 @@ class GamesController < ApplicationController
     end
 
     def search_games
+        if params[:query]
+            @query = "%#{params[:query].downcase}%"
+            @games = Game.where("title LIKE? or title LIKE? or description LIKE? or description LIKE?", @query.titleize, @query, @query.titleize, @query)
+        end
+
+        if params[:advanced_query]
+            @query = "%#{params[:advanced_query].downcase}%"
+            @max_players = params[:max_players].to_i + 1
+            if @query == ""
+                @searchgame = Game.all
+            else
+                @searchgame = Game.where("title LIKE? or title LIKE? or description LIKE? or description LIKE?", @query.titleize, @query, @query.titleize, @query)
+            end
+            @games = @searchgame.where("category_id = ?", params[:category])
+            @games = @games.where("max_players < ?", @max_players)
+        end
+    end
+
+    def advanced_search_games
     end
 
     def new

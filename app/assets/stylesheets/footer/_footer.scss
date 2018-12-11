@@ -1,13 +1,10 @@
 footer {
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background-color: blue;
+    position: relative;
+    z-index: 3;
+    background-color: rgba(21, 21, 20, 1);
+    height: 56px;
+    color: white;
 }
 
 .row-footer {
-    display: flex;
-    justify-content: flex-start;
-    background-color: rgba(251, 121, 120, 1);
-    height: 56px;
 }

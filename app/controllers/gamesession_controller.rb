@@ -31,7 +31,7 @@ class GamesessionController < ApplicationController
 
   def update
     @session = Session.find(params[:id])
-    @session = @session.update(host_id: current_user.id, game_id: params[:game], time: params[:time].to_i, date: params[:date], city: params[:city], adress: params[:adress], description: params[:description], playernb: params[:playernb].to_i, maxplayers: params[:maxplayers], status: params[:status].to_i, playerskill: params[:playerskill].to_i)
+    @session = @session.update(host_id: current_user.id, game_id: params[:game], time: params[:time], date: params[:date], city: params[:city], adress: params[:adress], description: params[:description], playernb: params[:playernb].to_i, maxplayers: params[:maxplayers], status: params[:status].to_i, playerskill: params[:playerskill].to_i)
     redirect_to gamesession_path
   end
 
@@ -44,7 +44,6 @@ class GamesessionController < ApplicationController
   def joingame
     @session = Session.find(params[:id])
     @session.players << current_user
-    @session.playernb += 1
     @session.save
     redirect_back fallback_location: root_path
     flash[:notice]="SessionJoined"
@@ -57,6 +56,28 @@ class GamesessionController < ApplicationController
     @session.save
     flash[:danger]="SessionLeft"
     redirect_to gamesession_index_path
+  end
+
+  def removerequest
+    @session = Session.find(params[:id])
+    @session.players.delete(current_user)
+    @session.save
+    flash[:danger]="RequestRemoved"
+    redirect_to gamesession_index_path
+  end
+
+  def acceptrequest
+    @session = Session.find(params[:session_id])
+    @request = Request.find_by(user_id: params[:user_id], session_id: params[:session_id])
+    @request.accepted!
+    @session.playernb += 1
+    redirect_back fallback_location: root_path
+  end
+
+  def denyrequest
+    @request = Request.find_by(user_id: params[:user_id], session_id: params[:session_id])
+    @request.denied!
+    redirect_back fallback_location: root_path
   end
 
 end

@@ -3,6 +3,10 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.5.1'
 
+#mailjet
+gem 'mailjet'
+#dotenv
+gem 'dotenv'
 #jquery
 gem 'jquery-rails'
 gem 'jquery-ui-rails'

@@ -26,3 +26,25 @@
       <td><%=@session.status%></td>
     </tr>
 </table>
+PLAYERS
+<table style="width:100%">
+  <tr>
+    <th>Name</th>
+    <th>RequestStatus</th>
+  </tr>
+  <% @session.players.each do |player| %>
+    <tr>
+      <td><%=player.nickname%></td>
+      <% request = Request.find_by(user_id: player.id, session_id: @session.id) %>
+      <td><%=request.status%></td>
+      <% if user_signed_in? %>
+        <% if @session.host == current_user %>
+          <% if request.pending? %>
+            <td><%=link_to "AcceptRequest", acceptrequest_path(session_id: @session.id, user_id: player.id)%></td>
+            <td><%=link_to "DenyRequest", denyrequest_path(session_id: @session.id, user_id: player.id)%></td>
+          <% end %>
+        <% end %>
+      <% end %>
+    </tr>
+  <% end %>
+</table>
