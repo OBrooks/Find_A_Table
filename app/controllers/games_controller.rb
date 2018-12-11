@@ -84,4 +84,9 @@ class GamesController < ApplicationController
         @gamecomment.update(content: params[:gamecom][:content], score: params[:gamecom][:score])
         redirect_to "/games/#{params[:gamecom][:game_id]}"
     end
+
+    def destroy_comment
+        Gamecom.find(params[:comment_id]).destroy
+        redirect_to "/games/#{params[:game_id]}"
+    end
 end

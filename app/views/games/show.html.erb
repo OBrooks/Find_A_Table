@@ -28,6 +28,18 @@
                     <li><b>Categorie  : <%= Category.find(@game.category_id).category_name%></b></li>
                 </div>
                 <div class = "col">
+                    <%if @game.gamecoms.first.nil?%>
+                      <li><b>Il n'y a pas encore de note pour ce jeu<b></li>
+                    <%else%>
+                    <%sum_array = [] %> 
+                      <%@game.gamecoms.each do |current_comment|%>
+                        <%sum_array << current_comment.score%>
+                      <%end%>
+                      <%average_score = sum_array.inject(0.0) { |sum, el| sum + el } / sum_array.size%>
+                      <li><b>Note des utilisateurs: <%=average_score%>/10</b></li>
+                    <%end%>
+                </div>
+                <div class = "col">
                     <li><a href = "<%=edit_game_path(@game.id)%>">Modifier les informations du jeu</a></b></li>
                 </div>
           
@@ -65,7 +77,7 @@
           <%end%>
         </div>
     <br>
-    <button class = "delete_game_comment_button">Supprimer le commentaire</button>
+    <%= link_to "Supprimer le commentaire", destroy_comment_path(comment_id: comment.id, game_id: @game.id), method: :post, class: "btn-admin" %>
   <%else%>
   <p><%=comment.user.nickname%> a écrit à propos du jeu :</p>
   <p><%=comment.score%>/10</p>
