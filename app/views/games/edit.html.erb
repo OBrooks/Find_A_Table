@@ -3,7 +3,7 @@
       <p><b>Modification du nom du jeu </b></p> 
       <%= text_field_tag "title", @game.title%>
       <p><b>Modification de la description du jeu </b></p>
-      <%= text_area_tag "description", @game.description %>
+      <%= text_area_tag "description", @game.description, size: "160x20" %>
       <p><b>Modification de l'image du jeu : saisissez une url valide ou</b></p>
       <%= text_field_tag "image_url", @game.image_url %>
       <p><b>uploadez une image</b></p>

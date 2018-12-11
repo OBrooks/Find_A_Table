@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_10_154946) do
+ActiveRecord::Schema.define(version: 2018_12_11_153601) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -61,6 +61,17 @@ ActiveRecord::Schema.define(version: 2018_12_10_154946) do
     t.index ["user_id"], name: "index_favorites_on_user_id"
   end
 
+  create_table "gamecoms", force: :cascade do |t|
+    t.text "content"
+    t.integer "score"
+    t.bigint "game_id"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["game_id"], name: "index_gamecoms_on_game_id"
+    t.index ["user_id"], name: "index_gamecoms_on_user_id"
+  end
+
   create_table "games", force: :cascade do |t|
     t.string "title"
     t.text "description"
@@ -69,8 +80,7 @@ ActiveRecord::Schema.define(version: 2018_12_10_154946) do
     t.string "image_url", default: "https://images.unsplash.com/photo-1522069213448-443a614da9b6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1352&q=80"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.time "time"
-    t.string "category"
+    t.string "time"
     t.bigint "category_id"
     t.index ["category_id"], name: "index_games_on_category_id"
   end

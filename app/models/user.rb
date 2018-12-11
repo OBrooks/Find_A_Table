@@ -16,6 +16,8 @@ class User < ApplicationRecord
   has_many :games, through: :favorites
   has_many :favorites
 
+  has_many :gamecoms
+  
   after_create :send_mail_sign_in
 
   def send_mail_sign_in
