@@ -123,6 +123,11 @@ ActiveRecord::Schema.define(version: 2018_12_11_153601) do
     t.index ["host_id"], name: "index_sessions_on_host_id"
   end
 
+  create_table "sessions_users", id: false, force: :cascade do |t|
+    t.bigint "session_id", null: false
+    t.bigint "user_id", null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -136,10 +141,10 @@ ActiveRecord::Schema.define(version: 2018_12_11_153601) do
     t.string "nickname"
     t.string "town"
     t.text "adress"
-    t.integer "status", default: 1
+    t.integer "status"
     t.string "gender"
-    t.integer "experience", default: 0
-    t.text "description", default: ""
+    t.integer "experience"
+    t.text "description"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

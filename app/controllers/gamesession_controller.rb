@@ -36,6 +36,7 @@ class GamesessionController < ApplicationController
     @session = Session.find(params[:id])
     @location = Geocoder.search(@session.city)
     @adress = Geocoder.search("#{@session.adress}, #{@session.city}")
+    @circle= [(@location.first.coordinates[0]+@adress.first.coordinates[0])/2,(@location.first.coordinates[1]+@adress.first.coordinates[1])/2]
   end
 
   def new
