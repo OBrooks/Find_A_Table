@@ -1,0 +1,26 @@
+@import "theme/index";
+
+.btn-devise-links {
+  background-color: rgba(62, 163, 101, .3);
+  color: rgba(228, 229, 230, 1);
+  border-style: none;
+  margin: 8px;
+  padding: 10px;
+  font-family: $font-patrick;
+  font-size: 14px;
+  border-radius: 6px;
+}
+
+.btn-devise-links:hover {
+  -webkit-transition-duration: 0.2s; /* Safari */
+  transition-duration: 0.2s;
+  background-color: rgba(62, 163, 101, .8);
+  text-decoration-line: none;
+  color: rgba(228, 229, 230, 1);
+}
+
+.btn-devise-links:active {
+  background-color: rgba(162, 163, 161, .8);
+  color: rgba(228, 229, 230, 1);
+  text-decoration-line: none;
+}

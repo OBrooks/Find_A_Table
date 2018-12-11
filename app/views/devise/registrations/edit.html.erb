@@ -1,12 +1,12 @@
-
-<h2 class="m-4 signup-title">Edit <%= resource_name.to_s.humanize %></h2>
-
 <div class="container container-signup">
+
+  <h2 class="m-4 signup-title">Edit <%= resource_name.to_s.humanize %></h2>
+
 
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <div class="row">
     <div class="col">
-      <%= devise_error_messages! %>
+      <span><%= devise_error_messages! %></span>
     </div>
   </div>
 
@@ -17,20 +17,20 @@
   <div class="row mt-1">
     <div class="col"> <!-- EMAIL -->
       <div class="field">
-        <%= f.label :email %><br />
+        <span><%= f.label :email %></span><br />
         <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
       </div>
     </div>
     <div class="col"> <!-- NICKNAME -->
       <div class="field mt-1">
-        <%= f.label :nickname %><br />
+        <span><%= f.label :nickname %><br /></span>
         <%= f.text_field :nickname, autofocus: true, placeholder: "Votre pseudo", class: "form-control" %>
       </div>
     </div>
     <div class="col">
       <div class="form-group">
         <div class="col-auto">
-          <%= f.label :profile_picture %><br />
+          <span><%= f.label :profile_picture %><br /></span>
           <%= f.file_field :profile_picture, autofocus: true %>
           <div class="edit-profile-pic">
             <% if current_user.profile_picture.attachment != nil %>
@@ -48,16 +48,17 @@
   <div class="row mt-1">
     <div class="col"> <!-- PASSWORD -->
       <div class="field">
-        New <%= f.label :password %>
+        <span>New <%= f.label :password %>
         <% if @minimum_password_length %>
           <em>(<%= @minimum_password_length %> characters minimum)</em>
         <% end %>
+        </span>
         <%= f.password_field :password, autocomplete: "new-password", class: "form-control" %>
       </div>
     </div>
     <div class="col"> <!-- PASSWORD CONFIRMATION -->
       <div class="field">
-        New <%= f.label :password_confirmation %><br />
+        <span>New <%= f.label :password_confirmation %><br /></span>
         <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
       </div>
     </div>
@@ -68,13 +69,13 @@
   <div class="row mt-5">
     <div class="col"> <!-- FIRST NAME -->
       <div class="field mt-1">
-        <%= f.label :first_name %><br />
+        <span><%= f.label :first_name %><br /></span>
         <%= f.text_field :first_name, autofocus: true, placeholder: "Votre prénom", class: "form-control" %>
       </div>
     </div>
     <div class="col"> <!-- LAST NAME -->
       <div class="field mt-1">
-        <%= f.label :last_name %><br />
+        <span><%= f.label :last_name %><br /></span>
         <%= f.text_field :last_name, autofocus: true, placeholder: "Votre nom", class: "form-control" %>
       </div>
     </div>
@@ -85,13 +86,13 @@
   <div class="row mt-1">
     <div class="col"> <!-- TOWN -->
       <div class="field mt-1">
-        <%= f.label :town %><br />
+        <span><%= f.label :town %><br /></span>
         <%= f.text_field :town, autofocus: true, placeholder: "Votre ville", class: "form-control" %>
       </div>
     </div>
     <div class="col"> <!-- ADRESS -->
       <div class="field mt-1">
-        <%= f.label :adress %><br />
+        <span><%= f.label :adress %><br /></span>
         <%= f.text_field :adress, autofocus: true, placeholder: "Votre adresse", class: "form-control" %>
       </div>
     </div>
@@ -102,7 +103,7 @@
   <div class="row">
       <div class="field mt-4">
         <div class="col">
-          <%= f.label :description %><br />
+          <span><%= f.label :description %><br /></span>
           <%= f.text_area :description, cols:78, rows:20, autofocus: true, placeholder: "Votre description", class: "form-control-lg" %>
         </div>
       </div>
@@ -112,14 +113,10 @@
     <div class="col">
       <div class="actions mt-5 mb-2">
         <div class="field">
-          <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-          <%= f.password_field :current_password, autocomplete: "current-password", class: "form-control" %>
+          <span><%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br /></span>
+          <%= f.password_field :current_password, autocomplete: "current-password" %>
         </div>
       </div>
-    </div>
-    <div class="col">
-    </div>
-    <div class="col">
     </div>
   </div>
 

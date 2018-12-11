@@ -5,7 +5,7 @@
   <%= form_tag("/gamesession", method: "post") do %>
     <div class="row mt-2">
       <div class="col">
-        Jeu :<br>
+        <span>Jeu :</span><br>
         <%= select_tag 'game', options_from_collection_for_select(Game.order(:title), 'id', 'title'), prompt: "Select a game", class: "form-control" %>
       </div>
       <div class="col">
@@ -14,11 +14,11 @@
 
     <div class="row mt-2">
       <div class="col-lg-6"> <!-- ADRESS -->
-        Adresse :<br>
+        <span>Adresse :</span><br>
         <%= text_field_tag 'adress', "", class: "form-control" %>
       </div>
       <div class="col"> <!-- CITY -->
-        Ville :<br>
+        <span>Ville :</span><br>
         <%= text_field_tag 'city', "", class: "form-control" %>
       </div>
       <div class="col">
@@ -27,11 +27,11 @@
 
     <div class="row mt-2">
       <div class="col"> <!-- DATE -->
-        Date :<br>
+        <span>Date :</span><br>
         <%= date_field_tag 'date', nil , min: Date.today %>
       </div>
       <div class="col"> <!-- DUREE -->
-        Durée (en heures) :<br>
+        <span>Durée (en heures) :</span><br>
         <td><%= number_field_tag 'time', nil, min: 1, max: 12, class: "form-control"%></td>
       </div>
       <div class="col">
@@ -42,15 +42,15 @@
 
     <div class="row mt-2">
       <div class="col"> <!-- PLAYERNB -->
-        Nombre de joueurs actuel :<br>
+        <span>Nombre de joueurs actuel :</span><br>
         <td><%= number_field_tag 'playernb', nil, min: 0%></td>
       </div>
       <div class="col"> <!-- MAXPLAYERS -->
-        Nombre de joueurs maximum :<br>
+        <span>Nombre de joueurs maximum :</span><br>
         <td><%= number_field_tag 'maxplayers', nil, min: 2%></td>
       </div>
       <div class="col">
-        Niveau des joueurs recommandé :<br>
+        <span>Niveau recommandé :</span><br>
         <td><%= select_tag 'playerskill', options_from_collection_for_select(Session.playerskills, 'last', 'first') %></td>
       </div>
       <div class="col">
@@ -59,7 +59,7 @@
 
     <div class="row mt-2">
       <div class="col"> <!-- DESCRIPTION -->
-        Description<br>
+        <span>Description :<br></span>
         <td><%= text_area_tag 'description', "", size: "108x3" %></td>
       </div>
     </div>
