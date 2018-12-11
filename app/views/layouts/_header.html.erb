@@ -7,13 +7,13 @@
   <div class="col d-flex justify-content-end">
       <% if user_signed_in? == false %>
         <div class="header-buttons">
-          <button class="modal-inscription btn-header">Inscription</button>
+          <a href="/users/sign_up" class="btn-signup btn-header">Inscription</a>
           <button class="modal-connection btn-header">Connexion</button>
         </div>
       <% end %>
       <% if user_signed_in? %>
       <div class="messages">
-        <%= link_to "<i class='fa fa-comments fa-3x' aria-hidden='true'></i>".html_safe, messages_path %>
+        <%= link_to "<i class='fa fa-comments fa-3x fa-fw' aria-hidden='true'></i>".html_safe, messages_path %>
       </div>
       <div class="header-avatar">
         <div class="dropdown" id="header-dropdown">

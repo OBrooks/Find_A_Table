@@ -1,27 +1,87 @@
-<%= form_tag("/gamesession/#{@session.id}", method: "patch") do %>
-  <table style="width:100%">
-    <tr>
-      <th>Date</th>
-      <th>Game</th>
-      <th>Adress</th>
-      <th>City</th>
-      <th>Description</th>
-      <th>PayerNB</th>
-      <th>MaxPlayers</th>
-      <th>Time</th>
-      <th>PlayerSkill</th>
-    </tr>
-    <tr>
-      <td><%= date_field_tag "date", @session.date , min: Date.today %></td>
-      <td><%= select_tag "game", options_from_collection_for_select(Game.order(:title), "id", "title", @session.game), prompt: "Select something"%></td>
-      <td><%= text_field_tag "adress", @session.adress%></td>
-      <td><%= text_field_tag "city", @session.city %></td>
-      <td><%= text_field_tag "description", @session.description %></td>
-      <td><%= number_field_tag 'playernb', @session.playernb, min: 0%></td>
-      <td><%= number_field_tag 'maxplayers', @session.maxplayers, min: 2%></td>
-      <td><%= number_field_tag 'time', @session.time, min: 1, max: 12%></td>
-      <td><%= select_tag 'playerskill', options_from_collection_for_select(Session.playerskills, "last", "first", @session.playerskill), prompt: "Select something" %></td>
-    </tr>
-  </table>
-    <%= submit_tag('Go') %>
-<% end %>
+<div class="container container-signup">
+
+  <h2 class="m-4 signup-title">Editer la session</h2>
+
+  <%= form_tag("/gamesession/#{@session.id}", method: "patch") do %>
+    <div class="row mt-2">
+      <div class="col">
+        <span>Jeu :<br></span>
+        <%= select_tag "game", options_from_collection_for_select(Game.order(:title), "id", "title", @session.game), prompt: "Select something", class: "form-control" %>
+      </div>
+      <div class="col">
+      </div>
+    </div>
+
+    <div class="row mt-2">
+      <div class="col-lg-6"> <!-- ADRESS -->
+        <span>Adresse :<br></span>
+        <%= text_field_tag "adress", @session.adress, class: "form-control" %>
+      </div>
+      <div class="col"> <!-- CITY -->
+        <span>Ville :<br></span>
+        <%= text_field_tag "city", @session.city, class: "form-control" %>
+      </div>
+      <div class="col">
+      </div>
+    </div>
+
+    <div class="row mt-2">
+      <div class="col"> <!-- DATE -->
+        <span>Date :<br></span>
+        <%= date_field_tag "date", @session.date , min: Date.today %>
+      </div>
+      <div class="col"> <!-- DUREE -->
+        <span>Durée (en heures) :<br></span>
+        <%= number_field_tag 'time', @session.time, min: 1, max: 12, class: "form-control"%>
+      </div>
+      <div class="col">
+      </div>
+      <div class="col">
+      </div>
+    </div>
+
+    <div class="row mt-2">
+      <div class="col"> <!-- PLAYERNB -->
+        <span>Nombre de joueurs actuel :<br></span>
+        <%= number_field_tag 'playernb', @session.playernb, min: 0%>
+      </div>
+      <div class="col"> <!-- MAXPLAYERS -->
+        <span>Nombre de joueurs maximum :<br></span>
+        <%= number_field_tag 'maxplayers', @session.maxplayers, min: 2%>
+      </div>
+      <div class="col">
+        <span>Niveau recommandé :<br></span>
+        <%= select_tag 'playerskill', options_from_collection_for_select(Session.playerskills, "last", "first", @session.playerskill), prompt: "Select something" %>
+      </div>
+      <div class="col">
+      </div>
+    </div>
+
+    <div class="row mt-2">
+      <div class="col"> <!-- DESCRIPTION -->
+        <span>Description :<br></span>
+        <%= text_field_tag "description", @session.description, size: "108x3" %>
+      </div>
+    </div>
+
+
+    <div class="actions mt-5 mb-2">
+      <%= submit_tag('Créer', :class=>"btn-signup-confirm") %>
+    </div>
+
+    <div class="row mt-5">
+    </div>
+
+    <% end %>
+</div>
+
+
+      <%=  %>
+      <%= %>
+      <%= %>
+      <%=  %>
+      <%=  %>
+      <%= %>
+      <%= %>
+      <%= %>
+      <%=  %>
