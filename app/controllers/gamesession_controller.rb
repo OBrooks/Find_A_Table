@@ -55,6 +55,9 @@ class GamesessionController < ApplicationController
     @session = Session.find(params[:id])
     @session.players.delete(current_user)
     @session.playernb -= 1
+    if @session.playernb <= @session.maxplayers && @session.full?
+      @session.available!
+    end
     @session.save
     flash[:danger]="SessionLeft"
     redirect_to gamesession_index_path
@@ -73,6 +76,9 @@ class GamesessionController < ApplicationController
     @request = Request.find_by(user_id: params[:user_id], session_id: params[:session_id])
     @request.accepted!
     @session.playernb += 1
+    if @session.playernb >= @session.maxplayers && @session.available?
+      @session.full!
+    end
     @session.save
     redirect_back fallback_location: root_path
   end
