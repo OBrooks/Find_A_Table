@@ -1,9 +1,19 @@
-body {
-  background-image: url("https://images6.alphacoders.com/451/451028.jpg");
+
+#background-container {
+  position: fixed;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
 }
+
+.background-dice {
+  background-image: url("https://images6.alphacoders.com/451/451028.jpg");
+}
+
 
 .container-page {
   background-color: rgba(0,0,0,0);

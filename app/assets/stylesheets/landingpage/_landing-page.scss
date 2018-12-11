@@ -1,4 +1,7 @@
 @import "theme/index.scss";
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+@import url('https://fonts.googleapis.com/css?family=Bungee');
+@import url('https://fonts.googleapis.com/css?family=Lobster');
 
 body, html {
     height: 100%;
@@ -16,33 +19,79 @@ body, html {
     background-size: cover;
 }
 
+.tableau {
+background-image: radial-gradient( circle farthest-corner at 10% 20%,  rgba(91,173,254,0.46) 0%, rgba(91,224,254,0.46) 47.2%, rgba(170,254,235,0.43) 90% );
+display: flex;
+justify-content: center;
+font-family:  'Lobster', cursive;
+color: rgb(77, 67, 87);
+font-weight: bold;
+font-size: 27px;
+padding: 25px;
+}
+
+.tournois{
+  display: flex;
+  justify-content: center;
+  background-image: url("/img/monop.jpg")
+}
+.bureau {
+background-image: url("/img/scrabble.jpg");
+display: flex;
+justify-content: center;
+font-family:  'Lobster', cursive;
+color: rgb(77, 67, 87);
+font-weight: bold;
+font-size: 48px;
+padding: 50px;
+}
+.database{
+background-image: url("/img/poker.jpg");
+display: flex;
+justify-content: center;
+font-family:  'Lobster', cursive;
+color: rgb(77, 67, 87);
+font-weight: bold;
+font-size: 48px;
+padding: 50px;
+
+}
+
+
+
 .twilight-imperium {
 background-image: url("https://geekandsundry.com/wp-content/uploads/2018/10/Untitled-design-91.png");
 }
-
 .risk {
 background-image: url("http://satireworld.com/wp-content/uploads/2015/10/RISK.jpg");
 }
 
 .between-landingpage {
+  background-image: radial-gradient( circle farthest-corner at 10% 20%,  rgba(91,173,254,0.46) 0%, rgba(91,224,254,0.46) 47.2%, rgba(170,254,235,0.43) 90% );
   height: 150px;
   width: 100%;
 }
+.liste{
+  display: flex;
+  align-items: center;
+  color: rgb(70, 82, 109);
 
-.h1-landingpage {
-  font-family: 'Reem Kufi', sans-serif;
-  color: rgba(224, 225, 230, 1);
-  font-weight: bold;
-  font-size: 64px;
+}
+.liste2{
+  display: flex;
+  align-items: center;
+  color:  white;
+  margin-left: 12%;
 }
 
-.h2-landingpage {
+
+.h2 {
   font-family: 'Reem Kufi', sans-serif;
   color: rgba(30, 32, 92, 1);
   font-size: 48px;
 }
 
-.p-landingpage {
+.p {
   font-family: 'Patrick Hand SC', cursive;
   color: rgba(30, 32, 92, 1);
   font-size: 24px;
@@ -58,3 +107,9 @@ background-image: url("http://satireworld.com/wp-content/uploads/2015/10/RISK.jp
   font-family: 'Reem Kufi', sans-serif;
   font-weight: 100;
 }
+
+.logo {
+  display: flex;
+  justify-content: center;  
+}
+

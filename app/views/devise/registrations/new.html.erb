@@ -1,60 +1,102 @@
-<h2>Sign up</h2>
+<div class="container container-signup">
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+
+<h2 class="m-4 signup-title">Créer un nouveau compte</h2>
+
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <div class="row">
+    <div class="col">
   <%= devise_error_messages! %>
-
-<div class="field mt-1">
-  <%= f.label :email %><br />
-  <%= f.email_field :email, autofocus: true, placeholder: "email" %>
-</div>
-
-<div class="field mt-1">
-  <%= f.label :first_name %><br />
-  <%= f.text_field :first_name, autofocus: true, placeholder: "Votre prénom" %>
-</div>
-
-<div class="field mt-1">
-  <%= f.label :last_name %><br />
-  <%= f.text_field :last_name, autofocus: true, placeholder: "Votre nom" %>
-</div>
-
-<div class="field mt-1">
-  <%= f.label :nickname %><br />
-  <%= f.text_field :nickname, autofocus: true, placeholder: "Votre pseudo" %>
-</div>
-
-<div class="field mt-1">
-  <%= f.label :town %><br />
-  <%= f.text_field :town, autofocus: true, placeholder: "Votre ville" %>
-</div>
-
-<div class="field mt-1">
-  <%= f.label :adress %><br />
-  <%= f.text_field :adress, autofocus: true, placeholder: "Votre adresse" %>
-</div>
-
-  <div class="field mt-1">
-    <%= f.label :gender %><br />
-    <%= f.text_field :gender, autofocus: true, placeholder: "Votre genre: masculin, féminin, autre" %>
+    </div>
+    <div class="col">
+    </div>
+    <div class="col">
+    </div>
   </div>
 
-<div class="field mt-1">
-  <%= f.label :password %>
-  <% if @minimum_password_length %>
-  <em>(
-    <%= @minimum_password_length %> characters minimum)</em>
-  <% end %><br />
-  <%= f.password_field :password, placeholder: "new-password" %>
-</div>
+  <div class="row mt-1">
+    <div class="col"> <!-- EMAIL -->
+      <div class="field mt-1">
+        <%= f.label :email %>
+        <%= f.email_field :email, autofocus: true, placeholder: "email", class: "form-control" %>
+      </div>
+    </div>
+    <div class="col"> <!-- NICKNAME -->
+      <div class="field mt-1">
+        <%= f.label :nickname %>
+        <%= f.text_field :nickname, autofocus: true, placeholder: "Votre pseudo", class: "form-control" %>
+      </div>
+    </div>
+    <div class="col">
+    </div>
+  </div>
 
-<div class="field mt-1">
-  <%= f.label :password_confirmation %><br />
-  <%= f.password_field :password_confirmation, placeholder: "new-password" %>
-</div>
+  <div class="row mt-1">
+    <div class="col"> <!-- PASSWORD -->
+      <div class="field mt-1">
+        <%= f.label :password %>
+        <% if @minimum_password_length %>
+        <em>( <%= @minimum_password_length %> characters minimum )</em>
+        <% end %>
+        <%= f.password_field :password, placeholder: "new-password", class: "form-control" %>
+      </div>
+    </div>
+    <div class="col"> <!-- PASSWORD CONFIRMATION -->
+      <div class="field mt-1">
+        <%= f.label :password_confirmation %>
+        <%= f.password_field :password_confirmation, placeholder: "new-password", class: "form-control" %>
+      </div>
+    </div>
+    <div class="col">
+    </div>
+  </div>
 
-<div class="actions mt-2 mb-2">
-  <%= f.submit "Sign up"%>
-</div>
-<% end %>
+  <div class="row mt-5">
+    <div class="col"> <!-- FIRST NAME -->
+      <div class="field mt-1">
+        <%= f.label :first_name %>
+        <%= f.text_field :first_name, autofocus: true, placeholder: "Votre prénom", class: "form-control" %>
+      </div>
+    </div>
+    <div class="col"> <!-- LAST NAME -->
+      <div class="field mt-1">
+        <%= f.label :last_name %>
+        <%= f.text_field :last_name, autofocus: true, placeholder: "Votre nom", class: "form-control" %>
+      </div>
+    </div>
+    <div class="col"> <!-- GENDER -->
+      <div class="field mt-1">
+        <%= f.label :gender %>
+        <%= f.text_field :gender, autofocus: true, placeholder: "Votre genre: masculin, féminin, autre", class: "form-control" %>
+      </div>
+    </div>
+  </div>
 
-<%= render "devise/shared/links" %>
+  <div class="row mt-1">
+    <div class="col"> <!-- TOWN -->
+      <div class="field mt-1">
+        <%= f.label :town %>
+        <%= f.text_field :town, autofocus: true, placeholder: "Votre ville", class: "form-control" %>
+      </div>
+    </div>
+    <div class="col"> <!-- ADRESS -->
+      <div class="field mt-1">
+        <%= f.label :adress %>
+        <%= f.text_field :adress, autofocus: true, placeholder: "Votre adresse", class: "form-control" %>
+      </div>
+    </div>
+    <div class="col">
+    </div>
+  </div>
+
+
+  <div class="actions mt-5 mb-2">
+    <%= f.submit "Sign up", class: "btn-signup-confirm"%>
+  </div>
+  <% end %>
+
+  <div class="row mt-5">
+    <%= render "devise/shared/links" %>
+  </div>
+  
+</div>

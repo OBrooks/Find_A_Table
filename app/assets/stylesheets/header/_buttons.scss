@@ -22,10 +22,13 @@
   font-family: $font-passero;
   font-size: 16px;
   background-color: rgba(180, 181, 221, 1);
+  color: black;
 }
 
 .btn-header:hover {
   background-color: rgba(255, 255, 255, 1);
+  color: black;
+  text-decoration-line: none;
 }
 
 .btn-header:active {
@@ -35,4 +38,3 @@
 .messages i {
   color: white;
 }
-

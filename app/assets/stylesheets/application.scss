@@ -14,6 +14,10 @@
  *= require_self
  */
 
+
+@import url('https://fonts.googleapis.com/css?family=Alfa+Slab+One');
+
+
 @import "bootstrap";
 // @import "font-awesome-sprockets";
 @import "font-awesome";
@@ -24,4 +28,5 @@
 @import "landingpage/index";
 @import "header/index";
 @import "footer/index";
+@import "devise/index";
 @import "animate.min";

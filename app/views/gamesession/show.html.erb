@@ -1,3 +1,12 @@
+<head>
+  <style>
+    /* Set the size of the div element that contains the map */
+    #map {
+      height: 600px;  /* The height is 400 pixels */
+      width: 100%;  /* The width is the width of the web page */
+    }
+  </style>
+</head>
 <table style="width:100%">
   <tr>
     <th>ID</th>
@@ -48,3 +57,31 @@ PLAYERS
     </tr>
   <% end %>
 </table>
+  <h3>My Google Maps Demo</h3>
+  <!--The div element for the map -->
+  <div id="map"></div>
+  <script>
+// Initialize and add the map
+function initMap() {
+  var pos = {lat: <%= @location.first.coordinates[0] %>, lng: <%= @location.first.coordinates[1] %>};
+  <% if user_signed_in? %>
+    <% if @session.players.include?(current_user) %>
+      <% if Request.find_by(user_id: current_user.id, session_id: @session.id).accepted? %>
+        var pos = {lat: <%= @adress.first.coordinates[0] %>, lng: <%= @adress.first.coordinates[1] %>};
+      <% end %>
+    <% end %>
+  <% end %>
+  var map = new google.maps.Map(
+    document.getElementById('map'), {zoom: 15, center: pos});
+  // The marker, positioned at Uluru
+  var marker = new google.maps.Marker({position: pos, map: map});
+}
+  </script>
+  <!--Load the API from the specified URL
+  * The async attribute allows the browser to render the page while the API loads
+  * The key parameter will contain your own API key (which is not needed for this tutorial)
+  * The callback parameter executes the initMap() function
+  -->
+  <script async defer
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAIkuKEbXIU73y_GbPuVvln3h-V7f8k2R8&callback=initMap">
+  </script>

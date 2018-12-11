@@ -28,7 +28,6 @@ Rails.application.routes.draw do
   resources :games
   post "search_games", to: "games#search_games"
   get "advanced_search_games", to: "games#advanced_search_games"
-
   post "create_comment", to: "games#create_comment"
   post "update_comment", to: "games#update_comment"
 
@@ -54,8 +53,6 @@ Rails.application.routes.draw do
   get "acceptrequest", to: "gamesession#acceptrequest"
   get "denyrequest", to: "gamesession#denyrequest"
   get "removerequest", to: "gamesession#removerequest"
-  get "placesearch", to: "home#placesearch"
-  get "placefind", to: "home#placefind"
   get "mysessions", to: "home#mysessions"
 
 end

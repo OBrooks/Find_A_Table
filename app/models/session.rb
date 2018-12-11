@@ -5,6 +5,7 @@ class Session < ApplicationRecord
   enum playerskill: {any: 0, noob: 1, veteran: 2, expert: 3}
   validates :date, presence: true
   validates :city, presence: true
+  validates :adress, presence: true
   validates :maxplayers, presence: true
   validates :playernb, presence: true
   validates :time, presence: true
