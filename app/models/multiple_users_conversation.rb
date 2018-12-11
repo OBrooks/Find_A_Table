@@ -1,0 +1,2 @@
+class MultipleUsersConversation < ApplicationRecord
+end
