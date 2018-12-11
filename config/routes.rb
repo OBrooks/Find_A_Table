@@ -26,7 +26,7 @@ Rails.application.routes.draw do
   get "conversation_user",               to: "conversations#conversation_user"
 
   resources :games
-  
+
   post "search_games", to: "games#search_games"
   get "advanced_search_games", to: "games#advanced_search_games"
 
@@ -52,8 +52,6 @@ Rails.application.routes.draw do
   get "acceptrequest", to: "gamesession#acceptrequest"
   get "denyrequest", to: "gamesession#denyrequest"
   get "removerequest", to: "gamesession#removerequest"
-  get "placesearch", to: "home#placesearch"
-  get "placefind", to: "home#placefind"
   get "mysessions", to: "home#mysessions"
 
 end

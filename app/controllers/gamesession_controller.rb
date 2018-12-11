@@ -18,7 +18,7 @@ class GamesessionController < ApplicationController
 
   def create
     @ses = Session.new(host_id: current_user.id, game_id: params[:game], time: params[:time], date: params[:date], city: params[:city], adress: params[:adress], description: params[:description], playernb: params[:playernb].to_i, maxplayers: params[:maxplayers], status: params[:status].to_i, playerskill: params[:playerskill].to_i)
-    if @ses.valid?
+    if @ses.valid? && Geocoder.search("#{@ses.adress}, #{@ses.city}") != []
       @ses.save
       redirect_to gamesession_index_path
     else
