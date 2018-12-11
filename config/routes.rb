@@ -41,6 +41,7 @@ Rails.application.routes.draw do
   get 'remove_from_favorites',          to: "home#remove_from_favorites"
 
   resources :gamesession
+  post "search_sessions", to: "gamesession#search_sessions"
 
   get "list_users",                     to:"home#list_users"
   post "webmaster",                     to: "home#scrapping"

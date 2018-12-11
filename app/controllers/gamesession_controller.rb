@@ -4,6 +4,34 @@ class GamesessionController < ApplicationController
     @sessions = Session.all
   end
 
+  def search_sessions
+    @city = "%#{params[:city].downcase}%"
+    @game = "%#{params[:game].downcase}%"
+    if @city == ""
+      @sessions = Session.all
+    else
+      @sessions = Session.where("city LIKE? or city LIKE?", @city.titleize, @city)
+    end
+
+    if @game == ""
+      @games = Game.all
+    else
+      @games = Game.where("title LIKE? or title LIKE? or description LIKE? or description LIKE?", @game.titleize, @game, @game.titleize, @game)
+    end
+    
+    @sessions_array = []
+    @sessions.each do |session|
+      @games.each do |game|
+        if game.id == session.game_id
+          @sessions_array << session
+        end
+      end
+    end
+
+    puts "ICIIIIIIIIIIIIIIIIIIIIIIIIi"
+    puts @sessions_array
+  end
+
   def show
     @session = Session.find(params[:id])
     @location = Geocoder.search(@session.city)

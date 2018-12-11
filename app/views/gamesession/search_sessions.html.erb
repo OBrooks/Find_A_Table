@@ -1,13 +1,11 @@
 <h2>Recherche avancée</h2>
-<%=form_tag search_sessions_path do%>
+<%=form_tag search_sessions_path method: :get do%>
     <p><b>Recherche par ville</b></p> 
     <%= text_field_tag "city", value=""%>
     <p><b>Recherche par jeu</b></p> 
     <%= text_field_tag "game", value=""%>
     <p><%= submit_tag('Rechercher') %></p>
 <%end%>
-
-
 
 <table style="width:100%">
   <tr>
@@ -24,7 +22,7 @@
     <th>Show</th>
     <th>RequestStatus</th>
   </tr>
-  <%@sessions.each do |session|%>
+  <%@sessions_array.each do |session|%>
     <tr>
       <td><%= session.id %></td>
       <td><%= session.host.nickname %></td>
