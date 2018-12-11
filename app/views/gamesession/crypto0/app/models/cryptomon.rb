@@ -1,0 +1,2 @@
+class Cryptomon < ApplicationRecord
+end

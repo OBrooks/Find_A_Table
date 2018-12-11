@@ -6,6 +6,8 @@ class GamesessionController < ApplicationController
 
   def show
     @session = Session.find(params[:id])
+    @location = Geocoder.search(@session.city)
+    @adress = Geocoder.search("#{@session.adress}, #{@session.city}")
   end
 
   def new
@@ -71,12 +73,14 @@ class GamesessionController < ApplicationController
     @request = Request.find_by(user_id: params[:user_id], session_id: params[:session_id])
     @request.accepted!
     @session.playernb += 1
+    @session.save
     redirect_back fallback_location: root_path
   end
 
   def denyrequest
     @request = Request.find_by(user_id: params[:user_id], session_id: params[:session_id])
     @request.denied!
+    @session.save
     redirect_back fallback_location: root_path
   end
 

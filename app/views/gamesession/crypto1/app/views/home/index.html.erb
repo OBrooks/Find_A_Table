@@ -1,0 +1,5 @@
+<%= form_for @cryptomon, :class => "form-group", url: {action: 'put'} do |f| %>
+  <label>Choix de la crypto</label>
+  <%= f.collection_select :id, Cryptomon.order(:name),:id,:name, {include_blank: false}, {class: "form-control"} %>
+  <%= f.submit "Valide moi ça", :class => "btn btn-primary" %>
+<% end %>
