@@ -1,27 +1,76 @@
-<%= form_tag("/gamesession", method: "post") do %>
-  <table style="width:100%">
-    <tr>
-      <th>Date</th>
-      <th>Game</th>
-      <th>Adress</th>
-      <th>City</th>
-      <th>Description</th>
-      <th>PayerNB</th>
-      <th>MaxPlayers</th>
-      <th>Time</th>
-      <th>PlayerSkill</th>
-    </tr>
-    <tr>
-      <td><%= date_field_tag 'date', nil , min: Date.today %></td>
-      <td><%= select_tag 'game', options_from_collection_for_select(Game.order(:title), 'id', 'title'), prompt: "Select a game" %></td>
-      <td><%= text_field_tag 'adress' %></td>
-      <td><%= text_field_tag 'city' %></td>
-      <td><%= text_field_tag 'description' %></td>
-      <td><%= number_field_tag 'playernb', nil, min: 0%></td>
-      <td><%= number_field_tag 'maxplayers', nil, min: 2%></td>
-      <td><%= number_field_tag 'time', nil, min: 1, max: 12%></td>
-      <td><%= select_tag 'playerskill', options_from_collection_for_select(Session.playerskills, 'last', 'first') %></td>
-    </tr>
-  </table>
-    <%= submit_tag('Go') %>
-<% end %>
+<div class="container container-signup">
+
+  <h2 class="m-4 signup-title">Créer une nouvelle session</h2>
+
+  <%= form_tag("/gamesession", method: "post") do %>
+    <div class="row mt-2">
+      <div class="col">
+        Jeu :<br>
+        <%= select_tag 'game', options_from_collection_for_select(Game.order(:title), 'id', 'title'), prompt: "Select a game", class: "form-control" %>
+      </div>
+      <div class="col">
+      </div>
+    </div>
+
+    <div class="row mt-2">
+      <div class="col-lg-6"> <!-- ADRESS -->
+        Adresse :<br>
+        <%= text_field_tag 'adress', "", class: "form-control" %>
+      </div>
+      <div class="col"> <!-- CITY -->
+        Ville :<br>
+        <%= text_field_tag 'city', "", class: "form-control" %>
+      </div>
+      <div class="col">
+      </div>
+    </div>
+
+    <div class="row mt-2">
+      <div class="col"> <!-- DATE -->
+        Date :<br>
+        <%= date_field_tag 'date', nil , min: Date.today %>
+      </div>
+      <div class="col"> <!-- DUREE -->
+        Durée (en heures) :<br>
+        <td><%= number_field_tag 'time', nil, min: 1, max: 12, class: "form-control"%></td>
+      </div>
+      <div class="col">
+      </div>
+      <div class="col">
+      </div>
+    </div>
+
+    <div class="row mt-2">
+      <div class="col"> <!-- PLAYERNB -->
+        Nombre de joueurs actuel :<br>
+        <td><%= number_field_tag 'playernb', nil, min: 0%></td>
+      </div>
+      <div class="col"> <!-- MAXPLAYERS -->
+        Nombre de joueurs maximum :<br>
+        <td><%= number_field_tag 'maxplayers', nil, min: 2%></td>
+      </div>
+      <div class="col">
+        Niveau des joueurs recommandé :<br>
+        <td><%= select_tag 'playerskill', options_from_collection_for_select(Session.playerskills, 'last', 'first') %></td>
+      </div>
+      <div class="col">
+      </div>
+    </div>
+
+    <div class="row mt-2">
+      <div class="col"> <!-- DESCRIPTION -->
+        Description<br>
+        <td><%= text_area_tag 'description', "", size: "108x3" %></td>
+      </div>
+    </div>
+
+
+    <div class="actions mt-5 mb-2">
+      <%= submit_tag('Créer', :class=>"btn-signup-confirm") %>
+    </div>
+
+    <div class="row mt-5">
+    </div>
+
+    <% end %>
+</div>

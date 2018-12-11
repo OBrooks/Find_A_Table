@@ -1,80 +1,135 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= devise_error_messages! %>
+<h2 class="m-4 signup-title">Edit <%= resource_name.to_s.humanize %></h2>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+<div class="container container-signup">
 
-  <div class="form-group">
-    <div class="col-auto">
-      <%= f.label :profile_picture %><br />
-      <%= f.file_field :profile_picture, autofocus: true %>
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+  <div class="row">
+    <div class="col">
+      <%= devise_error_messages! %>
     </div>
   </div>
 
-   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+  <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
   <% end %>
 
-  <div class="field mt-1">
-    <%= f.label :first_name %><br />
-    <%= f.text_field :first_name, autofocus: true, placeholder: "Votre prénom" %>
+  <div class="row mt-1">
+    <div class="col"> <!-- EMAIL -->
+      <div class="field">
+        <%= f.label :email %><br />
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
+      </div>
+    </div>
+    <div class="col"> <!-- NICKNAME -->
+      <div class="field mt-1">
+        <%= f.label :nickname %><br />
+        <%= f.text_field :nickname, autofocus: true, placeholder: "Votre pseudo", class: "form-control" %>
+      </div>
+    </div>
+    <div class="col">
+      <div class="form-group">
+        <div class="col-auto">
+          <%= f.label :profile_picture %><br />
+          <%= f.file_field :profile_picture, autofocus: true %>
+          <div class="edit-profile-pic">
+            <% if current_user.profile_picture.attachment != nil %>
+              <%= image_tag current_user.profile_picture, class: "edit-profile-img" %>
+            <% else %>
+              <img src="https://i.kym-cdn.com/photos/images/newsfeed/000/885/429/ba9.gif" alt="avatar", class="edit-profile-img">
+            <% end %>
+          </div>
+
+        </div>
+      </div>
+    </div>
   </div>
 
-  <div class="field mt-1">
-    <%= f.label :last_name %><br />
-    <%= f.text_field :last_name, autofocus: true, placeholder: "Votre nom" %>
+  <div class="row mt-1">
+    <div class="col"> <!-- PASSWORD -->
+      <div class="field">
+        New <%= f.label :password %>
+        <% if @minimum_password_length %>
+          <em>(<%= @minimum_password_length %> characters minimum)</em>
+        <% end %>
+        <%= f.password_field :password, autocomplete: "new-password", class: "form-control" %>
+      </div>
+    </div>
+    <div class="col"> <!-- PASSWORD CONFIRMATION -->
+      <div class="field">
+        New <%= f.label :password_confirmation %><br />
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
+      </div>
+    </div>
+    <div class="col">
+    </div>
   </div>
 
-  <div class="field mt-1">
-    <%= f.label :nickname %><br />
-    <%= f.text_field :nickname, autofocus: true, placeholder: "Votre pseudo" %>
+  <div class="row mt-5">
+    <div class="col"> <!-- FIRST NAME -->
+      <div class="field mt-1">
+        <%= f.label :first_name %><br />
+        <%= f.text_field :first_name, autofocus: true, placeholder: "Votre prénom", class: "form-control" %>
+      </div>
+    </div>
+    <div class="col"> <!-- LAST NAME -->
+      <div class="field mt-1">
+        <%= f.label :last_name %><br />
+        <%= f.text_field :last_name, autofocus: true, placeholder: "Votre nom", class: "form-control" %>
+      </div>
+    </div>
+    <div class="col"> <!-- GENDER -->
+    </div>
   </div>
 
-  <div class="field mt-1">
-    <%= f.label :town %><br />
-    <%= f.text_field :town, autofocus: true, placeholder: "Votre ville" %>
+  <div class="row mt-1">
+    <div class="col"> <!-- TOWN -->
+      <div class="field mt-1">
+        <%= f.label :town %><br />
+        <%= f.text_field :town, autofocus: true, placeholder: "Votre ville", class: "form-control" %>
+      </div>
+    </div>
+    <div class="col"> <!-- ADRESS -->
+      <div class="field mt-1">
+        <%= f.label :adress %><br />
+        <%= f.text_field :adress, autofocus: true, placeholder: "Votre adresse", class: "form-control" %>
+      </div>
+    </div>
+    <div class="col">
+    </div>
   </div>
 
-  <div class="field mt-1">
-    <%= f.label :adress %><br />
-    <%= f.text_field :adress, autofocus: true, placeholder: "Votre adresse" %>
+  <div class="row">
+      <div class="field mt-4">
+        <div class="col">
+          <%= f.label :description %><br />
+          <%= f.text_area :description, cols:78, rows:20, autofocus: true, placeholder: "Votre description", class: "form-control-lg" %>
+        </div>
+      </div>
   </div>
 
-  <div class="field mt-1">
-    <%= f.label :description %><br />
-    <%= f.text_field :description, autofocus: true, placeholder: "Votre description" %>
+  <div class="row">
+    <div class="col">
+      <div class="actions mt-5 mb-2">
+        <div class="field">
+          <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
+          <%= f.password_field :current_password, autocomplete: "current-password", class: "form-control" %>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+    </div>
+    <div class="col">
+    </div>
   </div>
 
-  <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-    <% if @minimum_password_length %>
-      <br />
-      <em><%= @minimum_password_length %> characters minimum</em>
-    <% end %>
+  <div class="actions mt-5 mb-2">
+    <%= f.submit "Update", class: "btn-signup-confirm" %>
   </div>
+  <% end %>
+</div>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "current-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Update" %>
-  </div>
-<% end %>
-
-<h3>Cancel my account</h3>
-
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
+<!-- <h3>Cancel my account</h3>
+<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p> -->
 
 <%= link_to "Back", :back %>

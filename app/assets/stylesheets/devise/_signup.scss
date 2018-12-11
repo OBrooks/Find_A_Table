@@ -1,0 +1,40 @@
+@import "theme/index";
+
+.container-signup {
+  color: $color-purple;
+  font-family: $font-carrois;
+  font-weight: bold;
+  font-size: 12px;
+}
+
+.signup-title {
+  font-size: 32px;
+  font-weight: bold;
+  font-family: $font-passero;
+}
+
+.btn-signup-confirm {
+  background-color: rgba(62, 63, 101, .7);
+  color: rgba(228, 229, 230, 1);
+  border-style: none;
+  margin: 3px;
+  font-family: $font-passero;
+  font-size: 24px;
+  height: 40px;
+  width: 100px;
+  text-align: center;
+}
+
+.btn-signup-confirm:hover {
+  -webkit-transition-duration: 0.2s; /* Safari */
+  transition-duration: 0.2s;
+  background-color: rgba(82, 83, 131, 1);
+}
+
+.btn-signup-confirm:active {
+  background-color: rgba(182, 183, 131, 1);
+}
+
+.signup-text-info {
+  font-size: 10px;
+}
