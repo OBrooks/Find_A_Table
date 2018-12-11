@@ -1,2 +1,0 @@
-class MultipleUsersConversation < ApplicationRecord
-end

@@ -1,2 +1,0 @@
-class UsersConversation < ApplicationRecord
-end
