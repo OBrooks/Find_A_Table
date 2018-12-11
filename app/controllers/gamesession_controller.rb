@@ -6,6 +6,7 @@ class GamesessionController < ApplicationController
 
   def show
     @session = Session.find(params[:id])
+    @chatroom = Chatroom.find_by(session_id: params[:id])
   end
 
   def new
@@ -23,6 +24,7 @@ class GamesessionController < ApplicationController
       flash.now[:danger]="champsinvalide"
       render :new
     end
+    @chatroom = Chatroom.create!(session_id: @ses.id)
   end
 
   def edit
@@ -47,6 +49,9 @@ class GamesessionController < ApplicationController
     @session.save
     redirect_back fallback_location: root_path
     flash[:notice]="SessionJoined"
+    @chatroom = Chatroom.find_by(session_id: params[:id])
+    puts "Le chatroom est #{@chatroom}"
+    @chatroom_user = ChatroomUser.where(user_id: current_user.id, chatroom_id: @chatroom.id).first_or_create
   end
 
   def leavegame
