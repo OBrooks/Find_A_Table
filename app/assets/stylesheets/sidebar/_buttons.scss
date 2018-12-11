@@ -1,31 +1,53 @@
 @import "theme/index";
 
+
+
 .btn-sidebar {
+  -webkit-transition-duration: 0.2s; /* Safari */
+  transition-duration: 0.2s;
+  background-color: rgba(62, 63, 101, .3);
+  color: rgba(228, 229, 230, 1);
+  border-style: none;
   margin: 3px;
   font-family: $font-patrick;
   font-size: 16px;
-  min-width: 80%;
+  min-width: 90%;
   text-align: left;
+}
+
+.btn-sidebar:hover {
+  background-color: rgba(62, 63, 101, .8);
+  -webkit-transition-duration: 0.2s; /* Safari */
+  transition-duration: 0.2s;
+  -ms-transform: translate(10px); /* IE 9 */
+  -webkit-transform: translate(10px); /* Safari */
+  transform: translate(10px);
 }
 
 .btn-admin {
+  -webkit-transition-duration: 0.2s; /* Safari */
+  transition-duration: 0.2s;
   margin: 3px;
   padding-left: 6px;
+  background-color: rgba(191, 63, 63, .3);
+  color: rgba(228, 229, 230, 1);
   font-family: $font-patrick;
   font-size: 16px;
   min-width: 80%;
   text-align: left;
-  border-style: outset;
-  border-color: grey;
-  color: black;
-  background-color: white;
   font-weight: normal;
   text-decoration-line: none;
+  min-width: 90%;
 }
 
 .btn-admin:hover {
-  color: black;
-  background-color: darkgrey;
+  -webkit-transition-duration: 0.2s; /* Safari */
+  transition-duration: 0.2s;
+  background-color: rgba(191, 63, 63, .8);
+  color: rgba(228, 229, 230, 1);
   font-weight: normal;
   text-decoration-line: none;
+  -ms-transform: translate(10px); /* IE 9 */
+  -webkit-transform: translate(10px); /* Safari */
+  transform: translate(10px);
 }

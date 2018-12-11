@@ -10,6 +10,8 @@
     <th>Time</th>
     <th>PlayerSkill</th>
     <th>Status</th>
+    <th>Show</th>
+    <th>RequestStatus</th>
   </tr>
   <%@sessions.each do |session|%>
     <tr>
@@ -24,18 +26,24 @@
       <td><%= session.playerskill %></td>
       <td><%= session.status %></td>
       <td><%= link_to 'Show', gamesession_path(session) %></td>
-      <td><%= link_to 'Edit', edit_gamesession_path(session) %></td>
-      <td><%= link_to 'Destroy', gamesession_path(session),
-              method: :delete,
-              data: { confirm: 'Are you sure?' } %></td>
-      <% if session.players.include?(current_user)%>
-        <td><%=link_to "LeaveGame", leavegame_path(id: session.id)%></td>
-      <% else %>
-        <td><%=link_to "JoinGame", joingame_path(id: session.id)%></td>
+      <% if user_signed_in? %>
+        <% if session.players.include?(current_user)%>
+          <% @request = Request.find_by(session_id: session.id, user_id: current_user.id) %>
+          <td><%= @request.status %></td>
+          <% if @request.accepted? %>
+            <td><%=link_to "LeaveGame", leavegame_path(id: session.id)%></td>
+          <% else %>
+            <td><%=link_to "RemoveRequest", removerequest_path(id: session.id)%></td>
+          <% end %>
+        <% else %>
+          <td>No Request</td>
+          <td><%=link_to "JoinGame", joingame_path(id: session.id)%></td>
+        <% end %>
       <% end %>
     </tr>
   <%end%>
 </table>
+<%=link_to "CreateGame", new_gamesession_path %>
 <% if current_user != nil %>
 <div class="row">
   <button class="btn-sidebar" onclick="location.href='/gamesession/new'">Créer une nouvelle session</button>

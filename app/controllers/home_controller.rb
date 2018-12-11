@@ -8,14 +8,14 @@ class HomeController < ApplicationController
 
     def webmaster
         if current_user.webmaster?
-        else 
+        else
             redirect_to root_path
         end
     end
 
     def admin
         if current_user.admin?
-        else 
+        else
             redirect_to root_path
         end
     end
@@ -69,4 +69,16 @@ class HomeController < ApplicationController
     @favorite.destroy
   end
 
+  def mysessions
+    @myhostsessions = []
+    @myplayersessions = []
+    Session.all.each do |session|
+      if session.host == current_user
+        @myhostsessions << session
+      end
+      if session.players.include?(current_user)
+        @myplayersessions << session
+      end
+    end
+  end
 end

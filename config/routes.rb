@@ -49,5 +49,11 @@ Rails.application.routes.draw do
 
   get "joingame", to: "gamesession#joingame"
   get "leavegame", to: "gamesession#leavegame"
+  get "acceptrequest", to: "gamesession#acceptrequest"
+  get "denyrequest", to: "gamesession#denyrequest"
+  get "removerequest", to: "gamesession#removerequest"
+  get "placesearch", to: "home#placesearch"
+  get "placefind", to: "home#placefind"
+  get "mysessions", to: "home#mysessions"
 
 end
