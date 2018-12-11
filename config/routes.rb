@@ -53,5 +53,6 @@ Rails.application.routes.draw do
   get "denyrequest", to: "gamesession#denyrequest"
   get "removerequest", to: "gamesession#removerequest"
   get "mysessions", to: "home#mysessions"
+  get "player/:id", to: "home#player"
 
 end
