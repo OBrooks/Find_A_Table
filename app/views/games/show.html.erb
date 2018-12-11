@@ -30,7 +30,7 @@
                 <div class = "col">
                     <li><a href = "<%=edit_game_path(@game.id)%>">Modifier les informations du jeu</a></b></li>
                 </div>
-                
+          
             </div>
             </ul>
         </div>
@@ -50,4 +50,42 @@
       <p class = "description"><%=@game.description%></p>
     </div>
   </div>
-</div>
+
+<%@game.gamecoms.each do |comment|%>
+  <%if current_user.id == comment.user_id%>
+        <div class = "update_game_comment_division">
+          <%= form_for @gamecom, url: update_comment_path, html: {class: "nifty_form"} do |f| %>
+            <p><b>Ton commentaire </b></p>
+            <%= f.text_area :content, size: "60x5", :value => comment.content %>
+            <p>Ta note du jeu sur 10</p>
+            <%= f.number_field :score, :value => comment.score%>
+            <%= f.hidden_field :game_id, :value => @game.id %>
+            <%= f.hidden_field :user_id, :value => current_user.id %>
+            <%= f.submit "Modifier commentaire et note" %>
+          <%end%>
+        </div>
+    <br>
+    <button class = "delete_game_comment_button">Supprimer le commentaire</button>
+  <%else%>
+  <p><%=comment.user.nickname%> a écrit à propos du jeu :</p>
+  <p><%=comment.score%>/10</p>
+  <p><%=comment.content%></p>
+  <%end%>
+<%end%>
+
+<% if user_signed_in? %>
+  <div class = add_comment>
+  <%if @gamecoms.find_by(user_id: current_user.id).nil?%>
+    <p>Tu peux écrire un commentaire sur ce jeu et laisser une note!</p>
+    <%= form_for @gamecom, url: create_comment_path, html: {class: "nifty_form"} do |f| %>
+      <p><b>Commentaire </b></p>
+      <%= f.text_area :content, size: "60x12" %>
+      <p>Note du jeu sur 10</p>
+      <%= f.number_field :score %>
+      <%= f.hidden_field :game_id, :value => @game.id %>
+      <%= f.hidden_field :user_id, :value => current_user.id %>
+      <%= f.submit "Commentaire" %>
+    <%end%>
+  <%end%>
+  </div>
+<% end %>
