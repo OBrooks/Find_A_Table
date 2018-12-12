@@ -1,10 +1,19 @@
 <div class="row row-header">
-  <div class="col d-flex justify-content-start">
+
+  <div class="col-sm-6 d-flex justify-content-start">
+
+    <div class="header-burger">
+      <i class="fa fa-caret-square-o-down fa-4x" aria-hidden="true"></i>
+    </div>
+
     <div class="header-logo">
       <img src="http://image.noelshack.com/fichiers/2018/50/1/1544461716-logohorizontal.png" class="logo-picture">
     </div>
+
   </div>
-  <div class="col d-flex justify-content-end">
+
+  <div class="col-sm-6 d-flex justify-content-end">
+
       <% if user_signed_in? == false %>
         <div class="header-buttons">
           <a href="/users/sign_up" class="btn-signup btn-header">Inscription</a>
@@ -30,7 +39,9 @@
         </div>
       </div>
       <% end %>
+
   </div>
+
 </div>
 
 

@@ -1,14 +1,61 @@
-<div class="col-lg-12">
-    <div class="clearfix d-flex flex-row flex-wrap">
+
+    <div class="clearfix d-flex flex-row flex-wrap container-fav mt-4">
         <% if @favoris.length == 0 %>
-            <h2>Tu n'as pas encore d'images favoris !<br>N'hésites pas à retourner sur la <a href="/games" class="btn btn-danger">
-                <h2>page des jeux</h2>
-            </a> pour en ajouter ;)</h2>
+            <h3>Votre liste de jeux favoris est vide.</h3><br>
+            <h3>Vous pouvez retourner sur la <a href="/games">page des jeux</a> pour en ajouter.</h3>
         <% else %>
                 <% @games.each do |game| %>
-                    <%= game.title %>
-                    <a href="/games/<%=game.id%>">Lien vers le jeu</a>
-                <% end %>
+                <div class="container game-sticker">
+                  <div class="row">
+                    <div class="col-lg-2 d-flex justify-content-center align-items-center">
+                      <% if game.game_picture.attachment != nil %>
+                      <%= image_tag game.game_picture, class: "games_image" %>
+                      <% else %>
+                      <img src="<%= game.image_url%>" class="games_image">
+                      <% end %>
+                    </div>
+                    <div class="col">
+                      <div class="row">
+                        <div class="col d-flex justify-content-start align-items-center">
+                          <a class="game-sticker-title animated infinite pulse" href = "<%=game_path(game.id)%>"><%= game.title %></a>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col d-flex justify-content-start align-items-center">
+                          <p><%= Category.find(game.category_id).category_name %></p>
+                        </div>
+                        <div class="col d-flex justify-content-center align-items-center">
+                          <p><% if game.min_players == game.max_players %>
+                            Jusqu'à <%= game.min_players %> joueurs
+                            <% else %>
+                            De <%= game.min_players %> à <%= game.max_players %> joueurs
+                            <% end %></p>
+                          </div>
+                          <div class="col d-flex justify-content-end align-items-center">
+                            <p><%= game.time %></p>
+                          </div>
+                        </div>
+                        <div class="row mt-3 d-flex justify-content-end align-items-center">
+                          <div class="col">
+                          </div>
+                          <div class="col">
+                          </div>
+                          <div class="col d-flex justify-content-end align-items-center">
+                            <%if game.gamecoms.first.nil?%>
+                            <p>Il n'y a pas encore de note pour ce jeu</p>
+                            <%else%>
+                            <%sum_array = [] %>
+                            <%game.gamecoms.each do |current_comment|%>
+                            <%sum_array << current_comment.score%>
+                            <%end%>
+                            <%average_score = sum_array.inject(0.0) { |sum, el| sum + el } / sum_array.size%>
+                            <p>Note des utilisateurs : <b><%=average_score%>/10</b></p>
+                            <%end%>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <% end %>
         <% end %>
     </div>
-</div>
