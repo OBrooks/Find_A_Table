@@ -10,11 +10,14 @@
   <% end %>
 </p>
 
-
+<div id="usersmessages">
 <div data-behavior='usersmessages' data-chatroom-id='<%= @chatroom.id %>'>
+<ul>
 <% @usersmessages.each do |usersmessage| %>
   <%= render usersmessage %>
 <% end %>
+<div id="salut"></div>
+</ul>
 </div>
 <div class="margemoiça">
 <%= form_for [@chatroom, Usersmessage.new], remote: true do |f| %>
@@ -22,4 +25,4 @@
 <%= f.submit "Envoyer" %>
 <% end %>
 </div>
-
+</div>
