@@ -1,7 +1,9 @@
 $(document).on "turbolinks:load", ->
 
-  $(".chatmessages").on "keypress", (e) ->
+  $("#new_usersmessage_body").on "keypress", (e) ->
     if e && e.keyCode == 13
       e.preventDefault()
-      $(this).submit()
+      console.log(this.form)
+      $(this).form[0].submit()
       console.log("ça enter")
+      

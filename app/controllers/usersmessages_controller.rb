@@ -6,7 +6,7 @@ class UsersmessagesController < ApplicationController
     usersmessage = @chatroom.usersmessages.new(message_params)
     usersmessage.user = current_user
     usersmessage.save
-    redirect_to @chatroom
+    MessageRelayJob.perform_later(usersmessage)
   end
 
   private
