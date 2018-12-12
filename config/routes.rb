@@ -26,9 +26,11 @@ Rails.application.routes.draw do
   get "conversation_user",               to: "conversations#conversation_user"
 
   resources :games
-  
   post "search_games", to: "games#search_games"
   get "advanced_search_games", to: "games#advanced_search_games"
+  post "create_comment", to: "games#create_comment"
+  post "update_comment", to: "games#update_comment"
+  post "destroy_comment", to: "games#destroy_comment"
 
   get "index",                          to: "home#index"
   get "profile",                        to: "home#profile"
@@ -39,6 +41,7 @@ Rails.application.routes.draw do
   get 'remove_from_favorites',          to: "home#remove_from_favorites"
 
   resources :gamesession
+  post "search_sessions", to: "gamesession#search_sessions"
 
   get "list_users",                     to:"home#list_users"
   post "webmaster",                     to: "home#scrapping"
@@ -52,8 +55,7 @@ Rails.application.routes.draw do
   get "acceptrequest", to: "gamesession#acceptrequest"
   get "denyrequest", to: "gamesession#denyrequest"
   get "removerequest", to: "gamesession#removerequest"
-  get "placesearch", to: "home#placesearch"
-  get "placefind", to: "home#placefind"
   get "mysessions", to: "home#mysessions"
+  get "player/:id", to: "home#player"
 
 end

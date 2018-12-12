@@ -1,13 +1,11 @@
 <h2>Recherche avancée</h2>
-<%=form_tag search_sessions_path do%>
+<%=form_tag search_sessions_path method: :get do%>
     <p><b>Recherche par ville</b></p> 
     <%= text_field_tag "city", value=""%>
     <p><b>Recherche par jeu</b></p> 
     <%= text_field_tag "game", value=""%>
     <p><%= submit_tag('Rechercher') %></p>
 <%end%>
-
-
 
 <table style="width:100%">
   <tr>
@@ -24,7 +22,7 @@
     <th>Show</th>
     <th>RequestStatus</th>
   </tr>
-  <%@sessions.each do |session|%>
+  <%@sessions_array.each do |session|%>
     <tr>
       <td><%= session.id %></td>
       <td><%= session.host.nickname %></td>
@@ -37,17 +35,19 @@
       <td><%= session.playerskill %></td>
       <td><%= session.status %></td>
       <td><%= link_to 'Show', gamesession_path(session) %></td>
-      <% if user_signed_in? && session.players.include?(current_user)%>
-        <% @request = Request.find_by(session_id: session.id, user_id: current_user.id) %>
-        <td><%= @request.status %></td>
-        <% if @request.accepted? %>
-          <td><%=link_to "LeaveGame", leavegame_path(id: session.id)%></td>
+      <% if user_signed_in? %>
+        <% if session.players.include?(current_user)%>
+          <% @request = Request.find_by(session_id: session.id, user_id: current_user.id) %>
+          <td><%= @request.status %></td>
+          <% if @request.accepted? %>
+            <td><%=link_to "LeaveGame", leavegame_path(id: session.id)%></td>
+          <% else %>
+            <td><%=link_to "RemoveRequest", removerequest_path(id: session.id)%></td>
+          <% end %>
         <% else %>
-          <td><%=link_to "RemoveRequest", removerequest_path(id: session.id)%></td>
+          <td>No Request</td>
+          <td><%=link_to "JoinGame", joingame_path(id: session.id)%></td>
         <% end %>
-      <% else %>
-        <td>No Request</td>
-        <td><%=link_to "JoinGame", joingame_path(id: session.id)%></td>
       <% end %>
     </tr>
   <%end%>

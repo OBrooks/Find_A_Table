@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_10_154946) do
+ActiveRecord::Schema.define(version: 2018_12_11_153601) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -61,6 +61,17 @@ ActiveRecord::Schema.define(version: 2018_12_10_154946) do
     t.index ["user_id"], name: "index_favorites_on_user_id"
   end
 
+  create_table "gamecoms", force: :cascade do |t|
+    t.text "content"
+    t.integer "score"
+    t.bigint "game_id"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["game_id"], name: "index_gamecoms_on_game_id"
+    t.index ["user_id"], name: "index_gamecoms_on_user_id"
+  end
+
   create_table "games", force: :cascade do |t|
     t.string "title"
     t.text "description"
@@ -70,7 +81,6 @@ ActiveRecord::Schema.define(version: 2018_12_10_154946) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "time"
-    t.string "category"
     t.bigint "category_id"
     t.index ["category_id"], name: "index_games_on_category_id"
   end
@@ -113,6 +123,11 @@ ActiveRecord::Schema.define(version: 2018_12_10_154946) do
     t.index ["host_id"], name: "index_sessions_on_host_id"
   end
 
+  create_table "sessions_users", id: false, force: :cascade do |t|
+    t.bigint "session_id", null: false
+    t.bigint "user_id", null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -126,10 +141,10 @@ ActiveRecord::Schema.define(version: 2018_12_10_154946) do
     t.string "nickname"
     t.string "town"
     t.text "adress"
-    t.integer "status", default: 1
+    t.integer "status"
     t.string "gender"
-    t.integer "experience", default: 0
-    t.text "description", default: ""
+    t.integer "experience"
+    t.text "description"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

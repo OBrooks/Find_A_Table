@@ -3,7 +3,7 @@ class GamesController < ApplicationController
 
     def index
         if Game.all !=nil
-            @games=Game.all
+            @games=Game.order(created_at: :desc)
         end
     end
 
@@ -48,10 +48,12 @@ class GamesController < ApplicationController
 
     def show
         @game=Game.find(params[:id])
-      @favorites=Favorite.all
-      if current_user != nil
-        @favorite=Favorite.find_by(user_id: current_user.id, game_id: params[:id])
-      end
+        @gamecom = Gamecom.new
+        @gamecoms = @game.gamecoms.order(created_at: :desc)
+        @favorites=Favorite.all
+        if current_user != nil
+            @favorite=Favorite.find_by(user_id: current_user.id, game_id: params[:id])
+        end
     end
 
     def edit
@@ -70,5 +72,21 @@ class GamesController < ApplicationController
             @game.update(category_id: params[:category_name])
         end
         redirect_to games_path
+    end
+
+    def create_comment
+        Gamecom.create!(content: params[:gamecom][:content], user_id: params[:gamecom][:user_id], game_id: params[:gamecom][:game_id], score: params[:gamecom][:score])
+        redirect_to "/games/#{params[:gamecom][:game_id]}"
+    end
+
+    def update_comment
+        @gamecomment = Gamecom.find_by(user_id: params[:gamecom][:user_id], game_id: params[:gamecom][:game_id])
+        @gamecomment.update(content: params[:gamecom][:content], score: params[:gamecom][:score])
+        redirect_to "/games/#{params[:gamecom][:game_id]}"
+    end
+
+    def destroy_comment
+        Gamecom.find(params[:comment_id]).destroy
+        redirect_to "/games/#{params[:game_id]}"
     end
 end

@@ -81,4 +81,8 @@ class HomeController < ApplicationController
       end
     end
   end
+
+  def player
+    @player = User.find(params[:id])
+  end
 end
