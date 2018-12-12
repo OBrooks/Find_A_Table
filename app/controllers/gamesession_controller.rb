@@ -1,5 +1,13 @@
 class GamesessionController < ApplicationController
 
+  before_action :unwanted_redirect
+
+  def unwanted_redirect
+    if curent_user.unwanted?
+      redirect_to root_path
+    end
+  end
+
   def index
     @sessions = Session.all
   end

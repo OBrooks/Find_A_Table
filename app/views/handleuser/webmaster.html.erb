@@ -1,0 +1,85 @@
+<h2>Page webmaster</h2>
+<p>Lance le scrapping : </p>
+<%=link_to "Scrapper comme jamais", scrapping_path, method: :post%>
+
+
+
+<p class="text-right mt-4 mb-4">
+Cette page est strictement réservée au webmaster du site.</p>
+<p class="text-left mt-4 mb-4">
+Il est également recommandé de faire attention aux manipulations se déroulant sur cette page !</p>
+<p class="text-right mt-4 mb-4">
+Voila la liste d'options disponibles afin de gérer le site.
+</p>
+
+<span> < Liste des administrateurs</span>
+<table class="table">
+    <thead>
+        <tr>
+            <td>Pseudo</td>
+            <td>Envoyer un email</td>
+            <td>Statut</td>
+            <td>Supprimer le compte</td>
+        </tr>
+    </thead>
+        <tbody>
+        <%@users.admin.each do |user|%>
+        <tr>
+            <td><%=user.nickname%></td>
+            <td class="badge badge-dark"><a href = "emailuser/<%=user.id%>"><%= user.email %></a></td>
+            <td>
+                <p class="badge badge-dark"><%= link_to "Repasser en utilisateur normal", superpost_path(admintonormaluser: user.id), method: :post, class:"text-light"%></p>
+                <p class="badge badge-dark"><%= link_to "Passer en utilisateur indésirable", superpost_path(usertounwanted: user.id), method: :post, class:"text-light"%></p>
+            </td>
+            <td class="badge badge-dark"><%= link_to "Supprimer le compte", superpost_path(deleteaccount: user.id), method: :post, class:"text-light"%></td>
+        </tr>
+        <%end%>
+        </tbody>
+    </table>
+
+<span> < Liste des users</span>
+<table class="table">
+    <thead>
+        <tr>
+            <td>Pseudo</td>
+            <td>Envoyer un email</td>
+            <td>Statut</td>
+            <td>Supprimer le compte</td>
+        </tr>
+    </thead>
+        <tbody>
+        <%@users.peasant.each do |user|%>
+        <tr>
+            <td><%=user.nickname%></td>
+            <td class="badge badge-dark"><a href = "emailuser/<%=user.id%>"><%= user.email %></a></td>
+            <td>
+                <p class="badge badge-dark"><%= link_to "Passer administrateur", superpost_path(normalusertoadmin: user.id), method: :post, class:"text-light"%></p>
+                <p class="badge badge-dark"><%= link_to "Passer en utilisateur indésirable", superpost_path(usertounwanted: user.id), method: :post, class:"text-light"%></p>
+            </td>
+            <td class="badge badge-dark"><%= link_to "Supprimer le compte", superpost_path(deleteaccount: user.id), method: :post, class:"text-light"%></td>
+    </tr>
+        <%end%>
+        </tbody>
+    </table>
+
+<span> < Liste des indésirables</span>
+<table class="table">
+    <thead>
+        <tr>
+            <td>Pseudo</td>
+            <td>Envoyer un email</td>
+            <td>Statut</td>
+            <td>Supprimer le compte</td>
+        </tr>
+    </thead>
+        <tbody>
+        <%@users.unwanted.each do |user|%>
+        <tr>
+            <td><%=user.nickname%></td>
+            <td class="badge badge-dark"><a href = "emailuser/<%=user.id%>"><%= user.email %></a></td>
+            <td class="badge badge-dark"><%= link_to "Repasser en utilisateur normal", superpost_path(admintonormaluser: user.id), method: :post, class:"text-light"%></td>
+            <td class="badge badge-dark"><%= link_to "Supprimer le compte", superpost_path(deleteaccount: user.id), method: :post, class:"text-light"%></td>
+        </tr>
+        <%end%>
+        </tbody>
+</table>

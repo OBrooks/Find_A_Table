@@ -1,0 +1,9 @@
+<h2>Envoyez un email à <%=User.find(params["id"].to_i).nickname%></h2>
+<%=form_tag sendemail_path do%>
+    <p><b>Contenu de l'email</b></p> 
+    <%= hidden_field_tag "receiver_id", params["id"].to_i%>
+    <%= text_area_tag "content", value="", size: "160x20"%>
+    <p><b>Voulez vous recevoir une copie de l'email?</b></p>
+    <span><%=check_box_tag 'accept'%></span>
+    <p><%= submit_tag('Envoyer') %></p>
+<%end%>
