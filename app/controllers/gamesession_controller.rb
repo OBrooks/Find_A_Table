@@ -3,7 +3,7 @@ class GamesessionController < ApplicationController
   before_action :unwanted_redirect
 
   def unwanted_redirect
-    if curent_user.unwanted?
+    if current_user.unwanted?
       redirect_to root_path
     end
   end

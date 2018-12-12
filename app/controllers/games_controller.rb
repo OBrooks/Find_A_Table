@@ -51,7 +51,7 @@ class GamesController < ApplicationController
     end
 
     def show
-        if curent_user.unwanted?
+        if current_user.unwanted?
             redirect_to root_path
         end
         @game=Game.find(params[:id])

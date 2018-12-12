@@ -81,7 +81,7 @@ class HandleuserController < ApplicationController
     end
 
     def mail_us
-        UserMailer.contact_us(current_user.email, params[:content], params[:accept]).deliver_later
+        UserMailer.contact_us(current_user.id, params[:content], params[:accept]).deliver_later
         redirect_to root_path
     end
  
