@@ -14,7 +14,7 @@
 <div data-behavior='usersmessages' data-chatroom-id='<%= @chatroom.id %>'>
 <ul>
 <% @usersmessages.each do |usersmessage| %>
-  <%= render usersmessage %>
+  <%= render usersmessage, user:@user %>
 <% end %>
 <div id="salut"></div>
 </ul>

@@ -1,7 +1,25 @@
-<li>
-<div>
-    <strong>
-        <%= usersmessage.user.nickname %>: </strong>
-    <%= usersmessage.body %>
+<div class="container-fluid">
+    <li>
+        <div class="row">
+            <div class="col">
+                <div class="avatar">
+                    <% if usersmessage.user.profile_picture.attachment != nil %>
+                        <%= image_tag usersmessage.user.profile_picture, id:"avatar" %>
+                    <% else %>
+                        <img src="https://uploads1.yugioh.com/card_images/4945/detail/Hero-Dice.jpg?1398377913" alt="avatar" id="avatar">
+                    <% end %>
+                </div>
+                <div class="chatboxmessagecontent">
+                    <p>
+                        <%= usersmessage.body %>
+                    </p>
+                    <time datetime="<%= usersmessage.created_at %>" title="<%= usersmessage.created_at.strftime(" %d %b
+                        %Y at %I:%M%p") %>">
+                        <%= usersmessage.user.nickname %> •
+                        <%= usersmessage.created_at.strftime("%H:%M %p") %>
+                    </time>
+                </div>
+            </div>
+        </div>
+    </li>
 </div>
-</li>

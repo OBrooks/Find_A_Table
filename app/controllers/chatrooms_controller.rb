@@ -8,6 +8,7 @@ class ChatroomsController < ApplicationController
   def show
     @usersmessages = @chatroom.usersmessages.order(created_at: :desc).limit(100).reverse
     @chatroom_user = current_user.chatroom_users.find_by(chatroom_id: @chatroom.id)
+    @current_user_id= current_user.id
   end
 
   # # GET /chatrooms/new
