@@ -1,0 +1,28 @@
+
+  <strong id="coucou">La session :</strong>
+  <%= @chatroom.session.game.title %>
+  <br>
+  <%= @chatroom.session.date %>
+  <br>
+  <% @chatroom.users.each do |user| %>
+  <%= user.nickname %>
+  <br>
+  <% end %>
+</p>
+
+<div id="usersmessages">
+<div data-behavior='usersmessages' data-chatroom-id='<%= @chatroom.id %>'>
+<ul>
+<% @usersmessages.each do |usersmessage| %>
+  <%= render usersmessage, user:@user %>
+<% end %>
+<div id="salut"></div>
+</ul>
+</div>
+<div class="margemoiça">
+<%= form_for [@chatroom, Usersmessage.new], remote: true do |f| %>
+<%= f.text_area :body, rows: 1, class: "form-control chatmessages", autofocus: true %>
+<%= f.submit "Envoyer" %>
+<% end %>
+</div>
+</div>

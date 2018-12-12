@@ -22,6 +22,11 @@ Rails.application.routes.draw do
     resources :messages, only: [:create]
   end
 
+    resources :chatrooms do
+      resource :chatrooms_users
+      resources :usersmessages
+    end
+
   get "messages",                       to: "conversations#show"
   get "conversation_user",               to: "conversations#conversation_user"
 

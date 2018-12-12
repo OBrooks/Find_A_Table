@@ -1,0 +1,36 @@
+@import "theme/index";
+
+
+.container-profile {
+  font-family: $font-carrois;
+  font-weight: bold;
+  font-size: 12px;
+}
+
+.container-profile h2 {
+  color: white;
+  font-size: 32px;
+  font-weight: bold;
+  font-family: $font-passero;
+}
+
+.container-profile h3 {
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  font-family: $font-passero;
+}
+
+.container-profile span {
+  color: white;
+  background-color: rgba(62, 63, 101, 0.7);
+  border-radius: 6px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  padding-left: 2px;
+  padding-right: 2px;
+}
+
+.container-profile .profile-img {
+
+}

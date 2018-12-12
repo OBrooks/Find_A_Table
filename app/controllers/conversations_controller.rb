@@ -37,6 +37,8 @@ class ConversationsController < ApplicationController
     end
   end
 
+  
+
   private
 
   def add_to_conversations
