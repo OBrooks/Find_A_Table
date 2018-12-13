@@ -10,8 +10,9 @@
     <%@user_sessions.each do |session|%>
         <% if session.date == date %>
             <ul>
-                <li><b><%= link_to session.game.title, gamesession_path(session) %></b></li>
+                <li><b><%= link_to session.game.title, gamesession_path(session), class: "name_calendar" %></b></li>
             </ul>
+        <%break%>
         <% end %>
     <%end%>
   <% end %>
