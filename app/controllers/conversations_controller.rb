@@ -12,6 +12,15 @@ class ConversationsController < ApplicationController
   end
 
   def conversation_user
+  @users_favorites=FavoritesUser.where(adder_id: current_user.id)
+      @users_favorites.each do |user_favorite|
+        
+        @conversation_sender = Conversation.find_by(sender_id: current_user.id, recipient_id: user_favorite.added.id)
+        @conversation_recipient = Conversation.find_by(recipient_id: current_user.id, sender_id: user_favorite.added.id)
+          if @conversation_sender == nil && @conversation_recipient == nil
+            Conversation.create!(sender_id: current_user.id, recipient_id: user_favorite.added.id)
+          end
+        end
       if params[:conversation_id] != nil && params[:user_id] != nil
       @conversation=Conversation.find(params[:conversation_id])
       @user=User.find(params[:user_id])
