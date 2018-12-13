@@ -1,20 +1,14 @@
 @import "theme/index";
 
 .add-game {
-  margin: 3px;
-  padding: 3px;
-  border-style: ridge;
-  border-width: 1px;
-  border-color: black;
-  border-radius: 3px;
-  background-color: white;
-  font-family: $font-skranji;
-  font-size: 18px;
-  color: black;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+  background-color: rgba(90, 120, 150, .7) !important;
 }
 
 .add-game:hover {
-  background-color: grey;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
   text-decoration-line: none;
-  color: black;
+  background-color: rgba(190, 80, 65, .7) !important;
 }

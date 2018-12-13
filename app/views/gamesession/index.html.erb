@@ -1,18 +1,25 @@
-<h2>Recherche avancée</h2>
-<%=form_tag search_sessions_path do%>
-    <p><b>Recherche par ville</b></p>
-    <%= text_field_tag "city", value=""%>
-    <p><b>Recherche par jeu</b></p>
-    <%= text_field_tag "game", value=""%>
-    <p><%= submit_tag('Rechercher') %></p>
-<%end%>
+<div class="container-fluid mt-4">
+  <div class="row">
+    <%=form_tag search_sessions_path do%>
+    <div class="col d-flex justify-content-start align-items-center">
+      <span class="search-text mr-1">Rechercher par ville :</span>
+      <%= text_field_tag "city", value="", class:"mr-2" %>
+      <span class="search-text mr-1">Rechercher par jeu :</span>
+      <%= text_field_tag "game", value="", class:"mr-2" %>
+      <%= submit_tag('Rechercher') %>
+      <%end%>
+    </div>
 
-
-<% if current_user != nil %>
-<div class="row">
-  <button class="btn-sidebar" onclick="location.href='/gamesession/new'">Créer une nouvelle session</button>
+    <div class="col d-flex justify-content-end align-items-center">
+      <% if current_user != nil %>
+        <button class="btn-sidebar add-game" onclick="location.href='/gamesession/new'">Nouvelle session</button>
+      <% end %>
+    </div>
+  </div>
 </div>
-<% end %>
+
+
+
 
 
 <%@sessions.each do |session|%>
@@ -29,8 +36,8 @@
 
         <div class="row">
           <div class="col d-flex justify-content-between align-items-center">
-            <h3><%= session.game.title %> <%= link_to 'Show', gamesession_path(session) %></h3>
-            <h3>A <%= session.city %>, le <%= session.date %></h3>
+            <h3 class="sticker-title"><%= link_to session.game.title, gamesession_path(session) %></h3>
+            <h3 class="sticker-title">A <%= session.city %>, le <%= session.date %></h3>
           </div>
         </div>
 
@@ -55,7 +62,7 @@
           <div class="col d-flex justify-content-start align-items-center">
             <p>Statut : <b><%= session.status %></b> </p>
           </div>
-          <div class="col-lg-6 d-flex justify-content-end align-items-center">
+          <div class="col d-flex justify-content-end align-items-center">
             <p>Niveau recommandé : <b><%= session.playerskill %></b></p>
           </div>
         </div>
@@ -83,7 +90,7 @@
               <p><%=link_to "JoinGame", joingame_path(id: session.id)%></p>
             </div>
           <% end %>
-          <div class="col-lg-4">
+          <div class="col-lg-3">
           </div>
           <div class="col d-flex justify-content-end align-items-center">
             <p>Numéro de session : <b><%= session.id %></b></p>
