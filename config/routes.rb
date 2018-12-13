@@ -71,5 +71,6 @@ Rails.application.routes.draw do
 
   get "display_calendar",               to: "calendar#display_calendar"
 
-  get "*path" => 'error#handle_404'
+  #get "*path" => 'error#handle_404'
+
 end
