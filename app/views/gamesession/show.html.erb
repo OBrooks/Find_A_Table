@@ -1,93 +1,133 @@
 <head>
   <style>
     #map {
-      height: 600px;
+      height: 250px;
       width: 100%;
     }
   </style>
 </head>
-<table style="width:100%">
-  <tr>
-    <th>ID</th>
-    <th>Host</th>
-    <th>Date</th>
-    <th>Game</th>
-    <th>City</th>
-    <th>PayerNB</th>
-    <th>MaxPlayers</th>
-    <th>Description</th>
-    <th>Time</th>
-    <th>PlayerSkill</th>
-    <th>Status</th>
-  </tr>
-    <tr>
-      <td><%=@session.id%></td>
-      <td><%=@session.host.nickname%></td>
-      <td><%=@session.date%></td>
-      <td><%=@session.game.title%></td>
-      <td><%=@session.city%></td>
-      <td><%=@session.playernb%></td>
-      <td><%=@session.maxplayers%></td>
-      <td><%=@session.description%></td>
-      <td><%=@session.time%></td>
-      <td><%=@session.playerskill%></td>
-      <td><%=@session.status%></td>
-    </tr>
-</table>
-PLAYERS
-<table style="width:100%">
-  <tr>
-    <th>Name</th>
-    <th>RequestStatus</th>
-  </tr>
-  <% @session.players.each do |player| %>
-    <tr>
-      <td><%=link_to player.nickname, "/player/#{player.id}"%></td>
-      <% request = Request.find_by(user_id: player.id, session_id: @session.id) %>
-      <td><%=request.status%></td>
-      <% if user_signed_in? %>
-        <% if @session.host == current_user %>
-          <% if request.pending? %>
-            <td><%=link_to "AcceptRequest", acceptrequest_path(session_id: @session.id, user_id: player.id)%></td>
-            <td><%=link_to "DenyRequest", denyrequest_path(session_id: @session.id, user_id: player.id)%></td>
+
+<div class="container session-show-container">
+
+  <div class="row">
+    <div class="col">
+
+      <div class="row">
+        <div class="col">
+          <h2><%=@session.game.title%></h2>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col d-flex justify-content-start">
+          <p>Organisé par <b><%=@session.host.nickname%></b></p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col d-flex justify-content-start">
+          <p><%=@session.description%></p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col d-flex justify-content-start">
+          <p>Nombre de joueurs : <b><%=@session.playernb%></b></p>
+        </div>
+        <div class="col d-flex justify-content-start">
+          <p>Places restantes : <b><%=@session.maxplayers - @session.playernb%></b></p>
+        </div>
+        <div class="col d-flex justify-content-end">
+          <p>Niveau recommandé : <b><%=@session.playerskill%></b></p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col d-flex justify-content-start">
+          <p>Durée estimée : <b><%=@session.time%>h</b></p>
+        </div>
+        <div class="col d-flex justify-content-end">
+          <p>Statut de la session : <b><%=@session.status%></b></p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col d-flex justify-content-start">
+          <p>LISTE DES JOUEURS : <b><%=@session.playernb%> / <%=@session.maxplayers%></b></p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <% @session.players.each do |player| %>
+          <div class="row">
+            <div class="col">
+              <p class="session-show-game-nickname"><%= link_to player.nickname, "/player/#{player.id}" %></p>
+            </div>
+            <div class="col d-flex justify-content-start">
+              <p>Statut : <% request = Request.find_by(user_id: player.id, session_id: @session.id) %> <%= request.status %></p>
+            </div>
+            <% if user_signed_in? %>
+              <% if @session.host == current_user %>
+                <% if request.pending? %>
+                  <div class="col">
+                    <p class="requestbuttonyes"><%=link_to "Accepter", acceptrequest_path(session_id: @session.id, user_id: player.id)%></p>
+                  </div>
+                  <div class="col">
+                    <p class="requestbuttonno"><%=link_to "Refuser", denyrequest_path(session_id: @session.id, user_id: player.id)%></p>
+                  </div>
+                  <% end %>
+                <% end %>
+              <% end %>
+          </div>
           <% end %>
-        <% end %>
-      <% end %>
-    </tr>
-  <% end %>
-</table>
-  <h3>My Google Maps Demo</h3>
-  <!--The div element for the map -->
-  <div id="map"></div>
-  <script>
-// Initialize and add the map
-function initMap() {
-  var loc = {lat: <%= @circle[0] %>, lng: <%= @circle[1] %>};
-  var adr = {lat: <%= @adress.first.coordinates[0] %>, lng: <%= @adress.first.coordinates[1] %>};
-  <% if user_signed_in? && @session.players.include?(current_user) && Request.find_by(user_id: current_user.id, session_id: @session.id).accepted? %>
-    var map = new google.maps.Map(
-    document.getElementById('map'), {zoom: 15, center: adr});
-    var marker = new google.maps.Marker({position: adr, map: map});
-  <% else %>
-    var map = new google.maps.Map(
-    document.getElementById('map'), {zoom: 14, center: loc});
-    var marker = new google.maps.Circle({center: loc, map: map, strokeColor: '#FF0000', strokeOpacity: 0.8, strokeWeight: 2, fillColor: '#FF0000', fillOpacity: 0.35, radius: 1500});
-  <% end %>
-}
-  </script>
-  <script async defer
-  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAIkuKEbXIU73y_GbPuVvln3h-V7f8k2R8&callback=initMap">
-  </script>
-  
-<% if @session.players.include?(current_user) %>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="col-lg-4">
+      <div class="row">
+        <div class="col d-flex justify-content-end">
+          <h2><%=@session.city.capitalize %>, <%=@session.date%></h2>
+        </div>
+        <div class="row">
+          <div id="map" class="col d-flex justify-content-end border border-dark">
+          </div>
+          <script>
+            // Initialize and add the map
+            function initMap() {
+              var loc = {lat: <%= @circle[0] %>, lng: <%= @circle[1] %>};
+              var adr = {lat: <%= @adress.first.coordinates[0] %>, lng: <%= @adress.first.coordinates[1] %>};
+              <% if user_signed_in? && @session.players.include?(current_user) && Request.find_by(user_id: current_user.id, session_id: @session.id).accepted? %>
+                var map = new google.maps.Map(
+                document.getElementById('map'), {zoom: 15, center: adr});
+                var marker = new google.maps.Marker({position: adr, map: map});
+              <% else %>
+                var map = new google.maps.Map(
+                document.getElementById('map'), {zoom: 14, center: loc});
+                var marker = new google.maps.Circle({center: loc, map: map, strokeColor: '#FF0000', strokeOpacity: 0.8, strokeWeight: 2, fillColor: '#FF0000', fillOpacity: 0.35, radius: 1500});
+              <% end %>
+            }
+              </script>
+              <script async defer
+              src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAIkuKEbXIU73y_GbPuVvln3h-V7f8k2R8&callback=initMap">
+          </script>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <% if @session.players.include?(current_user) %>
   <% if Request.find_by(user_id: current_user.id, session_id: @session.id).accepted? %>
-    <div class="row d-flex justify-content-center">
+    <div class="row">
+      <div class="col-lg-3 d-flex justify-content-start">
         <button class="btn-sidebar" onclick="location.href='/chatrooms/<%=@chatroom.id%>'">
-        <div class="d-flex justify-content-between align-items-center">
           <i class="fa fa-comments fa-fw" aria-hidden="true"></i>
           Rejoindre le chat
-        </div>
-      </button>
+        </button>
+      </div>
     </div>
   <% end %>
-<% end %>
+  <% end %>
+
+</div>
