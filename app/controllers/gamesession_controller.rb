@@ -6,7 +6,7 @@ class GamesessionController < ApplicationController
   def unwanted_redirect
     if user_signed_in?
       if current_user.unwanted?
-        redirect_to root_path
+        redirect_to root_path, :flash => { :error => "Vous êtes considérés comme indésirable, contactez les administrateurs si vous voulez contester cette décision" }
       end
     
     else
@@ -68,12 +68,13 @@ class GamesessionController < ApplicationController
     @ses = Session.new(host_id: current_user.id, game_id: params[:game], time: params[:time], date: params[:date], city: params[:city], adress: params[:adress], description: params[:description], playernb: params[:playernb].to_i, maxplayers: params[:maxplayers], status: params[:status].to_i, playerskill: params[:playerskill].to_i)
     if @ses.valid? && Geocoder.search("#{@ses.adress}, #{@ses.city}") != []
       @ses.save
+      @chatroom = Chatroom.create!(session_id: @ses.id)
       redirect_to gamesession_index_path
     else
-      flash.now[:danger]="champsinvalide"
+      flash.now[:danger]="Champs invalides"
       render :new
     end
-    @chatroom = Chatroom.create!(session_id: @ses.id)
+    
   end
 
   def edit

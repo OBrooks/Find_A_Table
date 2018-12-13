@@ -121,11 +121,6 @@ ActiveRecord::Schema.define(version: 2018_12_13_165322) do
     t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
-  create_table "multiple_users_conversations", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "requests", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "session_id"
@@ -176,6 +171,7 @@ ActiveRecord::Schema.define(version: 2018_12_13_165322) do
     t.string "gender"
     t.integer "experience", default: 0
     t.text "description", default: ""
+    t.date "birthdate"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

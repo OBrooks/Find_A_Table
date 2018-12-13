@@ -52,7 +52,7 @@ class GamesController < ApplicationController
 
     def show
         if current_user.unwanted?
-            redirect_to root_path
+            redirect_to root_path, :flash => { :error => "Vous êtes considérés comme indésirable, contactez les administrateurs si vous voulez contester cette décision" }
         end
         @game=Game.find(params[:id])
         @gamecom = Gamecom.new
@@ -66,10 +66,10 @@ class GamesController < ApplicationController
     def edit
         if user_signed_in?
             if curent_user.unwanted?
-                redirect_to root_path
+                redirect_to root_path, :flash => { :error => "Vous êtes considérés comme indésirable, contactez les administrateurs si vous voulez contester cette décision" }
             end
         else
-            redirect_to root_path
+            redirect_to root_path, :flash => { :error => "Inscrivez vous ou connectez vous pour accéder à cette section" }
         end
         @game=Game.find(params[:id])
     end
@@ -89,8 +89,12 @@ class GamesController < ApplicationController
     end
 
     def create_comment
+        if params[:gamecom][:score] == nil || params[:gamecom][:content] == ""
+            redirect_to "/games/#{params[:gamecom][:game_id]}", :flash => { :error => "Vous devez laisser un commentaire et une note" }
+        else
         Gamecom.create!(content: params[:gamecom][:content], user_id: params[:gamecom][:user_id], game_id: params[:gamecom][:game_id], score: params[:gamecom][:score])
         redirect_to "/games/#{params[:gamecom][:game_id]}"
+        end
     end
 
     def update_comment

@@ -36,6 +36,20 @@ class User < ApplicationRecord
   #Comments' games
   has_many :gamecoms
   
+  # validates :nickname, uniqueness: true, on: :create
+  # validates :birthdate, on: :create
+  # validates :gender, on: :create
+  # validates :town, on: :create
+  # validates :first_name, on: :create
+  # validates :last_name, on: :create
+
+  # validates_uniqueness_of :nickname
+  # validates_presence_of :birthdate
+  # validates_presence_of :gender
+  # validates_presence_of :town
+  # validates_presence_of :first_name
+  # validates_presence_of :last_name
+
   after_create :send_mail_sign_in
 
   def send_mail_sign_in

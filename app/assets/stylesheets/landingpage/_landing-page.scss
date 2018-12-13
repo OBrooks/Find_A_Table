@@ -2,8 +2,8 @@
 @import url('https://fonts.googleapis.com/css?family=Open+Sans');
 @import url('https://fonts.googleapis.com/css?family=Bungee');
 @import url('https://fonts.googleapis.com/css?family=Lobster');
-
-body, html {
+body,
+html {
     height: 100%;
     scroll-behavior: smooth;
 }
@@ -11,7 +11,6 @@ body, html {
 .parallax {
     /* Full height */
     height: 100%;
-
     /* Create the parallax scrolling effect */
     background-attachment: fixed;
     background-position: center;
@@ -20,96 +19,100 @@ body, html {
 }
 
 .tableau {
-background-image: radial-gradient( circle farthest-corner at 10% 20%,  rgba(91,173,254,0.46) 0%, rgba(91,224,254,0.46) 47.2%, rgba(170,254,235,0.43) 90% );
-display: flex;
-justify-content: center;
-font-family:  'Lobster', cursive;
-color: rgb(77, 67, 87);
-font-weight: bold;
-font-size: 27px;
-padding: 25px;
+    background-image: radial-gradient( circle farthest-corner at 10% 20%, rgba(91, 173, 254, 0.46) 0%, rgba(91, 224, 254, 0.46) 47.2%, rgba(170, 254, 235, 0.43) 90%);
+    display: flex;
+    justify-content: center;
+    font-family: 'Lobster', cursive;
+    color: rgb(77, 67, 87);
+    font-weight: bold;
+    font-size: 27px;
+    padding: 25px;
 }
 
-.tournois{
-  display: flex;
-  justify-content: center;
-  background-image: url("/img/monop.jpg")
+.tournois {
+    display: flex;
+    justify-content: center;
+    background-image: url("/img/monop.jpg")
 }
+
 .bureau {
-background-image: url("/img/scrabble.jpg");
-display: flex;
-justify-content: center;
-font-family:  'Lobster', cursive;
-color: rgb(77, 67, 87);
-font-weight: bold;
-font-size: 48px;
-padding: 50px;
-}
-.database{
-background-image: url("/img/poker.jpg");
-display: flex;
-justify-content: center;
-font-family:  'Lobster', cursive;
-color: rgb(77, 67, 87);
-font-weight: bold;
-font-size: 48px;
-padding: 50px;
-
+    background-image: url("/img/scrabble.jpg");
+    display: flex;
+    justify-content: center;
+    font-family: 'Lobster', cursive;
+    color: rgb(77, 67, 87);
+    font-weight: bold;
+    font-size: 48px;
+    padding: 50px;
 }
 
-
+.database {
+    background-image: url("/img/poker.jpg");
+    display: flex;
+    justify-content: center;
+    font-family: 'Lobster', cursive;
+    color: rgb(77, 67, 87);
+    font-weight: bold;
+    font-size: 48px;
+    padding: 50px;
+}
 
 .twilight-imperium {
-background-image: url("https://geekandsundry.com/wp-content/uploads/2018/10/Untitled-design-91.png");
+    background-image: url("https://geekandsundry.com/wp-content/uploads/2018/10/Untitled-design-91.png");
 }
+
 .risk {
-background-image: url("http://satireworld.com/wp-content/uploads/2015/10/RISK.jpg");
+    background-image: url("http://satireworld.com/wp-content/uploads/2015/10/RISK.jpg");
 }
 
 .between-landingpage {
-  background-image: radial-gradient( circle farthest-corner at 10% 20%,  rgba(91,173,254,0.46) 0%, rgba(91,224,254,0.46) 47.2%, rgba(170,254,235,0.43) 90% );
-  height: 150px;
-  width: 100%;
-}
-.liste{
-  display: flex;
-  align-items: center;
-  color: rgb(70, 82, 109);
-
-}
-.liste2{
-  display: flex;
-  align-items: center;
-  color:  white;
-  margin-left: 12%;
+    background-image: radial-gradient( circle farthest-corner at 10% 20%, rgba(91, 173, 254, 0.46) 0%, rgba(91, 224, 254, 0.46) 47.2%, rgba(170, 254, 235, 0.43) 90%);
+    height: 150px;
+    width: 100%;
 }
 
+.liste {
+    display: flex;
+    align-items: center;
+    color: rgb(70, 82, 109);
+}
+
+.liste2 {
+    display: flex;
+    align-items: center;
+    color: white;
+    margin-left: 12%;
+}
 
 .h2 {
-  font-family: 'Reem Kufi', sans-serif;
-  color: rgba(30, 32, 92, 1);
-  font-size: 48px;
+    font-family: 'Reem Kufi', sans-serif;
+    color: rgba(30, 32, 92, 1);
+    font-size: 48px;
 }
 
 .p {
-  font-family: 'Patrick Hand SC', cursive;
-  color: rgba(30, 32, 92, 1);
-  font-size: 24px;
+    font-family: 'Patrick Hand SC', cursive;
+    color: rgba(30, 32, 92, 1);
+    font-size: 24px;
 }
 
 .btn-landingpage {
-  height: 50px;
-  width: 150px;
-  margin-left: 5px;
-  margin-right: 5px;
-  background-color: rgba(62, 63, 101, .7);
-  color: rgba(228, 229, 230, 1);
-  font-family: 'Reem Kufi', sans-serif;
-  font-weight: 100;
+    height: 50px;
+    width: 150px;
+    margin-left: 5px;
+    margin-right: 5px;
+    background-color: rgba(62, 63, 101, .7);
+    color: rgba(228, 229, 230, 1);
+    font-family: 'Reem Kufi', sans-serif;
+    font-weight: 100;
 }
 
 .logo {
-  display: flex;
-  justify-content: center;  
+    display: flex;
+    justify-content: center;
 }
 
+.image_arrow {
+    height: 20%;
+    width: 20%;
+}

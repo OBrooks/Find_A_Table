@@ -28,14 +28,12 @@ Rails.application.routes.draw do
   get "messages",                       to: "conversations#show"
   get "conversation_user",              to: "conversations#conversation_user"
 
-
   resources :games
   post "search_games",                  to: "games#search_games"
   get "advanced_search_games",          to: "games#advanced_search_games"
   post "create_comment",                to: "games#create_comment"
   post "update_comment",                to: "games#update_comment"
   post "destroy_comment",               to: "games#destroy_comment"
-
 
   get "index",                          to: "home#index"
   get "profile",                        to: "home#profile"
@@ -72,4 +70,7 @@ Rails.application.routes.draw do
   post "mail_us",                       to: "handleuser#mail_us"
 
   get "display_calendar",               to: "calendar#display_calendar"
+
+  #get "*path" => 'error#handle_404'
+
 end

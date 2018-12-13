@@ -1,8 +1,8 @@
 <div class="container-fluid">
     <li>
         <div class="row">
-            <div class="col">
-                <div class="avatar">
+            <div class="m-3 col d-flex justify-content-start">
+                <div class="avatar mr-3 d-flex justify-content-center align-items-center">
                     <% if usersmessage.user.profile_picture.attachment != nil %>
                         <%= image_tag rails_blob_path(usersmessage.user.profile_picture, disposition: "attachement"), id:"avatar" %>
                     <% else %>
@@ -10,14 +10,20 @@
                     <% end %>
                 </div>
                 <div class="chatboxmessagecontent">
-                    <p>
-                        <%= usersmessage.body %>
-                    </p>
-                    <time datetime="<%= usersmessage.created_at %>" title="<%= usersmessage.created_at.strftime(" %d %b
-                        %Y at %I:%M%p") %>">
-                        <%= usersmessage.user.nickname %> •
-                        <%= usersmessage.created_at.strftime("%H:%M %p") %>
-                    </time>
+                  <div class="row">
+                    <div class="col-12 d-flex justify-content-start">
+                      <p><%= usersmessage.body %></p>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col d-flex justify-content-start">
+                      <time class="message-user-infos" datetime="<%= usersmessage.created_at %>" title="<%= usersmessage.created_at.strftime(" %d %b
+                          %Y at %I:%M%p") %>">
+                          <%= usersmessage.user.nickname %>
+                          <%= usersmessage.created_at.strftime("%H:%M %p") %>
+                      </time>
+                    </div>
+                  </div>
                 </div>
             </div>
         </div>
