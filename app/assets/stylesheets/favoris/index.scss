@@ -1,0 +1,23 @@
+@import "theme/index";
+
+.container-fav h3 {
+  margin: 5px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  padding-left: 4px;
+  padding-right: 4px;
+  color: white;
+  font-size: 28px;
+  font-family: $font-patrick;
+  border-radius: 6px;
+  background-color: rgba(130, 160, 190, .3);
+}
+
+.container-fav a {
+  color: lightsteelblue;
+}
+
+.container-fav a:hover {
+  color: steelblue;
+  text-decoration-line: none;
+}
