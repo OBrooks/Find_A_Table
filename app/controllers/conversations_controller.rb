@@ -1,20 +1,11 @@
 class ConversationsController < ApplicationController
 
   def show
-    session[:conversations] ||= []
-    @conversations=[]
-    conversations_recipient = Conversation.where(recipient_id: current_user.id)
-    conversations_sender = Conversation.where(sender_id: current_user.id)
-      conversations_recipient.each do |recipient|
-        @conversations << recipient
-      end
-      conversations_sender.each do |sender|
-        @conversations.each do |conversation|
-          if conversation.id != sender.id
-            @conversations << sender
-          end
-        end
-      end
+    @conversations_senders = Conversation.where(sender_id: current_user.id)
+    @conversations_recipients = Conversation.where(recipient_id: current_user.id)
+    @conversations_senders
+    @conversations_recipients
+      puts "Voilà les conversations #{@conversations}"
       @chatroom_users=ChatroomUser.where(user_id: current_user.id)
       puts "Voilà le chatroom_users#{@chatroom_users}" 
 

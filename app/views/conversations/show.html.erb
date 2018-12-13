@@ -1,9 +1,18 @@
+<% if @conversations_senders != nil || @conversations_recipients != nil %>
 <div class="row" id="conversation-user-to-user">
     <div class="col-lg-3">
         <ul id="conversations-list">
-            <% @conversations.each do |conversation| %>
-                <%= render 'conversations/conversation_user', conversation: conversation %>
-                <br>
+            <% if @conversations_senders %>
+                <% @conversations_senders.each do |conversation| %>
+                    <%= render 'conversations/conversation_user', conversation: conversation %>
+                    <br>
+                <% end %>
+            <% end %>
+            <% if @conversations_recipients %>
+                <% @conversations_recipients.each do |conversation| %>
+                    <%= render 'conversations/conversation_user', conversation: conversation %>
+                    <br>
+                <% end %>
             <% end %>
         </ul>
     </div>
@@ -12,6 +21,8 @@
 
     </div>
 </div>
+<% end %>
+
 <% if @chatroom_users != nil %>
 <% @chatroom_users.each do |chatroom_user| %>
 <div class="row d-flex justify-content-center">

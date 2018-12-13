@@ -4,15 +4,13 @@ Rails.application.routes.draw do
 
   devise_for :users
 
-    # authenticated :user do
+  authenticated :user do
     root "home#index"
-  # end
+  end
 
-  # unauthenticated :user do
-  #   devise_scope :user do
-  #     get "/" => "devise/sessions#new"
-  #   end
-  # end
+  unauthenticated :user do
+    root "landingpage#lp"
+  end
 
   resources :conversations, only: [:create] do
     member do
@@ -28,14 +26,14 @@ Rails.application.routes.draw do
     end
 
   get "messages",                       to: "conversations#show"
-  get "conversation_user",               to: "conversations#conversation_user"
+  get "conversation_user",              to: "conversations#conversation_user"
 
   resources :games
-  post "search_games", to: "games#search_games"
-  get "advanced_search_games", to: "games#advanced_search_games"
-  post "create_comment", to: "games#create_comment"
-  post "update_comment", to: "games#update_comment"
-  post "destroy_comment", to: "games#destroy_comment"
+  post "search_games",                  to: "games#search_games"
+  get "advanced_search_games",          to: "games#advanced_search_games"
+  post "create_comment",                to: "games#create_comment"
+  post "update_comment",                to: "games#update_comment"
+  post "destroy_comment",               to: "games#destroy_comment"
 
   get "index",                          to: "home#index"
   get "profile",                        to: "home#profile"
@@ -44,20 +42,17 @@ Rails.application.routes.draw do
   get 'remove_from_favorites',          to: "home#remove_from_favorites"
 
   resources :gamesession
-  post "search_sessions", to: "gamesession#search_sessions"
-  get "not_signed_in", to: "gamesession#not_signed_in"
-  get "joingame", to: "gamesession#joingame"
-  get "leavegame", to: "gamesession#leavegame"
-  get "acceptrequest", to: "gamesession#acceptrequest"
-  get "denyrequest", to: "gamesession#denyrequest"
-  get "removerequest", to: "gamesession#removerequest"
-  get "mysessions", to: "home#mysessions"
-  get "player/:id", to: "home#player"
+  post "search_sessions",               to: "gamesession#search_sessions"
+  get "not_signed_in",                  to: "gamesession#not_signed_in"
+  get "joingame",                       to: "gamesession#joingame"
+  get "leavegame",                      to: "gamesession#leavegame"
+  get "acceptrequest",                  to: "gamesession#acceptrequest"
+  get "denyrequest",                    to: "gamesession#denyrequest"
+  get "removerequest",                  to: "gamesession#removerequest"
+  get "mysessions",                     to: "home#mysessions"
+  get "player/:id",                     to: "home#player"
 
   get "list_users",                     to:"home#list_users"
-  
-
-  get "landingpage",                    to: "landingpage#lp"
 
   get "webmaster",                      to: "handleuser#webmaster"
   post "webmaster",                     to: "handleuser#scrapping"
