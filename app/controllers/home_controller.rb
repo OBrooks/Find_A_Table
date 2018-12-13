@@ -14,7 +14,8 @@ class HomeController < ApplicationController
                                 .find(session[:conversations])
     end
 
-#Favoris part
+#Favorites part
+
     def favoris
     @favoris=current_user.favorites
     puts "Les params #{params}"
@@ -27,6 +28,7 @@ class HomeController < ApplicationController
     puts "Le @games est #{@games}"
     end
 
+  #Favorites Games
     def add_to_favorites
         puts "#{params}"
       @user = User.find(params[:user_id])
@@ -51,6 +53,30 @@ class HomeController < ApplicationController
     @favorite.destroy
   end
 
+  #Favorites Users
+    def add_users_to_favorites
+        puts "#{params}"
+      @user = User.find(params[:user_id])
+      puts "ça fav"
+      respond_to do |format|
+        format.html
+        format.js {render :layout => false}
+      end
+    @favorite=FavoriteUser.create!(user_id: current_user.id, game_id: params[:game_id])
+  end
+
+    def remove_users_from_favorites
+      @user = User.find(params[:user_id])
+      puts "ça défav"
+      respond_to do |format|
+        format.html
+        format.js {render :layout => false}
+      end
+    @favorite=FavoriteUser.find_by(user_id: current_user.id, game_id: params[:game_id])
+    @favorite.destroy
+  end
+
+#Sessions
   def mysessions
     @myhostsessions = []
     @myplayersessions = []
@@ -66,5 +92,11 @@ class HomeController < ApplicationController
 
   def player
     @player = User.find(params[:id])
+        @common_sessions = []
+
+        if current_user.sessions.ids == @player.sessions.ids
+            @common_sessions << @player.sessions.ids
+        end
+
   end
 end

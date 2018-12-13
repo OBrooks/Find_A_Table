@@ -28,6 +28,7 @@ Rails.application.routes.draw do
   get "messages",                       to: "conversations#show"
   get "conversation_user",              to: "conversations#conversation_user"
 
+
   resources :games
   post "search_games",                  to: "games#search_games"
   get "advanced_search_games",          to: "games#advanced_search_games"
@@ -35,11 +36,16 @@ Rails.application.routes.draw do
   post "update_comment",                to: "games#update_comment"
   post "destroy_comment",               to: "games#destroy_comment"
 
+
   get "index",                          to: "home#index"
   get "profile",                        to: "home#profile"
   get "favoris",                        to: "home#favoris"
   get 'add_to_favorites',               to: "home#add_to_favorites"
   get 'remove_from_favorites',          to: "home#remove_from_favorites"
+  get "mysessions",                     to: "home#mysessions"
+  get "player/:id",                     to: "home#player"
+  get "list_users",                     to:"home#list_users"
+
 
   resources :gamesession
   post "search_sessions",               to: "gamesession#search_sessions"
@@ -49,10 +55,9 @@ Rails.application.routes.draw do
   get "acceptrequest",                  to: "gamesession#acceptrequest"
   get "denyrequest",                    to: "gamesession#denyrequest"
   get "removerequest",                  to: "gamesession#removerequest"
-  get "mysessions",                     to: "home#mysessions"
-  get "player/:id",                     to: "home#player"
 
-  get "list_users",                     to:"home#list_users"
+
+
 
   get "webmaster",                      to: "handleuser#webmaster"
   post "webmaster",                     to: "handleuser#scrapping"
@@ -63,4 +68,5 @@ Rails.application.routes.draw do
   post "sendemail",                     to: "handleuser#sendemail"
   get "contact_us",                     to: "handleuser#contact_us"
   post "mail_us",                       to: "handleuser#mail_us"
+
 end
