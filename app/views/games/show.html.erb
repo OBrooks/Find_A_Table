@@ -1,90 +1,137 @@
-<div class="container">
-  <div class = "row row-game-sticker">
-    <div class = "col-lg-3 col-game-pic">
-      <% if @game.game_picture.attachment != nil %>
-        <%= image_tag @game.game_picture, class: "games_image"%>
-      <% else %>
-        <img src="<%= @game.image_url%>" class="games_image" width="300px">
-      <% end %>
-    </div>
-      <ul>
-        <div class = "col-lg-9">
-            <div class = "row">
-                <h4><b><%=@game.title %></b></h4>
-            </div>
-            <ul>
-            <div class = "row">
-                <div class = "col">
-                    <%if @game.min_players == @game.max_players%>
-                        <li><b>Jusqu'à <%=@game.min_players%></b></li>
-                    <%else%> 
-                        <li><b>De <%=@game.min_players%> à <%=@game.max_players%> joueurs</b></li>
-                    <%end%>
-                </div>
-                <div class = "col">
-                    <li><b>Durée de jeu : <%=@game.time%></b></li>
-                </div>
-                <div class = "col">
-                    <li><b>Categorie  : <%= Category.find(@game.category_id).category_name%></b></li>
-                </div>
-                <div class = "col">
-                    <%if @game.gamecoms.first.nil?%>
-                      <li><b>Il n'y a pas encore de note pour ce jeu<b></li>
-                    <%else%>
-                    <%sum_array = [] %> 
-                      <%@game.gamecoms.each do |current_comment|%>
-                        <%sum_array << current_comment.score%>
-                      <%end%>
-                      <%average_score = sum_array.inject(0.0) { |sum, el| sum + el } / sum_array.size%>
-                      <li><b>Note des utilisateurs: <%=average_score%>/10</b></li>
-                    <%end%>
-                </div>
-                <% if user_signed_in? %>
-                  <div class = "col">
-                      <li><a href = "<%=edit_game_path(@game.id)%>">Modifier les informations du jeu</a></b></li>
-                  </div>
-                <%end%>
-            </div>
-            </ul>
-        </div>
-      </ul>
-    </div>
-  </div>
 
-  <div class="container">
-    <div class="row row-btn-bar">
-      <div class="review">
-        <% if current_user != nil %>
+  <div class="container game-sticker">
+    <div class="row">
+      <div class="col d-flex justify-content-start">
+        <h4 class="signup-title"><b><%=@game.title %></b></h4>
+        <div class="ml-4 review d-flex justify-content-start align-items-center">
+          <% if current_user != nil %>
           <%= render "home/favorites" %>
+          <% end %>
+        </div>
+      </div>
+      <div class="col d-flex justify-content-end">
+        <%if @game.gamecoms.first.nil?%>
+          <p class="game-users-score">Il n'y a pas encore de note pour ce jeu</p>
+        <% else %>
+          <% sum_array = [] %>
+          <% @game.gamecoms.each do |current_comment| %>
+          <%sum_array << current_comment.score%>
         <% end %>
+          <%average_score = sum_array.inject(0.0) { |sum, el| sum + el } / sum_array.size %>
+          <p class="game-users-score">Note des utilisateurs : <b><%=average_score%>/10</b></p>
+        <%end%>
       </div>
     </div>
-    <div class = "row">
-      <p class = "description"><%=@game.description%></p>
+    <% if user_signed_in? %>
+      <a href = "<%=edit_game_path(@game.id)%>">Modifier les informations du jeu</a>
+    <%end%>
+    <div class="row">
+      <div class="col-lg-3 d-flex justify-content-center align-items-start">
+        <% if @game.game_picture.attachment != nil %>
+          <%= image_tag @game.game_picture, class: "games_image"%>
+        <% else %>
+          <img src="<%= @game.image_url%>" class="games_image" width="300px">
+        <% end %>
+      </div>
+      <div class="col">
+        <div class="row">
+        </div>
+        <div class="row">
+          <div class="col d-flex justify-content-start align-items-center">
+            <%if @game.min_players == @game.max_players%>
+            <p>Jusqu'à <b><%=@game.min_players%> joueurs</b></p>
+            <%else%>
+            <p>De <b><%=@game.min_players%></b> à <b><%=@game.max_players%></b> joueurs</p>
+            <%end%>
+          </div>
+          <div class="col d-flex justify-content-start align-items-center">
+            <p>Durée de jeu : <b><%=@game.time%></b></p>
+          </div>
+          <div class="col d-flex justify-content-center align-items-end">
+            <p>Catégorie : <b><%= Category.find(@game.category_id).category_name%></b></p>
+          </div>
+        </div>
+        <div class="row mt-3 d-flex justify-content-end align-items-center">
+          <div class="col">
+            <p class = "description"><%=@game.description%></p>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 
-<%@game.gamecoms.each do |comment|%>
+  <%@game.gamecoms.each do |comment|%>
   <%if current_user.id == comment.user_id%>
-        <div class = "update_game_comment_division">
-          <%= form_for @gamecom, url: update_comment_path, html: {class: "nifty_form"} do |f| %>
-            <p><b>Ton commentaire </b></p>
-            <%= f.text_area :content, size: "60x5", :value => comment.content %>
-            <p>Ta note du jeu sur 10</p>
+  <div class="container game-sticker update_game_comment_division">
+    <div class="row">
+      <div class="col-lg-2 d-flex justify-content-center align-items-start">
+        <% if current_user.profile_picture.attachment != nil %>
+          <%= image_tag current_user.profile_picture %>
+        <% else %>
+        <% end %>
+      </div>
+      <div class="col">
+        <div class="row">
+          <div class="col d-flex justify-content-start align-items-center">
+            <h3><p class="comment-stickers"><b>Ton commentaire </b></p></h3>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <%= form_for @gamecom, url: update_comment_path, html: {class: "nifty_form"} do |f| %>
+            <%= f.text_area :content, size: "100x3", :value => comment.content %>
+          </div>
+        </div>
+        <div class="row mt-2">
+          <div class="col d-flex justify-content-start align-items-center">
+            <h3 class="mycomment-note"><b>Note :</b></h3>
+          <div class="col d-flex justify-content-start align-items-center">
             <%= f.number_field :score, :value => comment.score%>
             <%= f.hidden_field :game_id, :value => @game.id %>
             <%= f.hidden_field :user_id, :value => current_user.id %>
-            <%= f.submit "Modifier commentaire et note" %>
-          <%end%>
+          </div>
+          <div class="col d-flex justify-content-end align-items-center">
+            <%= f.submit "Modifier commentaire et note", class: "btn-sidebar" %>
+            <%end%>
+          </div>
+          <div class="col d-flex justify-content-end align-items-center">
+            <%= link_to "Supprimer le commentaire", destroy_comment_path(comment_id: comment.id, game_id: @game.id), method: :post, class: "btn-admin" %>
+          </div>
         </div>
-    <br>
-    <%= link_to "Supprimer le commentaire", destroy_comment_path(comment_id: comment.id, game_id: @game.id), method: :post, class: "btn-admin" %>
-  <%else%>
-  <p><%=comment.user.nickname%> a écrit à propos du jeu :</p>
-  <p><%=comment.score%>/10</p>
-  <p><%=comment.content%></p>
+      </div>
+    </div>
+  </div>
+<%else%>
+  <div class="container game-sticker comment-stick">
+    <div class="row">
+      <div class="col-lg-2 d-flex justify-content-center align-items-start">
+        <% if comment.user.profile_picture.attachment != nil %>
+          <%= image_tag comment.user.profile_picture %>
+        <% else %>
+        <% end %>
+      </div>
+      <div class="col d-flex flex-column justify-content-between">
+        <div class="row">
+          <div class="col d-flex justify-content-start align-items-center">
+            <h3><p class="comment-stickers"><b><%=comment.user.nickname %></b></p></h3>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <p><i><%= comment.content %></i></p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col d-flex justify-content-end align-items-end">
+            <h3><p class="comment-stickers"><b><%= comment.score %>/10</b></p></h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
   <%end%>
-<%end%>
+
+  <%end%>
 
 <% if user_signed_in? %>
   <div class = add_comment>
