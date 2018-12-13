@@ -1,0 +1,20 @@
+
+<div id="calendar_user">
+  <h2 id="month">
+    <%= link_to "<", date: @date.prev_month %>
+    <%= @date.strftime("%B %Y") %>
+    <%= link_to ">", date: @date.next_month %>
+  </h2>
+  <%= calendar @date do |date| %>
+    <%= date.day %>
+    <%@user_sessions.each do |session|%>
+        <% if session.date == date %>
+            <ul>
+                <li><b><%= link_to session.game.title, gamesession_path(session), class: "name_calendar" %></b></li>
+            </ul>
+        <%break%>
+        <% end %>
+    <%end%>
+  <% end %>
+</div>
+

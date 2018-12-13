@@ -63,4 +63,6 @@ Rails.application.routes.draw do
   post "sendemail",                     to: "handleuser#sendemail"
   get "contact_us",                     to: "handleuser#contact_us"
   post "mail_us",                       to: "handleuser#mail_us"
+
+  get "display_calendar",               to: "calendar#display_calendar"
 end
