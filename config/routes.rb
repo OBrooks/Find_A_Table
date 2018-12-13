@@ -63,9 +63,11 @@ Rails.application.routes.draw do
   post "webmaster",                     to: "handleuser#scrapping"
   post "scrapping",                     to: "handleuser#scrapping"
   get "admin",                          to: "handleuser#admin"
-  post "superpost",                    to: "handleuser#superpost"
+  post "superpost",                     to: "handleuser#superpost"
   get "emailuser/:id",                  to: "handleuser#emailuser"
   post "sendemail",                     to: "handleuser#sendemail"
-  get "contact_us",                    to: "handleuser#contact_us"
+  get "contact_us",                     to: "handleuser#contact_us"
   post "mail_us",                       to: "handleuser#mail_us"
+
+  get "display_calendar",               to: "calendar#display_calendar"
 end
