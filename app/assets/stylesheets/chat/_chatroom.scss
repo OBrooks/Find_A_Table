@@ -1,3 +1,10 @@
+@import "theme/index";
+
+.container-chatroom {
+  color: white;
+  font-family: $font-overlock;
+  font-size: 14px;
+}
 
 #usersmessages {
   margin: 10px;

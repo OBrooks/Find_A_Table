@@ -1,18 +1,33 @@
 
-<div class="container">
-<strong>Session du
-<%=I18n.localize(@chatroom.session.date, :format=> "%A %e %B %Y", :locale => 'fr')%> chez
-<%= @chatroom.session.host.nickname %></strong>
-<p>
-  <%= @chatroom.session.game.title %>
-  <br></p>
-  <p>Les joueurs sont les suivants :</p>
+<div class="container container-chatroom">
+  <div class="row">
+    <h2 class="m-3 text-white">
+      <strong>Session du
+        <%=I18n.localize(@chatroom.session.date, :format=> "%A %e %B %Y", :locale => 'fr')%> chez
+        <%= @chatroom.session.host.nickname %>
+      </strong>
+    </h2>
+  </div>
+  <div class="row m-3">
+    <div class="col">
+      <h3><%= @chatroom.session.game.title %></h3>
+    </div>
+  </div>
+  <div class="row m-3 d-flex align-items-center">
+    <div class="col-2">
+      Participants :
+    </div>
   <% @chatroom.users.each do |user| %>
-<p>
-  <%= user.nickname %>
-</p>
+  <div class="col-1 d-flex justify-content-start userinchatroom">
+    <% if user.profile_picture.attachment != nil %>
+      <%= image_tag user.profile_picture, id:"avatar", title:user.nickname %>
+    <% else %>
+      <img src="https://i.kym-cdn.com/photos/images/newsfeed/000/885/429/ba9.gif" alt="avatar" id="avatar" title="coucou">
+    <% end %>
+  </div>
   <% end %>
-</p>
+  <div class="col">
+  </div>
 </div>
 
 <div class="container" id="usersmessages">
