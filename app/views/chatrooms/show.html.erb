@@ -1,12 +1,15 @@
 
-  <strong id="coucou">La session :</strong>
+<strong>Session du
+<%=I18n.localize(@chatroom.session.date, :format=> "%A %e %B %Y", :locale => 'fr')%> chez
+<%= @chatroom.session.host.nickname %></strong>
+<p>
   <%= @chatroom.session.game.title %>
-  <br>
-  <%= @chatroom.session.date %>
-  <br>
+  <br></p>
+  <p>Les joueurs sont les suivants :</p>
   <% @chatroom.users.each do |user| %>
+<p>
   <%= user.nickname %>
-  <br>
+</p>
   <% end %>
 </p>
 
@@ -19,10 +22,8 @@
 <div id="salut"></div>
 </ul>
 </div>
-<div class="margemoiça">
 <%= form_for [@chatroom, Usersmessage.new], remote: true do |f| %>
 <%= f.text_area :body, rows: 1, class: "form-control chatmessages", autofocus: true %>
 <%= f.submit "Envoyer" %>
 <% end %>
-</div>
 </div>

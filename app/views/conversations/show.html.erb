@@ -3,6 +3,7 @@
         <ul id="conversations-list">
             <% @conversations.each do |conversation| %>
                 <%= render 'conversations/conversation_user', conversation: conversation %>
+                <br>
             <% end %>
         </ul>
     </div>

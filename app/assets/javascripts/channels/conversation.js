@@ -14,14 +14,14 @@ App.conversation = App.cable.subscriptions.create("ConversationChannel", {
     console.log("voici conversation", conversation)
     console.log("voici conversation_list_users", conversation_list_users)
     
-    if ($(".panel-heading").is(':visible')) {
+    if ($(".messenger-heading").is(':visible')) {
       var conversation_visible = conversation.is(':visible');
       
       console.log("inside conversation.js ActionCable window defined")
       console.log("conversation_visible",conversation_visible)
 
       if (conversation_visible) {
-        var messages_visible = (conversation).find('.panel-body').is(':visible');
+        var messages_visible = (conversation).find('.messenger-body').is(':visible');
         
         console.log("inside conversation_visible")
         console.log("messages_visible",messages_visible)
@@ -30,7 +30,7 @@ App.conversation = App.cable.subscriptions.create("ConversationChannel", {
           
           console.log("inside !messages_visible")
           
-          conversation.removeClass('panel-default').addClass('clign');
+          conversation.removeClass('.messenger-default').addClass('clign');
         }
         conversation.find('.messages-list').find('ul').append(data['message']);
       } else {
@@ -40,7 +40,7 @@ App.conversation = App.cable.subscriptions.create("ConversationChannel", {
         
         $('#conversations-list').append('New message from ', data['sender_name']);
         conversation = $('#conversations-list').find("[data-conversation-id='" + data['conversation_id'] + "']");
-        conversation.find('.panel-body').toggle();
+        conversation.find('.messenger-body').toggle();
       }
     } else {
       

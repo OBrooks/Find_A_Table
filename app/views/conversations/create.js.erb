@@ -6,7 +6,7 @@ conversations.append("<%= j(render 'conversations/conversation', conversation: @
 conversation = conversations.find("[data-conversation-id='" + "<%= @conversation.id %>" + "']");
 }
 
-conversation.find('.panel-body').show();
+conversation.find('.messenger-body').show();
 
 var messages_list = conversation.find('.messages-list');
 var height = messages_list[0].scrollHeight;
