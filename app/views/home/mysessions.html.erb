@@ -1,70 +1,171 @@
-<h1>Mes sessions</h1>
+<h2 class="m-2 signup-title">LES SESSIONS DONT JE SUIS HÔTE</h2>
+
 <%if @myhostsessions == [] %>
   <p>vous n'avez aucune sessions en cours</p>
 <%else%>
-  <table style="width:100%">
-    <tr>
-      <th>ID</th>
-      <th>Date</th>
-      <th>Game</th>
-      <th>City</th>
-      <th>PayerNB</th>
-      <th>MaxPlayers</th>
-      <th>Time</th>
-      <th>PlayerSkill</th>
-      <th>Status</th>
-    </tr>
-    <%@myhostsessions.each do |session|%>
-      <tr>
-        <td><%= session.id %></td>
-        <td><%= session.date %></td>
-        <td><%= session.game.title %></td>
-        <td><%= session.city %></td>
-        <td><%= session.playernb %></td>
-        <td><%= session.maxplayers %></td>
-        <td><%= session.time %></td>
-        <td><%= session.playerskill %></td>
-        <td><%= session.status %></td>
-        <td><%= link_to 'Show', gamesession_path(session) %></td>
-        <td><%= link_to 'Edit', edit_gamesession_path(session) %></td>
-        <td><%= link_to 'Destroy', gamesession_path(session),
-                method: :delete,
-                data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </table>
+<%@myhostsessions.each do |session|%>
+  <div class="container game-sticker">
+    <div class="row">
+      <div class="col-lg-1 d-flex justify-content-center align-items-center"> <!-- IMG COL -->
+        <% if session.game.game_picture.attachment != nil %>
+        <%= image_tag session.game.game_picture, class: "session_img" %>
+        <% else %>
+        <img src="<%= session.game.image_url%>" class="session_img">
+        <% end %>
+      </div>
+      <div class="col">
+
+        <div class="row">
+          <div class="col d-flex justify-content-between align-items-center">
+            <h3 class="sticker-title"><%= link_to session.game.title, gamesession_path(session) %></h3>
+            <h3 class="sticker-title">A <%= session.city %>, le <%= session.date %></h3>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col d-flex justify-content-start align-items-center">
+            <p>Session de <b><%= session.host.nickname %></b></p>
+          </div>
+          <div class="col d-flex justify-content-center align-items-center">
+          </div>
+          <div class="col d-flex justify-content-end align-items-center">
+            <p>Durée prévue : <%= session.time %>h</p>
+          </div>
+        </div>
+
+        <div class="row mt-3 d-flex justify-content-end align-items-center">
+          <div class="col d-flex justify-content-start align-items-center">
+            <p>Joueurs actuel : <b><%= session.playernb %></b></p>
+          </div>
+          <div class="col d-flex justify-content-start align-items-center">
+            <p>Places restantes : <b><%= session.maxplayers - session.playernb %></b></p>
+          </div>
+          <div class="col d-flex justify-content-start align-items-center">
+            <p>Statut : <b><%= session.status %></b> </p>
+          </div>
+          <div class="col d-flex justify-content-end align-items-center">
+            <p>Niveau recommandé : <b><%= session.playerskill %></b></p>
+          </div>
+        </div>
+
+        <div class="row mt-3 d-flex justify-content-end align-items-center">
+          <% if user_signed_in? && session.players.include?(current_user)%>
+            <% @request = Request.find_by(session_id: session.id, user_id: current_user.id) %>
+            <div class="col d-flex justify-content-start align-items-center">
+              <p>Votre Statut : <b><%= @request.status %></b></p>
+            </div>
+            <% if @request.accepted? %>
+              <div class="col d-flex justify-content-start align-items-center">
+                <p><%=link_to "LeaveGame", leavegame_path(id: session.id)%></p>
+              </div>
+            <% else %>
+              <div class="col d-flex justify-content-start align-items-center">
+                <p><%=link_to "RemoveRequest", removerequest_path(id: session.id)%></p>
+              </div>
+            <% end %>
+          <% else %>
+            <div class="col d-flex justify-content-start align-items-center">
+              <p>Votre Statut : <b>Sans requêtes</b></p>
+            </div>
+            <div class="col d-flex justify-content-start align-items-center">
+              <p><%=link_to "JoinGame", joingame_path(id: session.id)%></p>
+            </div>
+          <% end %>
+          <div class="col-lg-3">
+          </div>
+          <div class="col d-flex justify-content-end align-items-center">
+            <p>Numéro de session : <b><%= session.id %></b></p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
 <% end %>
+<% end %>
+
+<h2 class="m-2 signup-title">LES SESSIONS OU JE SUIS JOUEUR</h2>
+
 <%if @myplayersessions == [] %>
-  <p>vous n'avez aucune sessions en cours</p>
+  <p>Vous n'avez pas de sessions</p>
 <%else%>
-  <table style="width:100%">
-    <tr>
-      <th>ID</th>
-      <th>Host</th>
-      <th>Date</th>
-      <th>Game</th>
-      <th>City</th>
-      <th>PayerNB</th>
-      <th>MaxPlayers</th>
-      <th>Time</th>
-      <th>PlayerSkill</th>
-      <th>Status</th>
-    </tr>
-    <%@myplayersessions.each do |session|%>
-      <tr>
-        <td><%= session.id %></td>
-        <td><%= session.host.nickname %></td>
-        <td><%= session.date %></td>
-        <td><%= session.game.title %></td>
-        <td><%= session.city %></td>
-        <td><%= session.playernb %></td>
-        <td><%= session.maxplayers %></td>
-        <td><%= session.time %></td>
-        <td><%= session.playerskill %></td>
-        <td><%= session.status %></td>
-        <td><%= link_to 'Show', gamesession_path(session) %></td>
-        <td><%= link_to 'LeaveGame', leavegame_path(id: session.id) %></td>
-      </tr>
-    <% end %>
-  </table>
+<%@myplayersessions.each do |session|%>
+  <div class="container game-sticker">
+    <div class="row">
+      <div class="col-lg-1 d-flex justify-content-center align-items-center"> <!-- IMG COL -->
+        <% if session.game.game_picture.attachment != nil %>
+        <%= image_tag session.game.game_picture, class: "session_img" %>
+        <% else %>
+        <img src="<%= session.game.image_url%>" class="session_img">
+        <% end %>
+      </div>
+      <div class="col">
+
+        <div class="row">
+          <div class="col d-flex justify-content-between align-items-center">
+            <h3 class="sticker-title"><%= link_to session.game.title, gamesession_path(session) %></h3>
+            <h3 class="sticker-title">A <%= session.city %>, le <%= session.date %></h3>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col d-flex justify-content-start align-items-center">
+            <p>Session de <b><%= session.host.nickname %></b></p>
+          </div>
+          <div class="col d-flex justify-content-center align-items-center">
+          </div>
+          <div class="col d-flex justify-content-end align-items-center">
+            <p>Durée prévue : <%= session.time %>h</p>
+          </div>
+        </div>
+
+        <div class="row mt-3 d-flex justify-content-end align-items-center">
+          <div class="col d-flex justify-content-start align-items-center">
+            <p>Joueurs actuel : <b><%= session.playernb %></b></p>
+          </div>
+          <div class="col d-flex justify-content-start align-items-center">
+            <p>Places restantes : <b><%= session.maxplayers - session.playernb %></b></p>
+          </div>
+          <div class="col d-flex justify-content-start align-items-center">
+            <p>Statut : <b><%= session.status %></b> </p>
+          </div>
+          <div class="col d-flex justify-content-end align-items-center">
+            <p>Niveau recommandé : <b><%= session.playerskill %></b></p>
+          </div>
+        </div>
+
+        <div class="row mt-3 d-flex justify-content-end align-items-center">
+          <% if user_signed_in? && session.players.include?(current_user)%>
+            <% @request = Request.find_by(session_id: session.id, user_id: current_user.id) %>
+            <div class="col d-flex justify-content-start align-items-center">
+              <p>Votre Statut : <b><%= @request.status %></b></p>
+            </div>
+            <% if @request.accepted? %>
+              <div class="col d-flex justify-content-start align-items-center">
+                <p><%=link_to "LeaveGame", leavegame_path(id: session.id)%></p>
+              </div>
+            <% else %>
+              <div class="col d-flex justify-content-start align-items-center">
+                <p><%=link_to "RemoveRequest", removerequest_path(id: session.id)%></p>
+              </div>
+            <% end %>
+          <% else %>
+            <div class="col d-flex justify-content-start align-items-center">
+              <p>Votre Statut : <b>Sans requêtes</b></p>
+            </div>
+            <div class="col d-flex justify-content-start align-items-center">
+              <p><%=link_to "JoinGame", joingame_path(id: session.id)%></p>
+            </div>
+          <% end %>
+          <div class="col-lg-3">
+          </div>
+          <div class="col d-flex justify-content-end align-items-center">
+            <p>Numéro de session : <b><%= session.id %></b></p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+<% end %>
 <% end %>
