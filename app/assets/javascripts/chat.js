@@ -12,4 +12,5 @@
             messages_list.scrollTop(height);
         }
     });
+
 })();

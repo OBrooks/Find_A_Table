@@ -83,3 +83,6 @@ gem 'redis'
 
 #aws
 gem "aws-sdk-s3", require: false
+
+#date format
+gem 'rails-i18n', '~> 5.1'

@@ -2,8 +2,22 @@ class ConversationsController < ApplicationController
 
   def show
     session[:conversations] ||= []
-    @conversations = Conversation.includes(:recipient, :messages)
-                                .find(session[:conversations])
+    @conversations=[]
+    conversations_recipient = Conversation.where(recipient_id: current_user.id)
+    conversations_sender = Conversation.where(sender_id: current_user.id)
+      conversations_recipient.each do |recipient|
+        @conversations << recipient
+      end
+      conversations_sender.each do |sender|
+        @conversations.each do |conversation|
+          if conversation.id != sender.id
+            @conversations << sender
+          end
+        end
+      end
+      @chatroom_users=ChatroomUser.where(user_id: current_user.id)
+      puts "Voilà le chatroom_users#{@chatroom_users}" 
+
   end
 
   def conversation_user
