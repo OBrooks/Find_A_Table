@@ -4,6 +4,9 @@
             <h3>Votre liste de jeux favoris est vide.</h3><br>
             <h3>Vous pouvez retourner sur la <a href="/games">page des jeux</a> pour en ajouter.</h3>
         <% else %>
+        <div class="row">
+          <h2>Voici tes joueurs favoris</h2>
+        </div>
                 <% @games.each do |game| %>
                 <div class="container game-sticker">
                   <div class="row">
@@ -57,5 +60,15 @@
                     </div>
                   </div>
                   <% end %>
+                  <br>
+                  <div class="row">
+                    <h2>Voici tes joueurs favoris</h2>
+                  </div>
+                <% @users_favorites.each do |favorite| %>
+              <div class="row container-profile">
+              <h2><a href="player/<%= favorite.added.id %>"><%= favorite.added.nickname %></a></h2>
+                  <br>
+                </div>
+                <% end %>
         <% end %>
     </div>

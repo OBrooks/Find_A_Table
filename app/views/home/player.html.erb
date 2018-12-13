@@ -61,4 +61,11 @@
         <div class="col">
         </div>
     </div>
+    <div class="row">
+        <div class="col">
+        <% if current_user != nil && current_user.id != @player.id %>
+            <%= render "home/favorites_users/favorites" %>
+        <% end %>
+        </div>
+    </div>
 </div>

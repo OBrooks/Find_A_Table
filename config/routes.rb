@@ -42,6 +42,8 @@ Rails.application.routes.draw do
   get "favoris",                        to: "home#favoris"
   get 'add_to_favorites',               to: "home#add_to_favorites"
   get 'remove_from_favorites',          to: "home#remove_from_favorites"
+  get 'add_users_to_favorites',         to: "home#add_users_to_favorites"
+  get 'remove_users_from_favorites',    to: "home#remove_users_from_favorites"
   get "mysessions",                     to: "home#mysessions"
   get "player/:id",                     to: "home#player"
   get "list_users",                     to:"home#list_users"

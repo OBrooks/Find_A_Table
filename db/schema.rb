@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_11_153601) do
+ActiveRecord::Schema.define(version: 2018_12_13_165322) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -77,6 +77,15 @@ ActiveRecord::Schema.define(version: 2018_12_11_153601) do
     t.index ["user_id"], name: "index_favorites_on_user_id"
   end
 
+  create_table "favorites_users", force: :cascade do |t|
+    t.bigint "adder_id"
+    t.bigint "added_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["added_id"], name: "index_favorites_users_on_added_id"
+    t.index ["adder_id"], name: "index_favorites_users_on_adder_id"
+  end
+
   create_table "gamecoms", force: :cascade do |t|
     t.text "content"
     t.integer "score"
@@ -110,6 +119,11 @@ ActiveRecord::Schema.define(version: 2018_12_11_153601) do
     t.datetime "updated_at", null: false
     t.index ["conversation_id"], name: "index_messages_on_conversation_id"
     t.index ["user_id"], name: "index_messages_on_user_id"
+  end
+
+  create_table "multiple_users_conversations", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "requests", force: :cascade do |t|
