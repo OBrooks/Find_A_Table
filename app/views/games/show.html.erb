@@ -141,7 +141,7 @@
       <p><b>Commentaire </b></p>
       <%= f.text_area :content, size: "60x12" %>
       <p>Note du jeu sur 10</p>
-      <%= f.number_field :score %>
+      <%= f.number_field :score, min: 0, max: 10 %>
       <%= f.hidden_field :game_id, :value => @game.id %>
       <%= f.hidden_field :user_id, :value => current_user.id %>
       <%= f.submit "Commentaire" %>

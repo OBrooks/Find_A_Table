@@ -6,7 +6,7 @@ class GamesessionController < ApplicationController
   def unwanted_redirect
     if user_signed_in?
       if current_user.unwanted?
-        redirect_to root_path
+        redirect_to root_path, redirect_to root_path, :flash => { :error => "Vous êtes considérés comme indésirable, contactez les administrateurs si vous voulez contester cette décision" }
       end
     
     else

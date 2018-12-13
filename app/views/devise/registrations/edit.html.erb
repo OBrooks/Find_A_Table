@@ -23,14 +23,14 @@
     </div>
     <div class="col"> <!-- NICKNAME -->
       <div class="field mt-1">
-        <span><%= f.label :nickname %><br /></span>
+        <span><%= f.label "Pseudo" %><br /></span>
         <%= f.text_field :nickname, autofocus: true, placeholder: "Votre pseudo", class: "form-control" %>
       </div>
     </div>
     <div class="col">
       <div class="form-group">
         <div class="col-auto">
-          <span><%= f.label :profile_picture %><br /></span>
+          <span><%= f.label "Image de profil" %><br /></span>
           <%= f.file_field :profile_picture, autofocus: true %>
           <div class="edit-profile-pic">
             <% if current_user.profile_picture.attachment != nil %>
@@ -48,7 +48,7 @@
   <div class="row mt-1">
     <div class="col"> <!-- PASSWORD -->
       <div class="field">
-        <span>New <%= f.label :password %>
+        <span>New <%= f.label "Mot de passe" %>
         <% if @minimum_password_length %>
           <em>(<%= @minimum_password_length %> characters minimum)</em>
         <% end %>
@@ -58,7 +58,7 @@
     </div>
     <div class="col"> <!-- PASSWORD CONFIRMATION -->
       <div class="field">
-        <span>New <%= f.label :password_confirmation %><br /></span>
+        <span>New <%= f.label "Confirmation du mot de passe" %><br /></span>
         <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
       </div>
     </div>
@@ -69,13 +69,13 @@
   <div class="row mt-5">
     <div class="col"> <!-- FIRST NAME -->
       <div class="field mt-1">
-        <span><%= f.label :first_name %><br /></span>
+        <span><%= f.label "Prénom" %><br /></span>
         <%= f.text_field :first_name, autofocus: true, placeholder: "Votre prénom", class: "form-control" %>
       </div>
     </div>
     <div class="col"> <!-- LAST NAME -->
       <div class="field mt-1">
-        <span><%= f.label :last_name %><br /></span>
+        <span><%= f.label "Nom" %><br /></span>
         <%= f.text_field :last_name, autofocus: true, placeholder: "Votre nom", class: "form-control" %>
       </div>
     </div>
@@ -86,7 +86,7 @@
   <div class="row mt-1">
     <div class="col"> <!-- TOWN -->
       <div class="field mt-1">
-        <span><%= f.label :town %><br /></span>
+        <span><%= f.label "Ville" %><br /></span>
         <%= f.text_field :town, autofocus: true, placeholder: "Votre ville", class: "form-control" %>
       </div>
     </div>
@@ -94,6 +94,24 @@
       <div class="field mt-1">
         <span><%= f.label :adress %><br /></span>
         <%= f.text_field :adress, autofocus: true, placeholder: "Votre adresse", class: "form-control" %>
+      </div>
+    </div>
+    <div class="col">
+    </div>
+  </div>
+
+  <div class="row mt-1">
+    <div class="col"><!-- Birthdate -->
+      <div class="field mt-1">
+        <span><%= f.label "Date de naissance" %></span>
+        <p><%= f.date_field :birthdate, autofocus: true %></p>
+      </div>    
+    </div>
+
+    <div class="col"> <!-- GENDER -->
+      <div class="field mt-1">
+        <span><%= f.label "Genre" %><br /></span>
+        <%= f.text_field :gender, autofocus: true, placeholder: "Masculin, féminin, autre", class: "form-control" %>
       </div>
     </div>
     <div class="col">
@@ -121,7 +139,7 @@
   </div>
 
   <div class="actions mt-5 mb-2">
-    <%= f.submit "Update", class: "btn-signup-confirm" %>
+    <%= f.submit "Editer", class: "btn-signup-confirm" %>
   </div>
   <% end %>
 </div>

@@ -65,4 +65,6 @@ Rails.application.routes.draw do
   post "mail_us",                       to: "handleuser#mail_us"
 
   get "display_calendar",               to: "calendar#display_calendar"
+
+  get "*path" => 'error#handle_404'
 end
