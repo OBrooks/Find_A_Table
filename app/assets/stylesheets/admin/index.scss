@@ -1,0 +1,25 @@
+@import "theme/index";
+
+.container-admin {
+  background-color: rgba(80, 120, 160, .7);
+  font-family: $font-overlock;
+  color: white;
+}
+
+.admin-table {
+  font-family: $font-carrois;
+}
+
+.row-admin-user {
+  padding: 5px;
+  color: white;
+  background-color: rgba(24, 69, 94, .7)
+}
+
+.container-admin h2 {
+  font-size: 36px;
+}
+
+.btn-administration {
+  background-color: rgba(160, 90, 40, .7) !important;
+}
