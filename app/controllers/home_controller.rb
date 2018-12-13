@@ -14,19 +14,22 @@ class HomeController < ApplicationController
                                 .find(session[:conversations])
     end
 
-#Favoris part
+#Favorites part
+
     def favoris
     @favoris=current_user.favorites
-    puts "Les params #{params}"
     @games=[]
     @favoris.each do |favor|
         @game=Game.find_by(id: favor.game_id)
         @games << @game
-        puts "Le jeu favori est #{@game.title}"
     end
-    puts "Le @games est #{@games}"
+    @users_favorites=FavoritesUser.where(adder_id: current_user.id)
+    puts "Les users sont #{@users_favorites}"
+    
+
     end
 
+  #Favorites Games
     def add_to_favorites
         puts "#{params}"
       @user = User.find(params[:user_id])
@@ -51,6 +54,31 @@ class HomeController < ApplicationController
     @favorite.destroy
   end
 
+  #Favorites Users
+    def add_users_to_favorites
+        puts "Les params sont#{params}"
+      @user = User.find(params[:added_id])
+      puts "ça fav"
+      respond_to do |format|
+        format.html
+        format.js {render :layout => false}
+      end
+    @favorite=FavoritesUser.create!(adder_id: current_user.id, added_id: params[:added_id])
+  end
+
+    def remove_users_from_favorites
+      puts "Les params du remove sont#{params}"
+      @user = User.find(params[:added_id])
+      puts "ça défav"
+      respond_to do |format|
+        format.html
+        format.js {render :layout => false}
+      end
+    @favorite=FavoritesUser.find_by(adder_id: current_user.id, added_id: params[:added_id])
+    @favorite.destroy
+  end
+
+#Sessions
   def mysessions
     @myhostsessions = []
     @myplayersessions = []
@@ -66,5 +94,15 @@ class HomeController < ApplicationController
 
   def player
     @player = User.find(params[:id])
+    @user = User.find(params[:id])
+        @common_sessions = []
+
+        if current_user.sessions.ids == @player.sessions.ids
+            @common_sessions << @player.sessions.ids
+        end
+        @favorites=FavoritesUser.all
+        if current_user != nil
+            @favorite=FavoritesUser.find_by(adder_id: current_user.id, added_id: params[:id])
+        end
   end
 end
