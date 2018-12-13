@@ -3,7 +3,11 @@
     <div class="row">
       <div class="col">
         <div class="avatar">
-            <img src="https://i.kym-cdn.com/photos/images/newsfeed/000/885/429/ba9.gif" alt="avatar" id="avatar">
+          <% if message.user.profile_picture.attachment != nil %>
+          <%= image_tag message.user.profile_picture, id:"avatar" %>
+          <% else %>
+              <img src="https://uploads1.yugioh.com/card_images/4945/detail/Hero-Dice.jpg?1398377913" alt="avatar" id="avatar">
+          <% end %>
         </div>
         <div class="chatboxmessagecontent <%= user.id == message.user_id ? 'message-sent' : 'message-received' %> self_or_other(message)" id="messages">
           <p><%= message.body %></p>

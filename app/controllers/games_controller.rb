@@ -15,14 +15,18 @@ class GamesController < ApplicationController
 
         if params[:advanced_query]
             @query = "%#{params[:advanced_query].downcase}%"
-            @max_players = params[:max_players].to_i + 1
-            if @query == ""
-                @searchgame = Game.all
+            if @query == "%%"
+                @games = Game.all
             else
-                @searchgame = Game.where("title LIKE? or title LIKE? or description LIKE? or description LIKE?", @query.titleize, @query, @query.titleize, @query)
+                @games = Game.where("title LIKE? or title LIKE? or description LIKE? or description LIKE?", @query.titleize, @query, @query.titleize, @query)
             end
-            @games = @searchgame.where("category_id = ?", params[:category])
-            @games = @games.where("max_players < ?", @max_players)
+            if params[:category] != ""
+                @games = @games.where("category_id = ?", params[:category])
+            end
+            if params[:max_players] != ""
+                @max_players = params[:max_players].to_i + 1
+                @games = @games.where("max_players < ?", @max_players)
+            end
         end
     end
 
@@ -47,6 +51,9 @@ class GamesController < ApplicationController
     end
 
     def show
+        if current_user.unwanted?
+            redirect_to root_path
+        end
         @game=Game.find(params[:id])
         @gamecom = Gamecom.new
         @gamecoms = @game.gamecoms.order(created_at: :desc)
@@ -57,6 +64,9 @@ class GamesController < ApplicationController
     end
 
     def edit
+        if curent_user.unwanted?
+            redirect_to root_path
+        end
         @game=Game.find(params[:id])
     end
 

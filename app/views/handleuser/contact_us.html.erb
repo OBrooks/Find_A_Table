@@ -1,0 +1,10 @@
+<h2>Envoyez un email aux administrateurs du site!</h2>
+<p>N'hésitez pas à nous faire des retours si vous voulez implémenter de nouvelles fonctionalitées au site</p>
+<p>Si vous avez trouvé le comportement d'un joueur inaproprié et que vous voulez le signaler vous êtes au bon endroit</p>
+<%=form_tag mail_us_path do%>
+    <p><b>Contenu de l'email</b></p> 
+    <%= text_area_tag "content", value="", size: "160x20"%>
+    <p><b>Voulez vous recevoir une copie de l'email?</b></p>
+    <span><%=check_box_tag 'accept'%></span>
+    <p><%= submit_tag('Envoyer') %></p>
+<%end%>

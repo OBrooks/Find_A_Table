@@ -22,6 +22,11 @@ Rails.application.routes.draw do
     resources :messages, only: [:create]
   end
 
+    resources :chatrooms do
+      resource :chatrooms_users
+      resources :usersmessages
+    end
+
   get "messages",                       to: "conversations#show"
   get "conversation_user",               to: "conversations#conversation_user"
 
@@ -34,22 +39,12 @@ Rails.application.routes.draw do
 
   get "index",                          to: "home#index"
   get "profile",                        to: "home#profile"
-  get "webmaster",                      to: "home#webmaster"
-  get "admin",                          to: "home#admin"
   get "favoris",                        to: "home#favoris"
   get 'add_to_favorites',               to: "home#add_to_favorites"
   get 'remove_from_favorites',          to: "home#remove_from_favorites"
 
   resources :gamesession
   post "search_sessions", to: "gamesession#search_sessions"
-
-  get "list_users",                     to:"home#list_users"
-  post "webmaster",                     to: "home#scrapping"
-  post "scrapping",                     to: "home#scrapping"
-
-
-  get "landingpage",                    to: "landingpage#lp"
-
   get "joingame", to: "gamesession#joingame"
   get "leavegame", to: "gamesession#leavegame"
   get "acceptrequest", to: "gamesession#acceptrequest"
@@ -58,4 +53,18 @@ Rails.application.routes.draw do
   get "mysessions", to: "home#mysessions"
   get "player/:id", to: "home#player"
 
+  get "list_users",                     to:"home#list_users"
+  
+
+  get "landingpage",                    to: "landingpage#lp"
+
+  get "webmaster",                      to: "handleuser#webmaster"
+  post "webmaster",                     to: "handleuser#scrapping"
+  post "scrapping",                     to: "handleuser#scrapping"
+  get "admin",                          to: "handleuser#admin"
+  post "/superpost",                    to: "handleuser#superpost"
+  get "emailuser/:id",                  to: "handleuser#emailuser"
+  post "sendemail",                     to: "handleuser#sendemail"
+  get "/contact_us",                    to: "handleuser#contact_us"
+  post "mail_us",                       to: "handleuser#mail_us"
 end
