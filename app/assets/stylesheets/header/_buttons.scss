@@ -21,13 +21,13 @@
   align-items: center;
   font-family: $font-passero;
   font-size: 16px;
-  background-color: rgba(180, 181, 221, 1);
-  color: black;
+  background-color: rgba(130, 160, 190, .7);
+  color: white;
 }
 
 .btn-header:hover {
-  background-color: rgba(255, 255, 255, 1);
-  color: black;
+  background-color: rgba(255, 255, 255, 0);
+  color: white;
   text-decoration-line: none;
 }
 

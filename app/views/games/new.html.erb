@@ -1,23 +1,65 @@
-<h2>Créez un nouveau jeu</h2>
-<%= form_tag("/games", method: "create", multipart: true) do %>
-      <p><b>Nom du jeu </b></p> 
-      <%= text_field_tag "title"%>
-      <p><b>Description du jeu </b></p>
-      <%= text_area_tag "description", "Entrez votre description", size: "160x20"%>
-      <p><b>Saisissez une url valide pour l'image du jeu ou</b></p>
-      <%= text_field_tag "image_url"%>
-      <p><b>uploadez une image valide</b></p>
-      <div class="form-group">
-        <%= file_field_tag 'game_picture', accept: 'image/png,image/gif,image/jpeg' %>
-      </div>
-      <p><b>Nombre de joueurs </b></p>
-      <%= number_field_tag 'min_players', min: 0%>
-      <%= number_field_tag 'man_players', min: 0%>
-      <p><b>Temps de partie en minutes</b></p>
-      <%= number_field_tag 'time', min: 0%>
-      <p><b>Catégorie de jeu</b></p>
-      <%= select_tag "category_name", options_from_collection_for_select(Category.order(:category_name), "id", "category_name"), prompt: "Choisissez la catégorie"%>
-      <p>*Si la catégorie que vous voulez n'existe pas, vous pouvez la rajouter ici<p>
+
+<div class="container container-signup">
+  <h2 class="m-4 signup-title">Créez un nouveau jeu</h2>
+
+  <%= form_tag("/games", method: "create", multipart: true) do %>
+<div class="row mt-2">
+  <div class="col">
+    <span>Nom du jeu</span><br>
+    <%= text_field_tag "title"%>
+  </div>
+  <div class="col">
+    <span>Catégorie de jeu</span><br>
+    <%= select_tag "category_name", options_from_collection_for_select(Category.order(:category_name), "id", "category_name"), prompt: "Choisissez la catégorie"%>
+  </div>
+  <div class="col">
+    <span>Image (URL) :</span><br>
+    <%= text_field_tag "image_url"%>
+  </div>
+</div>
+
+<div class="row mt-2">
+  <div class="col">
+    <span>Durée moyenne :</span><br>
+    <%= number_field_tag 'time', min: 0%>
+  </div>
+  <div class="col">
+    <span>Créer une nouvelle catégorie :</span><br>
       <%= text_field_tag "new_category"%>
-    <p><%= submit_tag('Ajouter le jeu à la base de donnée') %></p>
+  </div>
+  <div class="col">
+    <span>Image (Upload) :</span><br>
+    <div class="form-group">
+      <%= file_field_tag 'game_picture', accept: 'image/png,image/gif,image/jpeg' %>
+    </div>
+  </div>
+</div>
+
+<div class="row mt-2">
+  <div class="col">
+    <span>Nombre de joueurs :</span><br>
+    <%= number_field_tag 'min_players', min: 0%>
+    <span>A</span>
+    <%= number_field_tag 'man_players', min: 0%>
+    <span>JOUEURS</span>
+  </div>
+</div>
+
+<div class="row mt-2">
+  <div class="col">
+    <span>Description du jeu</span><br>
+    <%= text_area_tag "description", "Entrez votre description", size: "60x5"%>
+  </div>
+</div>
+
+<div class="row mt-5">
+  <div class="col">
+    <%= submit_tag('Ajouter le jeu à la base de donnée') %>
+  </div>
+</div>
+
+
+
 <% end %>
+
+</div>

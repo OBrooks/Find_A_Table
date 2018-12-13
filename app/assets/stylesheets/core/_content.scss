@@ -10,6 +10,17 @@
   background-attachment: fixed;
 }
 
+a {
+  color: white !important;
+  text-decoration-line: none;
+}
+
+a:hover {
+  background-color: rgba(0,0,0,0) !important;
+  color: powderblue !important;
+  text-decoration-line: none !important;
+}
+
 .background-dice {
   background-image: url("https://images6.alphacoders.com/451/451028.jpg");
 }
