@@ -134,18 +134,43 @@
   <%end%>
 
 <% if user_signed_in? %>
-  <div class = add_comment>
-  <%if @gamecoms.find_by(user_id: current_user.id).nil?%>
-    <p>Tu peux écrire un commentaire sur ce jeu et laisser une note!</p>
-    <%= form_for @gamecom, url: create_comment_path, html: {class: "nifty_form"} do |f| %>
-      <p><b>Commentaire </b></p>
-      <%= f.text_area :content, size: "60x12" %>
-      <p>Note du jeu sur 10</p>
-      <%= f.number_field :score %>
-      <%= f.hidden_field :game_id, :value => @game.id %>
-      <%= f.hidden_field :user_id, :value => current_user.id %>
-      <%= f.submit "Commentaire" %>
-    <%end%>
+  <div class = "container game-sticker add_comment">
+    <div class="row">
+      <div class="col-lg-2 d-flex justify-content-center align-items-start">
+        <% if current_user.profile_picture.attachment != nil %>
+          <%= image_tag current_user.profile_picture %>
+        <% else %>
+        <% end %>
+      </div>
+      <div class="col">
+        <div class="row">
+          <%if @gamecoms.find_by(user_id: current_user.id).nil?%>
+          <div class="col d-flex justify-content-start">
+          <h3 class="mycomment-note">Ecrire un commentaire et noter le jeu :</h3>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col d-flex justify-content-start">
+            <%= form_for @gamecom, url: create_comment_path, html: {class: "nifty_form"} do |f| %>
+            <p>Commentaire : </p>
+            <%= f.text_area :content, size: "100x4" %>
+          </div>
+        </div>
+        <div class="row mt-2">
+          <div class="col d-flex justify-content-start align-items-end">
+            <h3 class="mycomment-note mr-2">Note : </h3>
+            <%= f.number_field :score %>
+            <%= f.hidden_field :game_id, :value => @game.id %>
+            <%= f.hidden_field :user_id, :value => current_user.id %>
+          </div>
+          <div class="col d-flex justify-content-end">
+            <%= f.submit "Enregistrer votre commentaire", class: "btn-sidebar" %>
+          </div>
+        </div>
+          <%end%>
+        </div>
+      </div>
+      </div>
   <%end%>
   </div>
 <% end %>
