@@ -64,7 +64,11 @@ class GamesController < ApplicationController
     end
 
     def edit
-        if curent_user.unwanted?
+        if user_signed_in?
+            if curent_user.unwanted?
+                redirect_to root_path
+            end
+        else
             redirect_to root_path
         end
         @game=Game.find(params[:id])

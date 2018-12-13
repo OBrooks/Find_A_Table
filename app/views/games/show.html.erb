@@ -39,10 +39,11 @@
                       <li><b>Note des utilisateurs: <%=average_score%>/10</b></li>
                     <%end%>
                 </div>
-                <div class = "col">
-                    <li><a href = "<%=edit_game_path(@game.id)%>">Modifier les informations du jeu</a></b></li>
-                </div>
-          
+                <% if user_signed_in? %>
+                  <div class = "col">
+                      <li><a href = "<%=edit_game_path(@game.id)%>">Modifier les informations du jeu</a></b></li>
+                  </div>
+                <%end%>
             </div>
             </ul>
         </div>
