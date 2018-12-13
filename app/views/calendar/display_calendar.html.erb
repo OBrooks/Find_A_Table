@@ -2,7 +2,7 @@
 <div id="calendar_user">
   <h2 id="month">
     <%= link_to "<", date: @date.prev_month %>
-    <%= @date.strftime("%B %Y") %>
+      <%= I18n.localize(@date, :format=> "%B %Y", :locale => 'fr') %>
     <%= link_to ">", date: @date.next_month %>
   </h2>
   <%= calendar @date do |date| %>
