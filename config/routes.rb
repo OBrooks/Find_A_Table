@@ -45,6 +45,7 @@ Rails.application.routes.draw do
 
   resources :gamesession
   post "search_sessions", to: "gamesession#search_sessions"
+  get "not_signed_in", to: "gamesession#not_signed_in"
   get "joingame", to: "gamesession#joingame"
   get "leavegame", to: "gamesession#leavegame"
   get "acceptrequest", to: "gamesession#acceptrequest"
@@ -62,9 +63,9 @@ Rails.application.routes.draw do
   post "webmaster",                     to: "handleuser#scrapping"
   post "scrapping",                     to: "handleuser#scrapping"
   get "admin",                          to: "handleuser#admin"
-  post "/superpost",                    to: "handleuser#superpost"
+  post "superpost",                    to: "handleuser#superpost"
   get "emailuser/:id",                  to: "handleuser#emailuser"
   post "sendemail",                     to: "handleuser#sendemail"
-  get "/contact_us",                    to: "handleuser#contact_us"
+  get "contact_us",                    to: "handleuser#contact_us"
   post "mail_us",                       to: "handleuser#mail_us"
 end

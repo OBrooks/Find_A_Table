@@ -2,7 +2,8 @@
     <div class="col-lg-3">
         <ul id="conversations-list">
             <% @conversations.each do |conversation| %>
-                <%= render 'conversations/conversation_user', conversation: conversation, user: current_user %>
+                <%= render 'conversations/conversation_user', conversation: conversation %>
+                <br>
             <% end %>
         </ul>
     </div>
@@ -11,3 +12,18 @@
 
     </div>
 </div>
+<% if @chatroom_users != nil %>
+<% @chatroom_users.each do |chatroom_user| %>
+<div class="row d-flex justify-content-center">
+<button class="btn-sidebar" onclick="location.href='/chatrooms/<%=chatroom_user.chatroom.id%>'">
+        <div class="d-flex justify-content-between align-items-center">
+            <i class="fa fa-comments fa-fw" aria-hidden="true"></i>
+Rejoindre le chat de la session du
+<%=I18n.localize(chatroom_user.chatroom.session.date, :format=> "%A %e %B %Y", :locale => 'fr')%> chez
+<%=chatroom_user.chatroom.session.host.nickname%>
+        </div>
+    </button>
+</div>
+<% end %>
+<% end %>
+

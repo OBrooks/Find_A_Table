@@ -1,11 +1,20 @@
 class GamesessionController < ApplicationController
 
   before_action :unwanted_redirect
+  skip_before_action :unwanted_redirect, :only => [:index, :not_signed_in]
 
   def unwanted_redirect
-    if current_user.unwanted?
-      redirect_to root_path
+    if user_signed_in?
+      if current_user.unwanted?
+        redirect_to root_path
+      end
+    
+    else
+      redirect_to not_signed_in_path
     end
+  end
+
+  def not_signed_in
   end
 
   def index
