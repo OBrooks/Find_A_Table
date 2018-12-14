@@ -2,7 +2,7 @@ class NotificationsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @notifications = current_user.notifications
+    @notifications = current_user.notifications.order(read_at: :desc)
   end
 
   def mark_all_as_read

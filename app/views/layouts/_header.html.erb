@@ -37,7 +37,7 @@
                 <p><%=link_to "#{notif.actor.nickname} a accepté votre participation a sa session de #{notif.notifiable.game.title}", mark_as_read_path(id: notif.id, url: gamesession_path(notif.notifiable)), method: :post%></p>
               <% elsif notif.action == "requestdenied" %>
                 <p><%=link_to "#{notif.actor.nickname} a refusé votre participation a sa session de #{notif.notifiable.game.title}", mark_as_read_path(id: notif.id, url: gamesession_path(notif.notifiable)), method: :post%></p>
-              <% elsif notif.action == "requestdenied" %>
+              <% elsif notif.action == "gamecreated" %>
                 <p><%=link_to "#{notif.actor.nickname} a creé une session de #{notif.notifiable.game.title}", mark_as_read_path(id: notif.id, url: gamesession_path(notif.notifiable)), method: :post%></p>
               <% else %>
                 <p>ERROR</p>

@@ -106,7 +106,6 @@ ActiveRecord::Schema.define(version: 2018_12_13_233822) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "time"
-    t.string "category"
     t.bigint "category_id"
     t.index ["category_id"], name: "index_games_on_category_id"
   end
@@ -130,11 +129,6 @@ ActiveRecord::Schema.define(version: 2018_12_13_233822) do
     t.datetime "updated_at", null: false
     t.index ["conversation_id"], name: "index_messages_on_conversation_id"
     t.index ["user_id"], name: "index_messages_on_user_id"
-  end
-
-  create_table "multiple_users_conversations", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "notifications", force: :cascade do |t|
@@ -174,11 +168,6 @@ ActiveRecord::Schema.define(version: 2018_12_13_233822) do
     t.datetime "updated_at", null: false
     t.index ["game_id"], name: "index_sessions_on_game_id"
     t.index ["host_id"], name: "index_sessions_on_host_id"
-  end
-
-  create_table "sessions_users", id: false, force: :cascade do |t|
-    t.bigint "session_id", null: false
-    t.bigint "user_id", null: false
   end
 
   create_table "users", force: :cascade do |t|

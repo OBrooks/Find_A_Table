@@ -1,18 +1,25 @@
+<h1>Liste de vos notifications</h1>
+<br/>
 <% @notifications.each do |notif|%>
   <% if notif.action == "chatmessage" %>
-    <p><%=link_to "#{notif.actor.nickname} a envoyé un message sur une chatroom", mark_as_read_path(id: notif.id, url: chatroom_path(notif.notifiable)), method: :post%> Lu : <%= notif.read_at %></p>
+    <h2><%=link_to "#{notif.actor.nickname} a envoyé un message sur une chatroom", mark_as_read_path(id: notif.id, url: chatroom_path(notif.notifiable)), method: :post%>
   <% elsif notif.action == "joinrequest" %>
-    <p><%=link_to "#{notif.actor.nickname} a demandé a rejoindre votre session de #{notif.notifiable.game.title}", mark_as_read_path(id: notif.id, url: gamesession_path(notif.notifiable)), method: :post%> Lu : <%= notif.read_at %></p>
+    <h2><%=link_to "#{notif.actor.nickname} a demandé a rejoindre votre session de #{notif.notifiable.game.title}", mark_as_read_path(id: notif.id, url: gamesession_path(notif.notifiable)), method: :post%>
   <% elsif notif.action == "leftgame" %>
-    <p><%=link_to "#{notif.actor.nickname} a quitté votre session de #{notif.notifiable.game.title}", mark_as_read_path(id: notif.id, url: gamesession_path(notif.notifiable)), method: :post%> Lu : <%= notif.read_at %></p>
+    <h2><%=link_to "#{notif.actor.nickname} a quitté votre session de #{notif.notifiable.game.title}", mark_as_read_path(id: notif.id, url: gamesession_path(notif.notifiable)), method: :post%>
   <% elsif notif.action == "requestaccepted" %>
-    <p><%=link_to "#{notif.actor.nickname} a accepté votre participation a sa session de #{notif.notifiable.game.title}", mark_as_read_path(id: notif.id, url: gamesession_path(notif.notifiable)), method: :post%> Lu : <%= notif.read_at %></p>
+    <h2><%=link_to "#{notif.actor.nickname} a accepté votre participation a sa session de #{notif.notifiable.game.title}", mark_as_read_path(id: notif.id, url: gamesession_path(notif.notifiable)), method: :post%>
   <% elsif notif.action == "requestdenied" %>
-    <p><%=link_to "#{notif.actor.nickname} a refusé votre participation a sa session de #{notif.notifiable.game.title}", mark_as_read_path(id: notif.id, url: gamesession_path(notif.notifiable)), method: :post%> Lu : <%= notif.read_at %></p>
-  <% elsif notif.action == "requestdenied" %>
-    <p><%=link_to "#{notif.actor.nickname} a creé une session de #{notif.notifiable.game.title}", mark_as_read_path(id: notif.id, url: gamesession_path(notif.notifiable)), method: :post%> Lu : <%= notif.read_at %></p>
+    <h2><%=link_to "#{notif.actor.nickname} a refusé votre participation a sa session de #{notif.notifiable.game.title}", mark_as_read_path(id: notif.id, url: gamesession_path(notif.notifiable)), method: :post%>
+  <% elsif notif.action == "gamecreated" %>
+    <h2><%=link_to "#{notif.actor.nickname} a creé une session de #{notif.notifiable.game.title}", mark_as_read_path(id: notif.id, url: gamesession_path(notif.notifiable)), method: :post%>
   <% else %>
-    <p>ERROR</p>
+    <h2>ERROR</h2>
+  <% end %>
+  <% if notif.read_at != nil %>
+  Lu : <%= notif.read_at %></h2>
+  <% else %>
+  Non lu </h2>
   <% end %>
   <br/>
 <% end %>
