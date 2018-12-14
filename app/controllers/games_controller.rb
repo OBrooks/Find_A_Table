@@ -38,7 +38,7 @@ class GamesController < ApplicationController
     end
 
     def create
-        
+
         @game = Game.create(title: params[:title], description: params[:description], image_url: params[:image_url], game_picture: params[:game_picture], min_players: params[:min_players], max_players: params[:max_players], time: "#{params[:time]}" + " min")
 
         if params[:new_category] != ""
@@ -51,21 +51,25 @@ class GamesController < ApplicationController
     end
 
     def show
+      if user_signed_in?
         if current_user.unwanted?
-            redirect_to root_path, :flash => { :error => "Vous êtes considérés comme indésirable, contactez les administrateurs si vous voulez contester cette décision" }
+          redirect_to root_path, :flash => { :error => "Vous êtes considérés comme indésirable, contactez les administrateurs si vous voulez contester cette décision" }
         end
         @game=Game.find(params[:id])
         @gamecom = Gamecom.new
         @gamecoms = @game.gamecoms.order(created_at: :desc)
         @favorites=Favorite.all
         if current_user != nil
-            @favorite=Favorite.find_by(user_id: current_user.id, game_id: params[:id])
+          @favorite=Favorite.find_by(user_id: current_user.id, game_id: params[:id])
         end
+      else
+        redirect_to index_path, :flash => { :error => "Vous devez être connecté pour accéder à cette page" }
+      end
     end
 
     def edit
         if user_signed_in?
-            if curent_user.unwanted?
+            if current_user.unwanted?
                 redirect_to root_path, :flash => { :error => "Vous êtes considérés comme indésirable, contactez les administrateurs si vous voulez contester cette décision" }
             end
         else
@@ -76,7 +80,7 @@ class GamesController < ApplicationController
 
     def update
         @game=Game.find(params[:id])
-        
+
         @game.update(title: params[:title], description: params[:description], image_url: params[:image_url], game_picture: params[:game_picture], min_players: params[:min_players], max_players: params[:max_players], time: "#{params[:time]}" + " min")
 
         if params[:new_category] != ""
@@ -85,6 +89,12 @@ class GamesController < ApplicationController
         else
             @game.update(category_id: params[:category_name])
         end
+        redirect_to games_path
+    end
+
+    def destroy
+        @game=Game.find(params[:id])
+        @game.destroy
         redirect_to games_path
     end
 
