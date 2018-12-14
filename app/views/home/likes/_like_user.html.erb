@@ -1,0 +1,3 @@
+<%= link_to like_user_path(liker_id: current_user.id, liked_id: @user.id, session_id: @session_id), remote: true do %>
+<i class="fa fa-thumbs-up unliked fa-2x" aria-hidden="true"></i>
+<% end %>

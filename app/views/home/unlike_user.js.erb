@@ -1,0 +1,3 @@
+$('#likes-<%=@user.id%>-<%=@session_id%> .fa-thumbs-o-up').fadeOut();
+$('#likes-<%=@user.id%>-<%=@session_id%>').html('<%= j render "home/likes/like_user"%>').fadeIn();
+$('#likes-<%=@user.id%>-<%=@session_id%> .fa-thumbs-up').addClass('animated fadeIn');
