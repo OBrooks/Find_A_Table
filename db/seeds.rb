@@ -25,20 +25,6 @@ password = '123456'
 end
 
 User.create!(
-
-    email: "THPBordeaux@gmail.com",
-
-    nickname: "THP",
-
-    password: password,
-
-    password_confirmation: password,
-
-    status: 3
-
-  )
-
-User.create!(
     email: "nazicat@nazi.cat",
 
     nickname: "nazicat",
