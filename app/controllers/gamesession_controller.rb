@@ -69,12 +69,20 @@ class GamesessionController < ApplicationController
     if @ses.valid? && Geocoder.search("#{@ses.adress}, #{@ses.city}") != []
       @ses.save
       @chatroom = Chatroom.create!(session_id: @ses.id)
+      @interesteduser = []
+      User.all.each do |user|
+        if user != current_user
+          if user.games.include?(@ses.game) || user.adders.include?(current_user)
+            Notification.create(recipient: user, actor: current_user, action: "gamecreated", notifiable: @session)
+          end
+        end
+      end
       redirect_to gamesession_index_path
     else
       flash.now[:danger]="Champs invalides"
       render :new
     end
-    
+
   end
 
   def edit

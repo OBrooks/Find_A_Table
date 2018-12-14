@@ -9,7 +9,7 @@ class UsersmessagesController < ApplicationController
     MessageRelayJob.perform_later(usersmessage)
     @chatroom.chatroom_users.each do |user|
       if user.user != current_user
-        #Notification.create(recipient: user.user, actor: current_user, action: "chatmessage", notifiable: @chatroom)
+        Notification.create(recipient: user.user, actor: current_user, action: "chatmessage", notifiable: @chatroom)
       end
     end
   end

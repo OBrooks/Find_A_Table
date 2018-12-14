@@ -37,6 +37,8 @@
                 <%=link_to "#{notif.actor.nickname} a accepté votre participation a sa session de #{notif.notifiable.game.title}", mark_as_read_path(id: notif.id, url: gamesession_path(notif.notifiable)), method: :post%>
               <% elsif notif.action == "requestdenied" %>
                 <%=link_to "#{notif.actor.nickname} a refusé votre participation a sa session de #{notif.notifiable.game.title}", mark_as_read_path(id: notif.id, url: gamesession_path(notif.notifiable)), method: :post%>
+              <% elsif notif.action == "requestdenied" %>
+                <%=link_to "#{notif.actor.nickname} a creé une session de #{notif.notifiable.game.title}", mark_as_read_path(id: notif.id, url: gamesession_path(notif.notifiable)), method: :post%>
               <% else %>
                 <p>ERROR</p>
               <% end %>
@@ -44,6 +46,7 @@
           <% else %>
             <p>Vous n'avez pas de nouvelles notifications</p>
           <% end %>
+          <%=link_to "Voir toute vos notifications", notifications_path%>
         </div>
       </li>
       <div class="messages">
