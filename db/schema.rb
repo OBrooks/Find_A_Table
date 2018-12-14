@@ -132,11 +132,6 @@ ActiveRecord::Schema.define(version: 2018_12_13_233822) do
     t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
-  create_table "multiple_users_conversations", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "notifications", force: :cascade do |t|
     t.integer "recipient_id"
     t.integer "actor_id"
