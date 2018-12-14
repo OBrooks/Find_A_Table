@@ -4,7 +4,7 @@ Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
   # Error routes
-  config.exceptions_app = self.routes
+  #config.exceptions_app = self.routes
 
   # Code is not reloaded between requests.
   config.cache_classes = true
