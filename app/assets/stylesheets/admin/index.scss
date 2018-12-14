@@ -23,3 +23,19 @@
 .btn-administration {
   background-color: rgba(160, 90, 40, .7) !important;
 }
+
+.btn-scrapper {
+  -webkit-transition: 0.4s; /* Safari */
+  transition: 0.4s;
+  padding: 5px;
+  font-size: 24px;
+  color: white;
+  background-color: rgba(24, 144, 24, .7);
+}
+
+.btn-scrapper:hover {
+  -webkit-transition: 0.4s; /* Safari */
+  transition: 0.4s;
+  color: red !important;
+  background-color: rgba(44, 44, 44, .7) !important;
+}

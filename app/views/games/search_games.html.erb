@@ -1,7 +1,18 @@
-<%=form_tag search_games_path do%>
-    <input class = "search full-width" id = "searchbar" name = "query" placeholder = "Rechercher un jeu, appuyez sur entrée" type ="text", autocomplete = "off">
-<%end%>
-<button onclick="location.href='/advanced_search_games'"><i aria-hidden="true"></i>Recherche avancée</button>
+<div class="container-fluid mt-4">
+  <div class="row">
+    <div class="col align-items-center">
+      <%=form_tag search_games_path do%>
+        <input class = "form-control" id = "searchbar" name = "query" placeholder = "Rechercher un jeu, appuyez sur entrée" type ="text", autocomplete = "off">
+      <%end%>
+    </div>
+    <div class="col">
+      <button class="btn-sidebar" onclick="location.href='/advanced_search_games'"><i aria-hidden="true"></i>Recherche avancée</button>
+    </div>
+    <div class="col d-flex justify-content-end">
+      <button class="btn-sidebar add-game" onclick="location.href='/games/new'">Ajouter un jeu</button>
+    </div>
+  </div>
+</div>
 
 <% @games.each do |game| %>
   <div class="container game-sticker">
