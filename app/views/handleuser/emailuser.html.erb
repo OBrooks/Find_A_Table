@@ -1,9 +1,30 @@
-<h2>Envoyez un email à <%=User.find(params["id"].to_i).nickname%></h2>
-<%=form_tag sendemail_path do%>
-    <p><b>Contenu de l'email</b></p> 
-    <%= hidden_field_tag "receiver_id", params["id"].to_i%>
-    <%= text_area_tag "content", value="", size: "160x20"%>
-    <p><b>Voulez vous recevoir une copie de l'email?</b></p>
-    <span><%=check_box_tag 'accept'%></span>
-    <p><%= submit_tag('Envoyer') %></p>
-<%end%>
+<div class="container container-contact_us">
+  <div class="row m-4">
+    <div class="col">
+      <h2>Envoyez un email à <%=User.find(params["id"].to_i).nickname%></h2>
+    </div>
+  </div>
+  <div class="row">
+  </div>
+  <div class="row">
+    <%=form_tag sendemail_path do%>
+    <div class="col d-flex justify-content-start">
+      <p class="send-info">Contenu de l'email :</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <%= hidden_field_tag "receiver_id", params["id"].to_i%>
+      <%= text_area_tag "content", value="", size: "140x4"%>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col d-flex justify-content-start">
+      <p><%= submit_tag('Envoyer') %></p>
+      <p class="send-info"><%=check_box_tag 'accept'%> Recevoir une copie de l'email</p>
+    </div>
+  </div>
+    <%end%>
+  </div>
+
+</div>
