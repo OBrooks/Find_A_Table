@@ -2,7 +2,7 @@
 
   <h2>Page webmaster</h2>
   <p>Lance le scrapping : </p>
-  <%=link_to "Scrapper comme jamais", scrapping_path, method: :post, class: "btn-sidebar" %>
+  <center><%=link_to "Scrapper comme jamais", scrapping_path, method: :post, class: "btn-scrapper" %></center>
   <p class="mt-4 mb-4">
   Cette page est strictement réservée au webmaster du site.</p>
   <p class="mt-4 mb-4">
@@ -22,10 +22,10 @@
       <p>Envoyer un mail</p>
     </div>
     <div class="col">
-      <p>Statut</p>
+      <p>Rétrograder</p>
     </div>
     <div class="col">
-      <p>Détruire</p>
+      <p>Cracher dessus</p>
     </div>
   </div>
   <%@users.admin.each do |user|%>
@@ -37,11 +37,12 @@
       <a href = "emailuser/<%=user.id%>"><%= user.email %></a>
     </div>
     <div class="col">
-      <%= link_to "Passer en utilisateur indésirable", superpost_path(usertounwanted: user.id), method: :post, class:"text-light"%>
+      <%= link_to "Repasser en utilisateur normal", superpost_path(admintonormaluser: user.id), method: :post, class:"text-light"%>
     </div>
     <div class="col">
-      <%= link_to "Supprimer le compte", superpost_path(deleteaccount: user.id), method: :post, class:"text-light"%>
+      <%= link_to "Passer en utilisateur indésirable", superpost_path(usertounwanted: user.id), method: :post, class:"text-light"%>
     </div>
+  
   </div>
   <%end%>
   </div>
@@ -57,10 +58,10 @@
         <p>Envoyer un mail</p>
       </div>
       <div class="col">
-        <p>Changer le statut</p>
+        <p>Promouvoir</p>
       </div>
       <div class="col">
-        <p>Détruire</p>
+        <p>Rétrograder</p>
       </div>
     </div>
     <%@users.peasant.each do |user|%>
@@ -72,10 +73,10 @@
         <a href = "emailuser/<%=user.id%>"><%= user.email %>
       </div>
       <div class="col">
-        <%= link_to "Passer en utilisateur indésirable", superpost_path(usertounwanted: user.id), method: :post, class:"text-light"%>
+        <%= link_to "Passer administrateur", superpost_path(normalusertoadmin: user.id), method: :post, class:"text-light"%>
       </div>
       <div class="col">
-        <%= link_to "Supprimer le compte", superpost_path(deleteaccount: user.id), method: :post, class:"text-light"%>
+        <%= link_to "Passer en utilisateur indésirable", superpost_path(usertounwanted: user.id), method: :post, class:"text-light"%>
       </div>
     </div>
     <%end%>
@@ -92,10 +93,9 @@
         <p>Envoyer un mail</p>
       </div>
       <div class="col">
-        <p>Changer le statut</p>
+        <p>Promouvoir</p>
       </div>
       <div class="col">
-        <p>Détruire</p>
       </div>
     </div>
     <%@users.unwanted.each do |user|%>
@@ -107,11 +107,11 @@
         <a href = "emailuser/<%=user.id%>"><%= user.email %></a>
       </div>
       <div class="col">
-        <%= link_to "Passer en utilisateur indésirable", superpost_path(usertounwanted: user.id), method: :post, class:"text-light"%>
+        <%= link_to "Repasser en utilisateur normal", superpost_path(admintonormaluser: user.id), method: :post, class:"text-light"%>
       </div>
       <div class="col">
-        <%= link_to "Supprimer le compte", superpost_path(deleteaccount: user.id), method: :post, class:"text-light"%>
       </div>
     </div>
     <%end%>
   </div>
+</div>

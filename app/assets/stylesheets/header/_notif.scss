@@ -1,0 +1,30 @@
+
+.dropdown-menu {
+    color: white;
+    display: none;
+    position: absolute;
+    top: 53px;
+    right: 0;
+    background-color: rgba(63, 62, 101, 0.9) !important;
+    width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+.dropdown-menu p {
+  text-align: center;
+  color: white;
+  font-size: 12px;
+}
+
+.dropdown-menu a {
+    color: white;
+    text-decoration: none;
+    display: block;
+    font-size: 12px;
+}
+
+.dropdown-menu a:hover {
+    color: lightblue;
+    text-decoration-line: none;
+}

@@ -57,8 +57,7 @@ Rails.application.routes.draw do
   get "acceptrequest",                  to: "gamesession#acceptrequest"
   get "denyrequest",                    to: "gamesession#denyrequest"
   get "removerequest",                  to: "gamesession#removerequest"
-
-
+  post "cancel_session",                to: "gamesession#cancel_session"
 
 
   get "webmaster",                      to: "handleuser#webmaster"
@@ -73,6 +72,8 @@ Rails.application.routes.draw do
 
   get "display_calendar",               to: "calendar#display_calendar"
 
+  post "mark_as_read", to: "notifications#mark_as_read"
+  get "notifications", to: "notifications#index"
   #get "*path" => 'error#handle_404'
 
 end
