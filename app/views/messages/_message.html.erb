@@ -6,7 +6,7 @@
           <% if message.user.profile_picture.attachment != nil %>
         <%= image_tag rails_blob_path(message.user.profile_picture, disposition: "attachement"), id:"avatar" %>
           <% else %>
-              <img src="https://uploads1.yugioh.com/card_images/4945/detail/Hero-Dice.jpg?1398377913" alt="avatar" id="avatar">
+            <img src="/img/ninja.png" alt="avatar" id="avatar">
           <% end %>
         </div>
         <div class="chatboxmessagecontent <%= user.id == message.user_id ? 'message-sent' : 'message-received' %> self_or_other(message)" id="messages">

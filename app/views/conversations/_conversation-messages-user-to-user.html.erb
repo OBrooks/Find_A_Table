@@ -1,5 +1,5 @@
-<div class="panel panel-default messenger messenger-default conversationbox" data-conversation-id="<%= @conversation.id %>">
-<div class="panel-body messenger-body">
+<div class="messenger messenger-default conversationbox" data-conversation-id="<%= @conversation.id %>">
+<div class="messenger-body">
 
     <div class="messages-list" id="messagelist">
         <ul>
@@ -7,11 +7,11 @@
         </ul>
     </div>
 
-    <form class="new_message chatboxinput">
+    <form class="new_message">
         <input name="conversation_id" type="hidden" value="<%= @conversation.id %>">
         <input name="user_id" type="hidden" value="<%= @user.id %>">
         <textarea name="body" class="chatboxtextarea"></textarea>
-        <input type="submit" class="btn btn-success" value="Send">
+        <input type="submit" class="button-message" value="Send">
     </form>
 </div>
 </div>
