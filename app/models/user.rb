@@ -14,8 +14,8 @@ class User < ApplicationRecord
   has_many :conversations, foreign_key: :sender_id
   
   #Chatroom conversation
-  has_many :chatroom_users
-  has_many :chatrooms, through: :chatroom_users
+  has_many :chatroom_users, dependent: :destroy
+  has_many :chatrooms, through: :chatroom_users, dependent: :destroy
   has_many :usersmessages
 
   #Sessions
@@ -36,19 +36,12 @@ class User < ApplicationRecord
   #Comments' games
   has_many :gamecoms
   
-  # validates :nickname, uniqueness: true, on: :create
-  # validates :birthdate, on: :create
-  # validates :gender, on: :create
-  # validates :town, on: :create
-  # validates :first_name, on: :create
-  # validates :last_name, on: :create
-
-  # validates_uniqueness_of :nickname
-  # validates_presence_of :birthdate
-  # validates_presence_of :gender
-  # validates_presence_of :town
-  # validates_presence_of :first_name
-  # validates_presence_of :last_name
+  # validates_presence_of :nickname, uniqueness: true, on: :create
+  # validates_presence_of :birthdate, on: :create
+  # validates_presence_of :gender, on: :create
+  # validates_presence_of :town, on: :create
+  # validates_presence_of :first_name, on: :create
+  # validates_presence_of :last_name, on: :create
 
   after_create :send_mail_sign_in
 
