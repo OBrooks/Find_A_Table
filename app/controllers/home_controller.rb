@@ -24,9 +24,22 @@ class HomeController < ApplicationController
         @games << @game
     end
     @users_favorites=FavoritesUser.where(adder_id: current_user.id)
-    puts "Les users sont #{@users_favorites}"
-    
-
+    @params_favorites=[]
+    @conversation_last_id=Conversation.maximum(:id).next
+    @users_favorites.each do |user_favorite|
+      param_favor=Hash.new
+      conversation_sender = Conversation.find_by(sender_id: current_user.id, recipient_id: user_favorite.added.id)
+      conversation_recipient = Conversation.find_by(recipient_id: current_user.id, sender_id: user_favorite.added.id)
+        if conversation_sender != nil
+          param_favor={"nickname"=>user_favorite.added.nickname, "di"=> user_favorite.added.id.to_i, "conversation"=>conversation_sender.id}
+        elsif conversation_recipient != nil
+          param_favor={"nickname"=>user_favorite.added.nickname, "di"=> user_favorite.added.id.to_i, "conversation"=>conversation_recipient.id}
+        else
+          param_favor={"nickname"=>user_favorite.added.nickname, "di"=> user_favorite.added.id.to_i, "conversation"=>@conversation_last_id}
+        end
+        @params_favorites << param_favor
+      end
+      puts "Le params_favorites est #{@params_favorites}"
     end
 
   #Favorites Games
@@ -104,5 +117,17 @@ class HomeController < ApplicationController
         if current_user != nil
             @favorite=FavoritesUser.find_by(adder_id: current_user.id, added_id: params[:id])
         end
-  end
+      
+      @conversation_last_id=Conversation.maximum(:id).next
+      conversation_sender = Conversation.find_by(sender_id: current_user.id, recipient_id: @user.id)
+      conversation_recipient = Conversation.find_by(recipient_id: current_user.id, sender_id: @user.id)
+        if conversation_sender != nil
+          @conversation_id=conversation_sender.id
+        elsif conversation_recipient != nil
+          @conversation_id=conversation_recipient.id
+        else
+          @conversation_id=@conversation_last_id
+        end
+      end
+    
 end

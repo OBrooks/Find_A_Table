@@ -1,10 +1,39 @@
-<h2>Recherche avancée</h2>
-<%=form_tag search_games_path do%>
-    <p><b>Recherche</b></p> 
-    <%= text_field_tag "advanced_query"%>
-    <p><b>Catégorie du jeu </b></p> 
-    <%= select_tag 'category', options_from_collection_for_select(Category.order(:id), 'id', 'category_name'), prompt: "Select a category" %>
-    <p><b>Nombre de joueurs maximum </b></p> 
-    <%= number_field_tag 'max_players', min: 0%>
-    <p><%= submit_tag('Rechercher') %></p>
-<%end%>
+<div class="container m-5 text-white">
+  <div class="row">
+    <div class="col-lg-3">
+      <h2>Recherche avancée</h2>
+    </div>
+  </div>
+  <%=form_tag search_games_path do%>
+  <div class="row">
+    <div class="col-lg-3">
+      <p><b>Recherche</b></p>
+    </div>
+    <div class="col-3 d-flex justify-content-start">
+      <%= text_field_tag "advanced_query", "", class: "form-control text-dark"%>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-3">
+      <p><b>Catégorie du jeu </b></p>
+    </div>
+    <div class="col-3 d-flex justify-content-start">
+      <%= select_tag 'category', options_from_collection_for_select(Category.order(:id), 'id', 'category_name'), prompt: "Select a category", class: "form-control" %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-3">
+    <p><b>Nombre de joueurs maximum </b></p>
+    </div>
+    <div class="col-1">
+    <p class="text-dark"><%= number_field_tag 'max_players', min: 0 %></p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-3">
+      <%= submit_tag('Rechercher', class:"btn-sidebar") %>
+    </div>
+  </div>
+  <%end%>
+
+</div>

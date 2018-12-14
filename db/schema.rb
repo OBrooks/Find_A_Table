@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_13_165322) do
+ActiveRecord::Schema.define(version: 2018_12_13_173303) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -106,7 +106,6 @@ ActiveRecord::Schema.define(version: 2018_12_13_165322) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "time"
-    t.string "category"
     t.bigint "category_id"
     t.index ["category_id"], name: "index_games_on_category_id"
   end
@@ -119,6 +118,17 @@ ActiveRecord::Schema.define(version: 2018_12_13_165322) do
     t.datetime "updated_at", null: false
     t.index ["conversation_id"], name: "index_messages_on_conversation_id"
     t.index ["user_id"], name: "index_messages_on_user_id"
+  end
+
+  create_table "notifications", force: :cascade do |t|
+    t.integer "recipient_id"
+    t.integer "actor_id"
+    t.datetime "read_at"
+    t.string "action"
+    t.integer "notifiable_id"
+    t.string "notifiable_type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "requests", force: :cascade do |t|
@@ -147,11 +157,6 @@ ActiveRecord::Schema.define(version: 2018_12_13_165322) do
     t.datetime "updated_at", null: false
     t.index ["game_id"], name: "index_sessions_on_game_id"
     t.index ["host_id"], name: "index_sessions_on_host_id"
-  end
-
-  create_table "sessions_users", id: false, force: :cascade do |t|
-    t.bigint "session_id", null: false
-    t.bigint "user_id", null: false
   end
 
   create_table "users", force: :cascade do |t|

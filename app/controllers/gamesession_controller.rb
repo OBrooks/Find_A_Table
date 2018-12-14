@@ -8,7 +8,7 @@ class GamesessionController < ApplicationController
       if current_user.unwanted?
         redirect_to root_path, :flash => { :error => "Vous êtes considérés comme indésirable, contactez les administrateurs si vous voulez contester cette décision" }
       end
-    
+
     else
       redirect_to not_signed_in_path
     end
@@ -35,7 +35,7 @@ class GamesessionController < ApplicationController
     else
       @games = Game.where("title LIKE? or title LIKE? or description LIKE? or description LIKE?", @game.titleize, @game, @game.titleize, @game)
     end
-    
+
     @sessions_array = []
     @sessions.each do |session|
       @games.each do |game|
@@ -44,15 +44,13 @@ class GamesessionController < ApplicationController
         end
       end
     end
-
-    puts "ICIIIIIIIIIIIIIIIIIIIIIIIIi"
     puts @sessions_array
   end
 
   def show
     @session = Session.find(params[:id])
     @chatroom = Chatroom.find_by(session_id: params[:id])
-    
+
     @location = Geocoder.search(@session.city)
     @adress = Geocoder.search("#{@session.adress}, #{@session.city}")
     @circle= [(@location.first.coordinates[0]+@adress.first.coordinates[0])/2,(@location.first.coordinates[1]+@adress.first.coordinates[1])/2]
@@ -65,16 +63,25 @@ class GamesessionController < ApplicationController
   end
 
   def create
-    @ses = Session.new(host_id: current_user.id, game_id: params[:game], time: params[:time], date: params[:date], city: params[:city], adress: params[:adress], description: params[:description], playernb: params[:playernb].to_i, maxplayers: params[:maxplayers], status: params[:status].to_i, playerskill: params[:playerskill].to_i)
-    if @ses.valid? && Geocoder.search("#{@ses.adress}, #{@ses.city}") != []
-      @ses.save
-      @chatroom = Chatroom.create!(session_id: @ses.id)
+    @session = Session.new(host_id: current_user.id, game_id: params[:game], time: params[:time], date: params[:date], city: params[:city], adress: params[:adress], description: params[:description], playernb: params[:playernb].to_i, maxplayers: params[:maxplayers], status: params[:status].to_i, playerskill: params[:playerskill].to_i)
+    if @session.valid? && Geocoder.search("#{@session.adress}, #{@session.city}") != []
+      @session.players << current_user
+      @request = Request.find_by(user_id: params[:user_id], session_id: params[:session_id])
+      @request.accepted!
+      @session.save
+      @chatroom = Chatroom.create!(session_id: @session.id)
+      User.all.each do |user|
+        if user != current_user
+          if user.games.include?(@session.game) || user.adders.include?(current_user)
+            Notification.create(recipient: user, actor: current_user, action: "gamecreated", notifiable: @session)
+          end
+        end
+      end
       redirect_to gamesession_index_path
     else
       flash.now[:danger]="Champs invalides"
       render :new
     end
-    
   end
 
   def edit
@@ -102,6 +109,7 @@ class GamesessionController < ApplicationController
     @session = Session.find(params[:id])
     @session.players << current_user
     @session.save
+    Notification.create(recipient: @session.host, actor: current_user, action: "joinrequest", notifiable: @session)
     redirect_back fallback_location: root_path
     flash[:notice]="SessionJoined"
     @chatroom = Chatroom.find_by(session_id: params[:id])
@@ -117,6 +125,7 @@ class GamesessionController < ApplicationController
       @session.available!
     end
     @session.save
+    Notification.create(recipient: @session.host, actor: current_user, action: "leftgame", notifiable: @session)
     flash[:danger]="SessionLeft"
     redirect_to gamesession_index_path
   end
@@ -138,13 +147,14 @@ class GamesessionController < ApplicationController
       @session.full!
     end
     @session.save
+    Notification.create(recipient: @session.host, actor: current_user, action: "requestaccepted", notifiable: @session)
     redirect_back fallback_location: root_path
   end
 
   def denyrequest
     @request = Request.find_by(user_id: params[:user_id], session_id: params[:session_id])
     @request.denied!
-    @session.save
+    Notification.create(recipient: @session.host, actor: current_user, action: "requestdenied", notifiable: @session)
     redirect_back fallback_location: root_path
   end
 
