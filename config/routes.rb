@@ -55,8 +55,7 @@ Rails.application.routes.draw do
   get "acceptrequest",                  to: "gamesession#acceptrequest"
   get "denyrequest",                    to: "gamesession#denyrequest"
   get "removerequest",                  to: "gamesession#removerequest"
-
-
+  post "cancel_session",                to: "gamesession#cancel_session"
 
 
   get "webmaster",                      to: "handleuser#webmaster"

@@ -18,7 +18,7 @@ class GamesessionController < ApplicationController
   end
 
   def index
-    @sessions = Session.all
+    @sessions = Session.where('status = ?', 0)
   end
 
   def search_sessions
@@ -90,6 +90,11 @@ class GamesessionController < ApplicationController
   def destroy
     @session = Session.find(params[:id])
     @session.destroy
+    redirect_to gamesession_index_path
+  end
+
+  def cancel_session
+    Session.find(params[:session_id]).cancelled!
     redirect_to gamesession_index_path
   end
 

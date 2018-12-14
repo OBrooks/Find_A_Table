@@ -25,6 +25,9 @@
     <% if user_signed_in? %>
       <a href = "<%=edit_game_path(@game.id)%>">Modifier les informations du jeu</a>
     <%end%>
+    <%if current_user.webmaster?%>
+      <%= link_to 'Supprimer', game_path(@game.id), method: :delete %>
+    <%end%>
     <div class="row">
       <div class="col-lg-3 d-flex justify-content-center align-items-start">
         <% if @game.game_picture.attachment != nil %>

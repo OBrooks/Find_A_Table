@@ -88,6 +88,12 @@ class GamesController < ApplicationController
         redirect_to games_path
     end
 
+    def destroy
+        @game=Game.find(params[:id])
+        @game.destroy
+        redirect_to games_path
+    end
+
     def create_comment
         if params[:gamecom][:score] == nil || params[:gamecom][:content] == ""
             redirect_to "/games/#{params[:gamecom][:game_id]}", :flash => { :error => "Vous devez laisser un commentaire et une note" }
