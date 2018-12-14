@@ -13,7 +13,6 @@
   <%else%>
     <div class="row">
       <div class="col">
-
         <div class="row">
           <div class="col">
             <h2><%=@session.game.title%></h2>
@@ -71,16 +70,14 @@
               <div class="col d-flex justify-content-start">
                 <p>Statut : <% request = Request.find_by(user_id: player.id, session_id: @session.id) %> <%= request.status %></p>
               </div>
-              <% if user_signed_in? %>
-                <% if @session.host == current_user %>
-                  <% if request.pending? %>
-                    <div class="col">
-                      <p class="requestbuttonyes"><%=link_to "Accepter", acceptrequest_path(session_id: @session.id, user_id: player.id)%></p>
-                    </div>
-                    <div class="col">
-                      <p class="requestbuttonno"><%=link_to "Refuser", denyrequest_path(session_id: @session.id, user_id: player.id)%></p>
-                    </div>
-                    <% end %>
+              <% if @session.host == current_user %>
+                <% if request.pending? %>
+                  <div class="col">
+                    <p class="requestbuttonyes"><%=link_to "Accepter", acceptrequest_path(session_id: @session.id, user_id: player.id)%></p>
+                  </div>
+                  <div class="col">
+                    <p class="requestbuttonno"><%=link_to "Refuser", denyrequest_path(session_id: @session.id, user_id: player.id)%></p>
+                  </div>
                   <% end %>
                 <% end %>
             </div>
@@ -103,13 +100,13 @@
               function initMap() {
                 var loc = {lat: <%= @circle[0] %>, lng: <%= @circle[1] %>};
                 var adr = {lat: <%= @adress.first.coordinates[0] %>, lng: <%= @adress.first.coordinates[1] %>};
-                <% if user_signed_in? && @session.players.include?(current_user) && Request.find_by(user_id: current_user.id, session_id: @session.id).accepted? %>
+                <% if @session.players.include?(current_user) && Request.find_by(user_id: current_user.id, session_id: @session.id).accepted? %>
                   var map = new google.maps.Map(
-                  document.getElementById('map'), {zoom: 15, center: adr});
+                  document.getElementById('map'), {zoom: 14, center: adr});
                   var marker = new google.maps.Marker({position: adr, map: map});
                 <% else %>
                   var map = new google.maps.Map(
-                  document.getElementById('map'), {zoom: 14, center: loc});
+                  document.getElementById('map'), {zoom: 12.7, center: loc});
                   var marker = new google.maps.Circle({center: loc, map: map, strokeColor: '#FF0000', strokeOpacity: 0.8, strokeWeight: 2, fillColor: '#FF0000', fillOpacity: 0.35, radius: 1500});
                 <% end %>
               }

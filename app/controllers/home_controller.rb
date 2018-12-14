@@ -113,7 +113,7 @@ class HomeController < ApplicationController
             @favorite=FavoritesUser.find_by(adder_id: current_user.id, added_id: params[:id])
         end
 
-      # @conversation_last_id=Conversation.maximum(:id).next
+      @conversation_last_id=Conversation.maximum(:id).next
       conversation_sender = Conversation.find_by(sender_id: current_user.id, recipient_id: @user.id)
       conversation_recipient = Conversation.find_by(recipient_id: current_user.id, sender_id: @user.id)
         if conversation_sender != nil
