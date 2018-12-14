@@ -22,5 +22,3 @@ skip_before_action :require_login
      end
    end
  end
-
-end
