@@ -20,25 +20,25 @@
       </div>
     <% end %>
     <% if user_signed_in? %>
-      <li class="nav-item btn-group">
-        <a class="dropdown-toggle nav-link" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <li class="nav-item btn-group d-flex align-items-center">
+        <a class="dropdown-toggle nav-link" onclick="headerDropdown2()" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <%= fa_icon "bell" %> <span><%= @usernotifs.length %></span>
         </a>
-        <div class="dropdown-menu" style="background-color: DarkGray;" aria-labelledby="dropdownMenu1">
+        <div class="dropdown-menu" id="header-dropdown-content-2" aria-labelledby="dropdownMenu1">
           <% if @usernotifs != [] %>
             <% @usernotifs.each do |notif| %>
               <% if notif.action == "chatmessage" %>
-                <%=link_to "#{notif.actor.nickname} a envoyé un message sur une chatroom", mark_as_read_path(id: notif.id, url: chatroom_path(notif.notifiable)), method: :post%>
+                <p><%=link_to "#{notif.actor.nickname} a envoyé un message sur une chatroom", mark_as_read_path(id: notif.id, url: chatroom_path(notif.notifiable)), method: :post%></p>
               <% elsif notif.action == "joinrequest" %>
-                <%=link_to "#{notif.actor.nickname} a demandé a rejoindre votre session de #{notif.notifiable.game.title}", mark_as_read_path(id: notif.id, url: gamesession_path(notif.notifiable)), method: :post%>
+                <p><%=link_to "#{notif.actor.nickname} a demandé a rejoindre votre session de #{notif.notifiable.game.title}", mark_as_read_path(id: notif.id, url: gamesession_path(notif.notifiable)), method: :post%></p>
               <% elsif notif.action == "leftgame" %>
-                <%=link_to "#{notif.actor.nickname} a quitté votre session de #{notif.notifiable.game.title}", mark_as_read_path(id: notif.id, url: gamesession_path(notif.notifiable)), method: :post%>
+                <p><%=link_to "#{notif.actor.nickname} a quitté votre session de #{notif.notifiable.game.title}", mark_as_read_path(id: notif.id, url: gamesession_path(notif.notifiable)), method: :post%></p>
               <% elsif notif.action == "requestaccepted" %>
-                <%=link_to "#{notif.actor.nickname} a accepté votre participation a sa session de #{notif.notifiable.game.title}", mark_as_read_path(id: notif.id, url: gamesession_path(notif.notifiable)), method: :post%>
+                <p><%=link_to "#{notif.actor.nickname} a accepté votre participation a sa session de #{notif.notifiable.game.title}", mark_as_read_path(id: notif.id, url: gamesession_path(notif.notifiable)), method: :post%></p>
               <% elsif notif.action == "requestdenied" %>
-                <%=link_to "#{notif.actor.nickname} a refusé votre participation a sa session de #{notif.notifiable.game.title}", mark_as_read_path(id: notif.id, url: gamesession_path(notif.notifiable)), method: :post%>
+                <p><%=link_to "#{notif.actor.nickname} a refusé votre participation a sa session de #{notif.notifiable.game.title}", mark_as_read_path(id: notif.id, url: gamesession_path(notif.notifiable)), method: :post%></p>
               <% elsif notif.action == "requestdenied" %>
-                <%=link_to "#{notif.actor.nickname} a creé une session de #{notif.notifiable.game.title}", mark_as_read_path(id: notif.id, url: gamesession_path(notif.notifiable)), method: :post%>
+                <p><%=link_to "#{notif.actor.nickname} a creé une session de #{notif.notifiable.game.title}", mark_as_read_path(id: notif.id, url: gamesession_path(notif.notifiable)), method: :post%></p>
               <% else %>
                 <p>ERROR</p>
               <% end %>
@@ -46,7 +46,7 @@
           <% else %>
             <p>Vous n'avez pas de nouvelles notifications</p>
           <% end %>
-          <%=link_to "Voir toute vos notifications", notifications_path%>
+          <p><%=link_to "Voir toute vos notifications", notifications_path%></p>
         </div>
       </li>
       <div class="messages">
@@ -57,7 +57,7 @@
           <% if current_user.profile_picture.attachment != nil %>
             <%= image_tag current_user.profile_picture, id:"avatar", onclick:"headerDropdown()" %>
           <% else %>
-            <img onclick="headerDropdown()" src="https://i.kym-cdn.com/photos/images/newsfeed/000/885/429/ba9.gif" alt="avatar" id="avatar">
+            <img onclick="headerDropdown()" src="/img/ninja.png" alt="avatar" id="avatar">
           <% end %>
           <div class="dropdown-content" id="header-dropdown-content">
             <p> <%= link_to "Votre Profil", profile_path%> </p>

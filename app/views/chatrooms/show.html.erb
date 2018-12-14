@@ -22,7 +22,7 @@
     <% if user.profile_picture.attachment != nil %>
       <%= image_tag user.profile_picture, id:"avatar", title:user.nickname %>
     <% else %>
-      <img src="https://i.kym-cdn.com/photos/images/newsfeed/000/885/429/ba9.gif" alt="avatar" id="avatar" title="coucou">
+      <img src="/img/ninja.png" alt="avatar" id="avatar" title="coucou">
     <% end %>
   </div>
   <% end %>
@@ -43,7 +43,7 @@
       <% if current_user.profile_picture.attachment != nil %>
         <%= image_tag current_user.profile_picture, id:"avatar" %>
       <% else %>
-        <img src="https://i.kym-cdn.com/photos/images/newsfeed/000/885/429/ba9.gif" alt="avatar" id="avatar">
+        <img src="/img/ninja.png" alt="avatar" id="avatar">
       <% end %>
     </div>
     <div class="col">
