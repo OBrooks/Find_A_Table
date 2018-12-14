@@ -51,21 +51,25 @@ class GamesController < ApplicationController
     end
 
     def show
-        if current_user.unwanted?
-            redirect_to root_path, :flash => { :error => "Vous êtes considérés comme indésirable, contactez les administrateurs si vous voulez contester cette décision" }
-        end
-        @game=Game.find(params[:id])
-        @gamecom = Gamecom.new
-        @gamecoms = @game.gamecoms.order(created_at: :desc)
-        @favorites=Favorite.all
-        if current_user != nil
-            @favorite=Favorite.find_by(user_id: current_user.id, game_id: params[:id])
+        if user_signed_in?
+            if current_user.unwanted?
+                redirect_to root_path, :flash => { :error => "Vous êtes considérés comme indésirable, contactez les administrateurs si vous voulez contester cette décision" }
+            end
+            @game=Game.find(params[:id])
+            @gamecom = Gamecom.new
+            @gamecoms = @game.gamecoms.order(created_at: :desc)
+            @favorites=Favorite.all
+            if current_user != nil
+                @favorite=Favorite.find_by(user_id: current_user.id, game_id: params[:id])
+            end
+        else
+            redirect_to index_path, :flash => { :error => "Vous devez être connecté pour accéder à cette page" }
         end
     end
 
     def edit
         if user_signed_in?
-            if curent_user.unwanted?
+            if current_user.unwanted?
                 redirect_to root_path, :flash => { :error => "Vous êtes considérés comme indésirable, contactez les administrateurs si vous voulez contester cette décision" }
             end
         else
