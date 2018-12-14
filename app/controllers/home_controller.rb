@@ -1,6 +1,31 @@
 class HomeController < ApplicationController
 
     def index
+
+      @faved_games = []
+      all_faved_games = []
+      Favorite.all.each do |favorite|
+        all_faved_games << favorite.game_id
+      end
+      faved_games_sorted = all_faved_games.sort_by { |u| all_faved_games.count(u) }.reverse
+      c = 0
+      while faved_games_sorted != [] && c<=5
+        @currentgameid = faved_games_sorted[0]
+        @currentgameoccurence = faved_games_sorted.count(@currentgameid)
+        @faved_games << {"game_id" => @currentgameid, "favs" => @currentgameoccurence}
+        faved_games_sorted = faved_games_sorted[@currentgameoccurence..-1]
+        print faved_games_sorted
+        c+=1
+      end
+      @best_city = []
+      all_cities = []
+      Session.all.each do |session|
+        all_cities << session.city
+      end
+      city_name = all_cities.max_by { |i| all_cities.count(i)}
+      @best_city << {"city_name" => city_name, "number_of_sessions" => all_cities.count(city_name)}
+      puts "ICIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII"
+      puts @best_city
     end
 
     def profile

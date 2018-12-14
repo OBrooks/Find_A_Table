@@ -65,7 +65,7 @@
                     <h2>Voici tes joueurs favoris :</h2>
                   </div>
         <% end %>
-    <% if @users_favorites.length == 0 %>
+    <% if @users_favorites.length == 0 || @users_favorites == nil %>
       <h3>Vous n'avez pas encore d'utilisateurs favoris !</h3><br>
       <% else %>
         <% @params_favorites.each do |favorite| %>

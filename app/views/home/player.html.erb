@@ -89,7 +89,7 @@
         <div class="col">
             <h2>Ses jeux favoris</h2>
             <br>
-                <% if @favorites_games.length < 1 %>
+            <% if @favorites_games.length < 1 || @favorites_games == nil %>
                     Pas de jeu ajouté aux favoris !
                 <% else %>
                     <% @favorites_games.each do |favoris| %>

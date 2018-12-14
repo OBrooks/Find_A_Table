@@ -16,3 +16,11 @@
 //= require turbolinks
 //= require bootstrap-sprockets
 //= require_tree .
+
+$(document).on("turbolinks:click", function () {
+    $("#load_screen").show();
+});
+
+$(document).on("turbolinks:load", function () {
+    $("#load_screen").fadeOut();
+});
