@@ -4,7 +4,7 @@
 
 ## PRESENTATION DU PROJET
 
-Bienvenue sur le repository de [Table Finder](https://find-a-table.herokuapp.com/index) !  
+Bienvenue sur le repository de [Table Finder](https://find-a-table.herokuapp.com) !  
 
 Cette application web a pour but de fournir à ses utilisateurs une plate-forme permettant d'organiser facilement des parties de jeux de société avec d'autres passionnés et intéressés, fournissant une banque de données de jeux, un système de messageries, et divers outils aidant à l'organisation des parties.  
 
