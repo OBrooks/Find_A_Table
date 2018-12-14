@@ -65,4 +65,7 @@ Rails.application.routes.draw do
   post "mail_us",                       to: "handleuser#mail_us"
 
   get "display_calendar",               to: "calendar#display_calendar"
+
+  post "mark_as_read", to: "notifications#mark_as_read"
+
 end

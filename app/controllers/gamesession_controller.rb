@@ -8,7 +8,7 @@ class GamesessionController < ApplicationController
       if current_user.unwanted?
         redirect_to root_path
       end
-    
+
     else
       redirect_to not_signed_in_path
     end
@@ -35,7 +35,7 @@ class GamesessionController < ApplicationController
     else
       @games = Game.where("title LIKE? or title LIKE? or description LIKE? or description LIKE?", @game.titleize, @game, @game.titleize, @game)
     end
-    
+
     @sessions_array = []
     @sessions.each do |session|
       @games.each do |game|
@@ -52,7 +52,7 @@ class GamesessionController < ApplicationController
   def show
     @session = Session.find(params[:id])
     @chatroom = Chatroom.find_by(session_id: params[:id])
-    
+
     @location = Geocoder.search(@session.city)
     @adress = Geocoder.search("#{@session.adress}, #{@session.city}")
     @circle= [(@location.first.coordinates[0]+@adress.first.coordinates[0])/2,(@location.first.coordinates[1]+@adress.first.coordinates[1])/2]
@@ -96,6 +96,7 @@ class GamesessionController < ApplicationController
     @session = Session.find(params[:id])
     @session.players << current_user
     @session.save
+    Notification.create(recipient: @session.host, actor: current_user, action: "joinrequest", notifiable: @session)
     redirect_back fallback_location: root_path
     flash[:notice]="SessionJoined"
     @chatroom = Chatroom.find_by(session_id: params[:id])
@@ -111,6 +112,7 @@ class GamesessionController < ApplicationController
       @session.available!
     end
     @session.save
+    Notification.create(recipient: @session.host, actor: current_user, action: "leftgame", notifiable: @session)
     flash[:danger]="SessionLeft"
     redirect_to gamesession_index_path
   end
@@ -132,13 +134,14 @@ class GamesessionController < ApplicationController
       @session.full!
     end
     @session.save
+    Notification.create(recipient: @session.host, actor: current_user, action: "requestaccepted", notifiable: @session)
     redirect_back fallback_location: root_path
   end
 
   def denyrequest
     @request = Request.find_by(user_id: params[:user_id], session_id: params[:session_id])
     @request.denied!
-    @session.save
+    Notification.create(recipient: @session.host, actor: current_user, action: "requestdenied", notifiable: @session)
     redirect_back fallback_location: root_path
   end
 
