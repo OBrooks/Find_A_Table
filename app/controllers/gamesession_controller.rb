@@ -73,7 +73,7 @@ class GamesessionController < ApplicationController
       @chatroom = Chatroom.create!(session_id: @session.id)
       User.all.each do |user|
         if user != current_user
-          if user.games.include?(@session.game) || user.adders.include?(current_user)
+          if user.games.include?(@session.game) || user.addeds.include?(current_user)
             Notification.create(recipient: user, actor: current_user, action: "gamecreated", notifiable: @session)
           end
         end

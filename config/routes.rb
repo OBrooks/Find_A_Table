@@ -72,9 +72,12 @@ Rails.application.routes.draw do
 
   get "display_calendar",               to: "calendar#display_calendar"
 
-  post "mark_as_read", to: "notifications#mark_as_read"
-  post "mark_all_as_read", to: "notifications#mark_all_as_read"
-  get "notifications", to: "notifications#index"
-  #get "*path" => 'error#handle_404'
+  post "mark_as_read",                  to: "notifications#mark_as_read"
+  post "mark_all_as_read",              to: "notifications#mark_all_as_read"
+  get "notifications",                  to: "notifications#index"
+  
+  get "/404",                           to: "errors#not_found"
+  get "/422",                           to: "errors#unacceptable"
+  get "/500",                           to: "errors#internal_error"
 
 end

@@ -1,6 +1,6 @@
 
     <div class="clearfix d-flex flex-row flex-wrap container-fav mt-4">
-        <% if @favoris.length == 0 %>
+        <% if @games.length == 0 %>
             <h3>Votre liste de jeux favoris est vide.</h3><br>
             <h3>Vous pouvez retourner sur la <a href="/games">page des jeux</a> pour en ajouter.</h3>
         <% else %>
@@ -65,7 +65,7 @@
                     <h2>Voici tes joueurs favoris :</h2>
                   </div>
         <% end %>
-    <% if @users_favorites.length == 0 %>
+    <% if @users_favorites.length == 0 || @users_favorites == nil %>
       <h3>Vous n'avez pas encore d'utilisateurs favoris !</h3><br>
       <% else %>
         <% @params_favorites.each do |favorite| %>
