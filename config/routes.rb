@@ -40,6 +40,12 @@ Rails.application.routes.draw do
   get "favoris",                        to: "home#favoris"
   get 'add_to_favorites',               to: "home#add_to_favorites"
   get 'remove_from_favorites',          to: "home#remove_from_favorites"
+  get 'add_users_to_favorites',         to: "home#add_users_to_favorites"
+  get 'remove_users_from_favorites',    to: "home#remove_users_from_favorites"
+  get "mysessions",                     to: "home#mysessions"
+  get "player/:id",                     to: "home#player"
+  get "list_users",                     to:"home#list_users"
+
 
   resources :gamesession
   post "search_sessions",               to: "gamesession#search_sessions"
@@ -49,10 +55,9 @@ Rails.application.routes.draw do
   get "acceptrequest",                  to: "gamesession#acceptrequest"
   get "denyrequest",                    to: "gamesession#denyrequest"
   get "removerequest",                  to: "gamesession#removerequest"
-  get "mysessions",                     to: "home#mysessions"
-  get "player/:id",                     to: "home#player"
 
-  get "list_users",                     to:"home#list_users"
+
+
 
   get "webmaster",                      to: "handleuser#webmaster"
   post "webmaster",                     to: "handleuser#scrapping"
@@ -67,5 +72,6 @@ Rails.application.routes.draw do
   get "display_calendar",               to: "calendar#display_calendar"
 
   post "mark_as_read", to: "notifications#mark_as_read"
+  #get "*path" => 'error#handle_404'
 
 end

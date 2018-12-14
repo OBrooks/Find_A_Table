@@ -32,6 +32,9 @@
           <%= render "layouts/sidebar" %>
         </div>
           <div class="col-lg-10 col-main-content">
+              <% flash.each do |key, value| %>
+                <bold><center><%= content_tag :div, value, class: "flash #{key}", class: "flash_background"%></center></bold>
+              <% end %>
               <%=render "layouts/modalconnection"%>
               <%=render "layouts/modalinscription"%>
               <%= yield %>
@@ -40,9 +43,9 @@
 
     </div>
 
-    <footer>
+    <!-- <footer>
       <%= render "layouts/footer" %>
-    </footer>
+    </footer> -->
 
         <audio id="chatAudio"><source src="/sounds/notification.mp3" type="audio/mpeg"></audio>
     </body>

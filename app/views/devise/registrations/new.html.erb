@@ -17,13 +17,13 @@
   <div class="row mt-1">
     <div class="col"> <!-- EMAIL -->
       <div class="field mt-1">
-        <span><%= f.label :email %></span>
+        <span><%= f.label "Email" %></span>
         <%= f.email_field :email, autofocus: true, placeholder: "email", class: "form-control" %>
       </div>
     </div>
     <div class="col"> <!-- NICKNAME -->
       <div class="field mt-1">
-        <span><%= f.label :nickname %></span>
+        <span><%= f.label "Pseudo" %></span>
         <%= f.text_field :nickname, autofocus: true, placeholder: "Votre pseudo", class: "form-control" %>
       </div>
     </div>
@@ -34,17 +34,17 @@
   <div class="row mt-1">
     <div class="col"> <!-- PASSWORD -->
       <div class="field mt-1">
-        <span><%= f.label :password %>
+        <span><%= f.label "Mot de passe" %>
         <% if @minimum_password_length %>
         <em>( <%= @minimum_password_length %> characters minimum )</em>
         <% end %></span>
-        <%= f.password_field :password, placeholder: "new-password", class: "form-control" %>
+        <%= f.password_field :password, placeholder: "Nouveau mot de passe", class: "form-control" %>
       </div>
     </div>
     <div class="col"> <!-- PASSWORD CONFIRMATION -->
       <div class="field mt-1">
-        <span><%= f.label :password_confirmation %></span>
-        <%= f.password_field :password_confirmation, placeholder: "new-password", class: "form-control" %>
+        <span><%= f.label "Confirmer mot de passe" %></span>
+        <%= f.password_field :password_confirmation, placeholder: "Nouveau mot de passe", class: "form-control" %>
       </div>
     </div>
     <div class="col">
@@ -54,19 +54,19 @@
   <div class="row mt-5">
     <div class="col"> <!-- FIRST NAME -->
       <div class="field mt-1">
-        <span><%= f.label :first_name %></span>
+        <span><%= f.label "Prénom" %></span>
         <%= f.text_field :first_name, autofocus: true, placeholder: "Votre prénom", class: "form-control" %>
       </div>
     </div>
     <div class="col"> <!-- LAST NAME -->
       <div class="field mt-1">
-        <span><%= f.label :last_name %></span>
+        <span><%= f.label "Nom" %></span>
         <%= f.text_field :last_name, autofocus: true, placeholder: "Votre nom", class: "form-control" %>
       </div>
     </div>
     <div class="col"> <!-- GENDER -->
       <div class="field mt-1">
-        <span><%= f.label :gender %></span>
+        <span><%= f.label "Genre" %></span>
         <%= f.text_field :gender, autofocus: true, placeholder: "Votre genre: masculin, féminin, autre", class: "form-control" %>
       </div>
     </div>
@@ -75,23 +75,27 @@
   <div class="row mt-1">
     <div class="col"> <!-- TOWN -->
       <div class="field mt-1">
-        <span><%= f.label :town %></span>
+        <span><%= f.label "Ville" %></span>
         <%= f.text_field :town, autofocus: true, placeholder: "Votre ville", class: "form-control" %>
       </div>
     </div>
     <div class="col"> <!-- ADRESS -->
       <div class="field mt-1">
-        <span><%= f.label :adress %></span>
+        <span><%= f.label "Adresse" %></span>
         <%= f.text_field :adress, autofocus: true, placeholder: "Votre adresse", class: "form-control" %>
       </div>
     </div>
-    <div class="col">
+    <div class="col"><!-- DATE OF BIRTH -->
+      <div class="field mt-1">
+          <span><%= f.label "Date de naissance" %></span>
+          <p><%= f.date_field :birthdate %></p>
+      </div>
     </div>
   </div>
 
 
   <div class="actions mt-5 mb-2">
-    <%= f.submit "Sign up", class: "btn-signup-confirm"%>
+   <h6><%= f.submit "Inscription", class: "btn-signup-confirm"%></h6>
   </div>
   <% end %>
 

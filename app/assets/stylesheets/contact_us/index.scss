@@ -1,0 +1,24 @@
+@import "theme/index";
+
+.container-contact_us {
+  color: white;
+  font-family: $font-carrois;
+}
+
+.container-contact_us p {
+  color: black;
+}
+
+.container-contact_us .send-info {
+  padding: 5px;
+  color: white;
+  background-color: rgba(24, 69, 94, .7);
+  font-size: 10px;
+}
+
+.container-contact_us .send-signal {
+  padding: 5px;
+  color: white;
+  background-color: rgba(94, 24, 24, .7);
+  font-size: 10px;
+}

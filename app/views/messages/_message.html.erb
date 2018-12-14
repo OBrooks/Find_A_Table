@@ -4,7 +4,7 @@
       <div class="col">
         <div class="avatar">
           <% if message.user.profile_picture.attachment != nil %>
-          <%= image_tag message.user.profile_picture, id:"avatar" %>
+        <%= image_tag rails_blob_path(message.user.profile_picture, disposition: "attachement"), id:"avatar" %>
           <% else %>
               <img src="https://uploads1.yugioh.com/card_images/4945/detail/Hero-Dice.jpg?1398377913" alt="avatar" id="avatar">
           <% end %>

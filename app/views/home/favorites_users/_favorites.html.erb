@@ -1,0 +1,7 @@
+<div id="favorite">
+    <% if @favorite == nil %>
+    <%= render 'home/favorites_users/add_users_to_favorites' %>
+    <% else %>
+    <%= render 'home/favorites_users/remove_users_from_favorites' %>
+    <% end %>
+</div>

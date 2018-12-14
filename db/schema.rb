@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_13_173303) do
+ActiveRecord::Schema.define(version: 2018_12_13_165322) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -75,6 +75,15 @@ ActiveRecord::Schema.define(version: 2018_12_13_173303) do
     t.datetime "updated_at", null: false
     t.index ["game_id"], name: "index_favorites_on_game_id"
     t.index ["user_id"], name: "index_favorites_on_user_id"
+  end
+
+  create_table "favorites_users", force: :cascade do |t|
+    t.bigint "adder_id"
+    t.bigint "added_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["added_id"], name: "index_favorites_users_on_added_id"
+    t.index ["adder_id"], name: "index_favorites_users_on_adder_id"
   end
 
   create_table "gamecoms", force: :cascade do |t|
@@ -167,6 +176,7 @@ ActiveRecord::Schema.define(version: 2018_12_13_173303) do
     t.string "gender"
     t.integer "experience", default: 0
     t.text "description", default: ""
+    t.date "birthdate"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

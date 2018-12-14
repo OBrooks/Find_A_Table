@@ -4,14 +4,17 @@
             <h3>Votre liste de jeux favoris est vide.</h3><br>
             <h3>Vous pouvez retourner sur la <a href="/games">page des jeux</a> pour en ajouter.</h3>
         <% else %>
+        <div class="row">
+          <h2>Voici tes jeux favoris :</h2>
+        </div>
                 <% @games.each do |game| %>
                 <div class="container game-sticker">
                   <div class="row">
-                    <div class="col-lg-2 d-flex justify-content-center align-items-center">
+                  <div class="col-lg-1 d-flex justify-content-center align-items-center">
                       <% if game.game_picture.attachment != nil %>
-                      <%= image_tag game.game_picture, class: "games_image" %>
+                        <%= image_tag game.game_picture, class: "session_img" %>
                       <% else %>
-                      <img src="<%= game.image_url%>" class="games_image">
+                      <img src="<%= game.image_url%>" class="session_img">
                       <% end %>
                     </div>
                     <div class="col">
@@ -57,5 +60,25 @@
                     </div>
                   </div>
                   <% end %>
+                  <br>
+                  <div class="row">
+                    <h2>Voici tes joueurs favoris :</h2>
+                  </div>
         <% end %>
+    <% if @users_favorites.length == 0 %>
+      <h3>Vous n'avez pas encore d'utilisateurs favoris !</h3><br>
+      <% else %>
+        <% @params_favorites.each do |favorite| %>
+          <div class="row container-profile">
+            <h2><a href="player/<%= favorite['di'] %>">
+              <%= favorite["nickname"] %></a></h2>
+            Lui envoyer un message ?
+              <%= link_to ("<i class='fa fa-comments fa-2x fa-fw' aria-hidden='true'></i>").html_safe, conversation_user_path(conversation_id: favorite["conversation"], user_id: current_user.id), remote: true %>
+            <br>
+          <% end %>
+          </div>
+      <% end %>
+    <div class="col-lg-9" id="conversation-messages-user-to-user">
+
     </div>
+  </div>

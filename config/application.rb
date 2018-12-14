@@ -17,5 +17,6 @@ module TheGamingTable
     # the framework and any gems in your application.
     config.action_mailer.delivery_method = :mailjet
     config.i18n.default_locale = :fr
+    config.exceptions_app=self.routes
   end
 end

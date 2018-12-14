@@ -1,1 +1,79 @@
-<%=@player.nickname%>
+<div class="container-profile">
+
+    <h2 class="m-3">
+        <%= @player.nickname.capitalize %>
+        <% if current_user != nil && current_user.id != @player.id %>
+            Lui envoyer un message ?
+<%= link_to ("<i class='fa fa-comments fa-2x fa-fw' aria-hidden='true'></i>").html_safe, conversation_user_path(conversation_id: @conversation_id, user_id: current_user.id), remote: true %>
+        <% end %>
+    </h2>
+
+    <div class="row">
+        <div class="col">
+        </div>
+        <div class="col">
+        </div>
+        <div class="col">
+        </div>
+        <div class="col">
+            <div class="edit-profile-pic">
+                <% if @player.profile_picture.attachment != nil %>
+                <%= image_tag @player.profile_picture, id:"avatar" %>
+                <% else %>
+                <img src="https://uploads1.yugioh.com/card_images/4945/detail/Hero-Dice.jpg?1398377913" alt="avatar" id="avatar">
+                <% end %>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <h3>Description</h3>
+            <span>
+                <% if @player.description.length >0 %>
+                <%= @player.description %>
+                <% else %>
+                Ce joueur n'a pas encore de description !
+                <% end %>
+            </span>
+        </div>
+        <div class="col">
+            <h3>Nombre de sessions jouées</h3>
+            <% if @player.sessions.count == 0 %>
+            <%= @player.nickname %> n'a pas encore joué de parties !
+            <% elsif @player.sessions.count == 1 %>
+            1 partie a son actif !
+            <% else %>
+            <%= @player.sessions.count %>
+            <% end %>
+        </div>
+
+    </div>
+
+    <div class="row mt-3">
+        <div class="col">
+            <% if @common_sessions == nil %>
+            Vous n'avez aucune partie en commun !
+            <% elsif @common_sessions != nil && @common_sessions == 1 %>
+            Vous avez joué
+            <%= @common_sessions.count %> partie ensemble %>
+            <% elsif @common_sessions != nil %>
+            Vous avez joué
+            <%= @common_sessions.count %> parties ensemble !
+            <% end %>
+        </div>
+        <div class="col">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+        <% if current_user != nil && current_user.id != @player.id %>
+            <%= render "home/favorites_users/favorites" %>
+        <% end %>
+        </div>
+    </div>
+    
+    <div class="col-lg-9" id="conversation-messages-user-to-user">
+
+    </div>
+</div>
