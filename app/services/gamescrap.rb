@@ -131,11 +131,21 @@ class Gamescrap
         end
         print @games_infos
         puts next_page = url[-1].to_i + 1
-        if next_page <= 1
+
+        @games_infos.each do |game|
+            if Category.first.nil?
+                Category.create!(category_name: game["Category"])
+            elsif Category.find_by(category_name: game["Category"])
+            else
+                Category.create!(category_name: game["Category"])
+            end
+            Game.create!(title: game["Title"], description: game["Description"], min_players: game["Min"], max_players: game["Max"], image_url: game["Image"], time: game["Time"], category_id: Category.find_by(category_name: game["Category"]).id)
+        end
+
+        if next_page <= 50
             dynamic_url = "#{url[0..-2]}" + "#{next_page}"
             scrap_games_links(dynamic_url)
         else 
-            create_db
         end
     end
 
