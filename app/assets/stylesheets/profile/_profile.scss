@@ -34,3 +34,32 @@
 .container-profile .profile-img {
 
 }
+
+.player-page {
+max-height: 200px;
+
+}
+
+.centered {
+  margin: auto;
+display: flex;
+flex-direction: column;
+
+  
+}
+
+.centered h2{
+  margin: auto;
+}
+
+.player-profile h2{
+  font-size: 6em;
+}
+
+.player-profile span {
+  font-size: 2em;
+}
+
+.player-profile i {
+  font-size: 3em;
+}
