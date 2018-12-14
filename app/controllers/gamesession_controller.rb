@@ -19,6 +19,7 @@ class GamesessionController < ApplicationController
 
   def index
     @sessions = Session.where('status = ?', 0)
+    @sessions = @sessions.page(params[:page]).order('created_at DESC')
   end
 
   def search_sessions

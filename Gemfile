@@ -3,6 +3,8 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.5.1'
 
+#Paginate
+gem 'will_paginate', '~> 3.1.0'
 #mailjet
 gem 'mailjet'
 #dotenv

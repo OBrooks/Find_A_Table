@@ -142,6 +142,8 @@ class Gamescrap
             Game.create!(title: game["Title"], description: game["Description"], min_players: game["Min"], max_players: game["Max"], image_url: game["Image"], time: game["Time"], category_id: Category.find_by(category_name: game["Category"]).id)
         end
 
+        @games_infos = []
+
         if next_page <= 50
             dynamic_url = "#{url[0..-2]}" + "#{next_page}"
             scrap_games_links(dynamic_url)

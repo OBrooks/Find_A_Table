@@ -1,0 +1,35 @@
+.pagination {
+    padding: 3px;
+    margin: 3px;
+}
+
+.pagination a {
+    padding: 2px 5px 2px 5px;
+    margin: 2px;
+    border: 1px solid #aaaadd;
+    text-decoration: none;
+    color: #000099;
+    background-color: rgba(130, 160, 190, .7);
+}
+
+.pagination a:hover,
+.pagination a:active {
+    border: 1px solid #000099;
+    color: #000;
+}
+
+.pagination em.current {
+    padding: 2px 5px 2px 5px;
+    margin: 2px;
+    border: 1px solid rgba(130, 160, 190, .7);
+    font-weight: bold;
+    background-color: rgb(160, 30, 30) !important;
+    color: white;
+}
+
+.pagination span.disabled {
+    padding: 2px 5px 2px 5px;
+    margin: 2px;
+    border: 1px solid #eee;
+    color: #ddd;
+}
