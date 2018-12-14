@@ -14,17 +14,30 @@ class HomeController < ApplicationController
         @currentgameoccurence = faved_games_sorted.count(@currentgameid)
         @faved_games << {"game_id" => @currentgameid, "favs" => @currentgameoccurence}
         faved_games_sorted = faved_games_sorted[@currentgameoccurence..-1]
-        print faved_games_sorted
         c+=1
       end
       @best_city = []
+      @most_played_games = []
       all_cities = []
+      all_sessions_games = []
       Session.all.each do |session|
         all_cities << session.city
+        if session.done?
+          all_sessions_games << session.game_id
+        end
       end
+
       city_name = all_cities.max_by { |i| all_cities.count(i)}
-      @best_city << {"city_name" => city_name, "number_of_sessions" => all_cities.count(city_name)}
-      puts @best_city
+      @best_city = {"city_name" => city_name, "number_of_sessions" => all_cities.count(city_name)}
+      most_played_games_sorted = all_sessions_games.sort_by { |u| all_sessions_games.count(u) }.reverse
+      while most_played_games_sorted != [] && c<=5
+        @currentgameid = most_played_games_sorted[0]
+        @currentgameoccurence = most_played_games_sorted.count(@currentgameid)
+        @most_played_games << {"game_id" => @currentgameid, "number_of_played_session" => @currentgameoccurence}
+        most_played_games_sorted = most_played_games_sorted[@currentgameoccurence..-1]
+        c+=1
+      end
+
     end
 
     def profile
@@ -49,17 +62,24 @@ class HomeController < ApplicationController
         @conversation_last_id=Conversation.maximum(:id).next
         @users_favorites.each do |user_favorite|
           param_favor=Hash.new
-          conversation_sender = Conversation.find_by(sender_id: current_user.id, recipient_id: user_favorite.added.id)
-          conversation_recipient = Conversation.find_by(recipient_id: current_user.id, sender_id: user_favorite.added.id)
+          conversation_sender = Conversation.find_by(sender_id: current_user.id, recipient_id: user_favorite.id)
+          conversation_recipient = Conversation.find_by(recipient_id: current_user.id, sender_id: user_favorite.id)
           if conversation_sender != nil
-            param_favor={"nickname"=>user_favorite.added.nickname, "di"=> user_favorite.added.id.to_i, "conversation"=>conversation_sender.id}
+            param_favor={"nickname"=>user_favorite.nickname, "di"=> user_favorite.id.to_i, "conversation"=>conversation_sender.id}
           elsif conversation_recipient != nil
-            param_favor={"nickname"=>user_favorite.added.nickname, "di"=> user_favorite.added.id.to_i, "conversation"=>conversation_recipient.id}
+            param_favor={"nickname"=>user_favorite.nickname, "di"=> user_favorite.id.to_i, "conversation"=>conversation_recipient.id}
           else
-            param_favor={"nickname"=>user_favorite.added.nickname, "di"=> user_favorite.added.id.to_i, "conversation"=>@conversation_last_id}
+            param_favor={"nickname"=>user_favorite.nickname, "di"=> user_favorite.id.to_i, "conversation"=>@conversation_last_id}
           end
           @params_favorites << param_favor
         end
+      else 
+          @users_favorites.each do |user_favorite|
+            param_favor=Hash.new
+            param_favor={"nickname"=>user_favorite.nickname, "di"=> user_favorite.id.to_i, "conversation"=>1}
+            @params_favorites << param_favor
+          end
+
       end
     end
 
@@ -68,7 +88,6 @@ class HomeController < ApplicationController
         puts "#{params}"
       @user = User.find(params[:user_id])
       @game=Game.find(params[:game_id])
-      puts "ça fav"
       respond_to do |format|
         format.html
         format.js {render :layout => false}

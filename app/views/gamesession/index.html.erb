@@ -18,6 +18,8 @@
   </div>
 </div>
 
+<%= will_paginate @sessions %>
+
 <%@sessions.each do |session|%>
   <div class="container game-sticker">
     <div class="row">
@@ -107,3 +109,5 @@
     </div>
   </div>
 <%end%>
+
+<%= will_paginate @sessions %>

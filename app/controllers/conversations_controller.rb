@@ -13,17 +13,26 @@ class ConversationsController < ApplicationController
 
   def conversation_user
   @users_favorites=FavoritesUser.where(adder_id: current_user.id)
-      @users_favorites.each do |user_favorite|
-        
+      
+    @users_favorites.each do |user_favorite|      
         @conversation_sender = Conversation.find_by(sender_id: current_user.id, recipient_id: user_favorite.added.id)
         @conversation_recipient = Conversation.find_by(recipient_id: current_user.id, sender_id: user_favorite.added.id)
           if @conversation_sender == nil && @conversation_recipient == nil
             Conversation.create!(sender_id: current_user.id, recipient_id: user_favorite.added.id)
           end
         end
-      if params[:conversation_id] != nil && params[:user_id] != nil
-      @conversation=Conversation.find(params[:conversation_id])
+    if params[:conversation_id] != nil && params[:user_id] != nil
       @user=User.find(params[:user_id])
+      @conversation_last_id=Conversation.maximum(:id).next
+      puts "La conversation_id#{params[:conversation_id]}"
+      puts "La conversation_last_id#{@conversation_last_id}"
+      if params[:conversation_id].to_i == @conversation_last_id.to_i
+        puts "LÀÀÀÀÀÀÀÀ"
+        Conversation.create!(sender_id: current_user.id, recipient_id: @user.id)
+      else
+        @conversation=Conversation.find(params[:conversation_id])
+      end
+
     end
     respond_to do |format|
         format.html

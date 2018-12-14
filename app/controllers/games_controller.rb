@@ -3,7 +3,7 @@ class GamesController < ApplicationController
 
     def index
         if Game.all !=nil
-            @games=Game.order(created_at: :desc)
+            @games = Game.page(params[:page]).order('created_at DESC')
         end
     end
 
