@@ -69,28 +69,19 @@
         <h3>Vous n'avez pas encore d'utilisateurs favoris !</h3><br>
       <% else %>
     <div class="row marginated ml-3">
-      
+
       <div class="col">
         <% @params_favorites.each do |favorite| %>
           <div class="container container-profile">
             <div class="row d-flex justify-content-start align-items-center flex-nowrap">
             <h2><a href="player/<%= favorite['di'] %>">
               <%= favorite["nickname"] %></a></h2>
-<<<<<<< HEAD
-              <%= link_to ("  <i class='fa fa-comments fa-2x fa-fw' aria-hidden='true'></i>").html_safe, conversation_user_path(conversation_id: favorite["conversation"], user_id: current_user.id), remote: true %>
-            <br><br>
-          <% end %>
-          </div>
-</div>
-</div>
-=======
             <div class="ml-3">
               <%= link_to ("<i class='fa fa-comments fa-2x fa-fw' aria-hidden='true'></i>").html_safe, conversation_user_path(conversation_id: favorite["conversation"], user_id: current_user.id), remote: true %>
             </div>
           <% end %>
           </div>
           </div>
->>>>>>> david
       <% end %>
     <div class="col-lg-9" id="conversation-messages-user-to-user">
 
