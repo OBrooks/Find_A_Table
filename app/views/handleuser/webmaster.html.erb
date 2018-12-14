@@ -27,9 +27,6 @@
     <div class="col">
       <p>Cracher dessus</p>
     </div>
-    <div class="col">
-      <p>Détruire</p>
-    </div>
   </div>
   <%@users.admin.each do |user|%>
   <div class="row row-admin-user m-1">
@@ -45,9 +42,7 @@
     <div class="col">
       <%= link_to "Passer en utilisateur indésirable", superpost_path(usertounwanted: user.id), method: :post, class:"text-light"%>
     </div>
-    <div class="col">
-      <%= link_to "Supprimer le compte", superpost_path(deleteaccount: user.id), method: :post, class:"text-light"%>
-    </div>
+  
   </div>
   <%end%>
   </div>
@@ -68,9 +63,6 @@
       <div class="col">
         <p>Rétrograder</p>
       </div>
-      <div class="col">
-        <p>Détruire</p>
-      </div>
     </div>
     <%@users.peasant.each do |user|%>
     <div class="row row-admin-user m-1">
@@ -85,9 +77,6 @@
       </div>
       <div class="col">
         <%= link_to "Passer en utilisateur indésirable", superpost_path(usertounwanted: user.id), method: :post, class:"text-light"%>
-      </div>
-      <div class="col">
-        <%= link_to "Supprimer le compte", superpost_path(deleteaccount: user.id), method: :post, class:"text-light"%>
       </div>
     </div>
     <%end%>
@@ -108,9 +97,6 @@
       </div>
       <div class="col">
       </div>
-      <div class="col">
-        <p>Détruire</p>
-      </div>
     </div>
     <%@users.unwanted.each do |user|%>
     <div class="row row-admin-user m-1">
@@ -124,9 +110,6 @@
         <%= link_to "Repasser en utilisateur normal", superpost_path(admintonormaluser: user.id), method: :post, class:"text-light"%>
       </div>
       <div class="col">
-      </div>
-      <div class="col">
-        <%= link_to "Supprimer le compte", superpost_path(deleteaccount: user.id), method: :post, class:"text-light"%>
       </div>
     </div>
     <%end%>
