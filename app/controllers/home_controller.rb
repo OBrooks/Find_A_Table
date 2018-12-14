@@ -69,27 +69,22 @@ class HomeController < ApplicationController
 
   #Favorites Users
     def add_users_to_favorites
-        puts "Les params sont#{params}"
       @user = User.find(params[:added_id])
-      puts "ça fav"
       respond_to do |format|
         format.html
         format.js {render :layout => false}
       end
-    @favorite=FavoritesUser.create!(adder_id: current_user.id, added_id: params[:added_id])
+      current_user.addeds << @user
   end
 
     def remove_users_from_favorites
-      puts "Les params du remove sont#{params}"
       @user = User.find(params[:added_id])
-      puts "ça défav"
       respond_to do |format|
         format.html
         format.js {render :layout => false}
       end
-    @favorite=FavoritesUser.find_by(adder_id: current_user.id, added_id: params[:added_id])
-    @favorite.destroy
-  end
+      current_user.addeds.delete(@user)
+    end
 
 #Sessions
   def mysessions
@@ -117,8 +112,8 @@ class HomeController < ApplicationController
         if current_user != nil
             @favorite=FavoritesUser.find_by(adder_id: current_user.id, added_id: params[:id])
         end
-      
-      @conversation_last_id=Conversation.maximum(:id).next
+
+      # @conversation_last_id=Conversation.maximum(:id).next
       conversation_sender = Conversation.find_by(sender_id: current_user.id, recipient_id: @user.id)
       conversation_recipient = Conversation.find_by(recipient_id: current_user.id, sender_id: @user.id)
         if conversation_sender != nil
@@ -129,5 +124,5 @@ class HomeController < ApplicationController
           @conversation_id=@conversation_last_id
         end
       end
-    
+
 end

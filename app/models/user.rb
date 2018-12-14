@@ -28,9 +28,10 @@ class User < ApplicationRecord
   has_many :games, through: :favorites
 
   #Favorites users
-  has_many :favorites_users
-  has_many :adders, through: :favorites_users
-  has_many :addeds, through: :favorites_users
+  has_many :adder_links, class_name: "FavoritesUser" , foreign_key: :adder_id, inverse_of: :added
+  has_many :addeds, through: :adder_links
+  has_many :added_links, class_name: "FavoritesUser" , foreign_key: :added_id, inverse_of: :adder
+  has_many :adders, through: :added_links
 
   #Comments' games
   has_many :gamecoms
