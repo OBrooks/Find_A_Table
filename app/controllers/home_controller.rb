@@ -62,17 +62,24 @@ class HomeController < ApplicationController
         @conversation_last_id=Conversation.maximum(:id).next
         @users_favorites.each do |user_favorite|
           param_favor=Hash.new
-          conversation_sender = Conversation.find_by(sender_id: current_user.id, recipient_id: user_favorite.added.id)
-          conversation_recipient = Conversation.find_by(recipient_id: current_user.id, sender_id: user_favorite.added.id)
+          conversation_sender = Conversation.find_by(sender_id: current_user.id, recipient_id: user_favorite.id)
+          conversation_recipient = Conversation.find_by(recipient_id: current_user.id, sender_id: user_favorite.id)
           if conversation_sender != nil
-            param_favor={"nickname"=>user_favorite.added.nickname, "di"=> user_favorite.added.id.to_i, "conversation"=>conversation_sender.id}
+            param_favor={"nickname"=>user_favorite.nickname, "di"=> user_favorite.id.to_i, "conversation"=>conversation_sender.id}
           elsif conversation_recipient != nil
-            param_favor={"nickname"=>user_favorite.added.nickname, "di"=> user_favorite.added.id.to_i, "conversation"=>conversation_recipient.id}
+            param_favor={"nickname"=>user_favorite.nickname, "di"=> user_favorite.id.to_i, "conversation"=>conversation_recipient.id}
           else
-            param_favor={"nickname"=>user_favorite.added.nickname, "di"=> user_favorite.added.id.to_i, "conversation"=>@conversation_last_id}
+            param_favor={"nickname"=>user_favorite.nickname, "di"=> user_favorite.id.to_i, "conversation"=>@conversation_last_id}
           end
           @params_favorites << param_favor
         end
+      else 
+          @users_favorites.each do |user_favorite|
+            param_favor=Hash.new
+            param_favor={"nickname"=>user_favorite.nickname, "di"=> user_favorite.id.to_i, "conversation"=>1}
+            @params_favorites << param_favor
+          end
+
       end
     end
 
