@@ -66,9 +66,9 @@ class GamesessionController < ApplicationController
     @session = Session.new(host_id: current_user.id, game_id: params[:game], time: params[:time], date: params[:date], city: params[:city], adress: params[:adress], description: params[:description], playernb: params[:playernb].to_i, maxplayers: params[:maxplayers], status: params[:status].to_i, playerskill: params[:playerskill].to_i)
     if @session.valid? && Geocoder.search("#{@session.adress}, #{@session.city}") != []
       @session.players << current_user
-      @request = Request.find_by(user_id: params[:user_id], session_id: params[:session_id])
-      @request.accepted!
       @session.save
+      @request = Request.find_by(user: current_user, session: @session)
+      @request.accepted!
       @chatroom = Chatroom.create!(session_id: @session.id)
       User.all.each do |user|
         if user != current_user

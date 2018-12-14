@@ -7,7 +7,7 @@
     </div>
 
     <div class="header-logo">
-      <img src="/img/logohorizontal.png" class="logo-picture">
+      <img src="/img/logohorizontal.png" class="logo-picture" onclick="location.href='/index'">
     </div>
 
   </div>
@@ -20,12 +20,12 @@
       </div>
     <% end %>
     <% if user_signed_in? %>
-      <li class="nav-item btn-group d-flex align-items-center">
-        <a class="dropdown-toggle nav-link" onclick="headerDropdown2()" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <%= fa_icon "bell" %> <span><%= @usernotifs.length %></span>
-        </a>
-        <div class="dropdown-menu" id="header-dropdown-content-2" aria-labelledby="dropdownMenu1">
-          <% if @usernotifs != [] %>
+      <% if @usernotifs != [] %>
+        <li class="nav-item btn-group d-flex align-items-center">
+          <a class="dropdown-toggle nav-link" onclick="headerDropdown2()" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <img src="/img/yellowbell.jpg" alt="Yellow Bell" height="35" width="35"><span class="sidebar-hello" style="color:red;margin-top:30px;"><%= "#{@usernotifs.length}" %></span>
+          </a>
+          <div class="dropdown-menu" id="header-dropdown-content-2" aria-labelledby="dropdownMenu1">
             <% @usernotifs.each do |notif| %>
               <% if notif.action == "chatmessage" %>
                 <p><%=link_to "#{notif.actor.nickname} a envoyé un message sur une chatroom", mark_as_read_path(id: notif.id, url: chatroom_path(notif.notifiable)), method: :post%></p>
@@ -43,12 +43,21 @@
                 <p>ERROR</p>
               <% end %>
             <% end %>
-          <% else %>
+            <p><%=link_to "Tout marquer comme lu", mark_all_as_read_path, method: :post%></p>
+            <p><%=link_to "Voir toute vos notifications", notifications_path%></p>
+          </div>
+        </li>
+      <% else %>
+        <li class="nav-item btn-group d-flex align-items-center">
+          <a class="dropdown-toggle nav-link" onclick="headerDropdown2()" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <img src="/img/greybell.png" alt="Grey Bell" height="42" width="42">
+          </a>
+          <div class="dropdown-menu" id="header-dropdown-content-2" aria-labelledby="dropdownMenu1">
             <p>Vous n'avez pas de nouvelles notifications</p>
-          <% end %>
-          <p><%=link_to "Voir toute vos notifications", notifications_path%></p>
-        </div>
-      </li>
+            <p><%=link_to "Voir toute vos notifications", notifications_path%></p>
+          </div>
+        </li>
+      <% end %>
       <div class="messages">
         <%= link_to "<i class='fa fa-comments fa-3x fa-fw' aria-hidden='true'></i>".html_safe, messages_path %>
       </div>
@@ -69,6 +78,7 @@
     <% end %>
   </div>
 </div>
+
 
 
 <!-- <ul class="user_display_navbar">

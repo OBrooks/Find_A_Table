@@ -9,5 +9,5 @@ class Game < ApplicationRecord
   has_one_attached :game_picture
 
   has_many :gamecoms
-  
+
 end

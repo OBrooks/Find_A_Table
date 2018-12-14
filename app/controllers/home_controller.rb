@@ -1,6 +1,31 @@
 class HomeController < ApplicationController
 
     def index
+
+      @faved_games = []
+      all_faved_games = []
+      Favorite.all.each do |favorite|
+        all_faved_games << favorite.game_id
+      end
+      faved_games_sorted = all_faved_games.sort_by { |u| all_faved_games.count(u) }.reverse
+      c = 0
+      while faved_games_sorted != [] && c<=5
+        @currentgameid = faved_games_sorted[0]
+        @currentgameoccurence = faved_games_sorted.count(@currentgameid)
+        @faved_games << {"game_id" => @currentgameid, "favs" => @currentgameoccurence}
+        faved_games_sorted = faved_games_sorted[@currentgameoccurence..-1]
+        print faved_games_sorted
+        c+=1
+      end
+      @best_city = []
+      all_cities = []
+      Session.all.each do |session|
+        all_cities << session.city
+      end
+      city_name = all_cities.max_by { |i| all_cities.count(i)}
+      @best_city << {"city_name" => city_name, "number_of_sessions" => all_cities.count(city_name)}
+      puts "ICIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII"
+      puts @best_city
     end
 
     def profile
@@ -71,27 +96,22 @@ class HomeController < ApplicationController
 
   #Favorites Users
     def add_users_to_favorites
-        puts "Les params sont#{params}"
       @user = User.find(params[:added_id])
-      puts "ça fav"
       respond_to do |format|
         format.html
         format.js {render :layout => false}
       end
-    @favorite=FavoritesUser.create!(adder_id: current_user.id, added_id: params[:added_id])
+      current_user.addeds << @user
   end
 
     def remove_users_from_favorites
-      puts "Les params du remove sont#{params}"
       @user = User.find(params[:added_id])
-      puts "ça défav"
       respond_to do |format|
         format.html
         format.js {render :layout => false}
       end
-    @favorite=FavoritesUser.find_by(adder_id: current_user.id, added_id: params[:added_id])
-    @favorite.destroy
-  end
+      current_user.addeds.delete(@user)
+    end
 
 #Likes
     def like_user
@@ -171,5 +191,5 @@ class HomeController < ApplicationController
         @favorites_games=Favorite.where(user_id: @user.id)
 
       end
-    
+
 end
