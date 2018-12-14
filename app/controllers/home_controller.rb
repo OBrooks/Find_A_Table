@@ -24,7 +24,6 @@ class HomeController < ApplicationController
       end
       city_name = all_cities.max_by { |i| all_cities.count(i)}
       @best_city << {"city_name" => city_name, "number_of_sessions" => all_cities.count(city_name)}
-      puts "ICIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII"
       puts @best_city
     end
 

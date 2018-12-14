@@ -50,7 +50,6 @@ class GamesessionController < ApplicationController
   def show
     @session = Session.find(params[:id])
     @chatroom = Chatroom.find_by(session_id: params[:id])
-
     @location = Geocoder.search(@session.city)
     @adress = Geocoder.search("#{@session.adress}, #{@session.city}")
     @circle= [(@location.first.coordinates[0]+@adress.first.coordinates[0])/2,(@location.first.coordinates[1]+@adress.first.coordinates[1])/2]
@@ -70,6 +69,7 @@ class GamesessionController < ApplicationController
       @request = Request.find_by(user: current_user, session: @session)
       @request.accepted!
       @chatroom = Chatroom.create!(session_id: @session.id)
+      @chatroom_user = ChatroomUser.where(user_id: current_user.id, chatroom_id: @chatroom.id).first_or_create
       User.all.each do |user|
         if user != current_user
           if user.games.include?(@session.game) || user.addeds.include?(current_user)
@@ -112,9 +112,6 @@ class GamesessionController < ApplicationController
     Notification.create(recipient: @session.host, actor: current_user, action: "joinrequest", notifiable: @session)
     redirect_back fallback_location: root_path
     flash[:notice]="SessionJoined"
-    @chatroom = Chatroom.find_by(session_id: params[:id])
-    puts "Le chatroom est #{@chatroom}"
-    @chatroom_user = ChatroomUser.where(user_id: current_user.id, chatroom_id: @chatroom.id).first_or_create
   end
 
   def leavegame
@@ -147,6 +144,8 @@ class GamesessionController < ApplicationController
       @session.full!
     end
     @session.save
+    @chatroom = Chatroom.find_by(session_id: params[:id])
+    @chatroom_user = ChatroomUser.where(user_id: current_user.id, chatroom_id: @chatroom.id).first_or_create
     Notification.create(recipient: @session.host, actor: current_user, action: "requestaccepted", notifiable: @session)
     redirect_back fallback_location: root_path
   end

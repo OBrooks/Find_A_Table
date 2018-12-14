@@ -33,9 +33,9 @@
         <div class="row">
           <div class="col d-flex justify-content-between align-items-center">
             <h3 class="sticker-title"><%= link_to session.game.title, gamesession_path(session) %></h3>
-<h3 class="sticker-title">À <%= session.city %>, le
-  <%= I18n.localize(session.date, :format=> "%A %e %B %Y", :locale => 'fr') %>
-</h3>
+            <h3 class="sticker-title">À <%= session.city %>, le
+              <%= I18n.localize(session.date, :format=> "%A %e %B %Y", :locale => 'fr') %>
+            </h3>
           </div>
         </div>
 
@@ -58,7 +58,15 @@
             <p>Places restantes : <b><%= session.maxplayers - session.playernb %></b></p>
           </div>
           <div class="col d-flex justify-content-start align-items-center">
-            <p>Statut : <b><%= session.status %></b> </p>
+            <p>Statut : <b>
+              <% if session.done? %>
+                Terminé
+              <% elsif session.available? %>
+                Disponible
+              <% elsif session.full? %>
+                Pleine
+              <% end %>
+            </b></p>
           </div>
           <div class="col d-flex justify-content-end align-items-center">
             <p>Niveau recommandé : <b><%= session.playerskill %></b></p>
