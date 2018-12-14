@@ -5,7 +5,7 @@
             <h3>Vous pouvez retourner sur la <a href="/games">page des jeux</a> pour en ajouter.</h3>
         <% else %>
         <div class="row">
-          <h2>Voici tes jeux favoris :</h2>
+          <h3>Voici tes jeux favoris :</h3>
         </div>
                 <% @games.each do |game| %>
                 <div class="container game-sticker">
@@ -60,22 +60,24 @@
                     </div>
                   </div>
                   <% end %>
-                  <br>
-                  <div class="row">
-                    <h2>Voici tes joueurs favoris :</h2>
-                  </div>
-        <% end %>
+                <% end %>
+
+        <div class="row">
+          <h3>Voici tes joueurs favoris :</h3>
+        </div>
     <% if @users_favorites.length == 0 || @users_favorites == nil %>
-      <h3>Vous n'avez pas encore d'utilisateurs favoris !</h3><br>
+        <h3>Vous n'avez pas encore d'utilisateurs favoris !</h3><br>
       <% else %>
         <% @params_favorites.each do |favorite| %>
-          <div class="row container-profile">
+          <div class="container container-profile">
+            <div class="row d-flex justify-content-start align-items-center flex-nowrap">
             <h2><a href="player/<%= favorite['di'] %>">
               <%= favorite["nickname"] %></a></h2>
-            Lui envoyer un message ?
+            <div class="ml-3">
               <%= link_to ("<i class='fa fa-comments fa-2x fa-fw' aria-hidden='true'></i>").html_safe, conversation_user_path(conversation_id: favorite["conversation"], user_id: current_user.id), remote: true %>
-            <br>
+            </div>
           <% end %>
+          </div>
           </div>
       <% end %>
     <div class="col-lg-9" id="conversation-messages-user-to-user">
