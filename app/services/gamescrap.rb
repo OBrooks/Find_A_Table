@@ -131,7 +131,7 @@ class Gamescrap
         end
         print @games_infos
         puts next_page = url[-1].to_i + 1
-        if next_page <= 1
+        if next_page <= 50
             dynamic_url = "#{url[0..-2]}" + "#{next_page}"
             scrap_games_links(dynamic_url)
         else 
