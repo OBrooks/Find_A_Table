@@ -44,8 +44,6 @@ class GamesessionController < ApplicationController
         end
       end
     end
-
-    puts "ICIIIIIIIIIIIIIIIIIIIIIIIIi"
     puts @sessions_array
   end
 
@@ -65,14 +63,16 @@ class GamesessionController < ApplicationController
   end
 
   def create
-    @ses = Session.new(host_id: current_user.id, game_id: params[:game], time: params[:time], date: params[:date], city: params[:city], adress: params[:adress], description: params[:description], playernb: params[:playernb].to_i, maxplayers: params[:maxplayers], status: params[:status].to_i, playerskill: params[:playerskill].to_i)
-    if @ses.valid? && Geocoder.search("#{@ses.adress}, #{@ses.city}") != []
-      @ses.save
-      @chatroom = Chatroom.create!(session_id: @ses.id)
-      @interesteduser = []
+    @session = Session.new(host_id: current_user.id, game_id: params[:game], time: params[:time], date: params[:date], city: params[:city], adress: params[:adress], description: params[:description], playernb: params[:playernb].to_i, maxplayers: params[:maxplayers], status: params[:status].to_i, playerskill: params[:playerskill].to_i)
+    if @session.valid? && Geocoder.search("#{@session.adress}, #{@session.city}") != []
+      @session.players << current_user
+      @request = Request.find_by(user_id: params[:user_id], session_id: params[:session_id])
+      @request.accepted!
+      @session.save
+      @chatroom = Chatroom.create!(session_id: @session.id)
       User.all.each do |user|
         if user != current_user
-          if user.games.include?(@ses.game) || user.adders.include?(current_user)
+          if user.games.include?(@session.game) || user.adders.include?(current_user)
             Notification.create(recipient: user, actor: current_user, action: "gamecreated", notifiable: @session)
           end
         end
@@ -82,7 +82,6 @@ class GamesessionController < ApplicationController
       flash.now[:danger]="Champs invalides"
       render :new
     end
-
   end
 
   def edit
