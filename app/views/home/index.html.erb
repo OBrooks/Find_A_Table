@@ -62,14 +62,12 @@
   </div>
   <div class="row">
     <div class="col">
-      <%if @best_city == []%>
+      <%if @best_city == {}%>
         <p class="text-white">Il n'y a pas encore de sessions crées dans les villes</p>
       <%else%>
         <div class="row">
           <div class="col">
-            <%@best_city.each do |city|%>
-              <p class="text-white"><b><%=city["city_name"]%></b> est la ville où il y a le plus de sessions avec <b><%city["number_of_sessions"]%></b> sessions crées, on vous aime </p>
-            <%end%>
+            <p class="text-white"><b><%=@best_city["city_name"]%></b> est la ville où il y a le plus de sessions avec <b><%=@best_city["number_of_sessions"]%></b> sessions crées, on vous aime </p>
           </div>
           <div class="col">
             <p class="text-white"><b>GOOGLE MAPS</b> sessions crées, on vous aime </p>

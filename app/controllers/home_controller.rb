@@ -22,17 +22,13 @@ class HomeController < ApplicationController
       all_sessions_games = []
       Session.all.each do |session|
         all_cities << session.city
-        puts "HEYYYYYYYYYYYYYYYY"
-        puts session.city
         if session.done?
           all_sessions_games << session.game_id
         end
       end
-      puts "LAAAAAAAAAAAAAAAAAAAAAAA"
-      puts city_name = all_cities.max_by { |i| all_cities.count(i)}
-      @best_city << {"city_name" => city_name, "number_of_sessions" => all_cities.count(city_name)}
-      puts "ICIIIIIIIIIIIIIIIIIIIIIIIIII"
-      puts @best_city
+
+      city_name = all_cities.max_by { |i| all_cities.count(i)}
+      @best_city = {"city_name" => city_name, "number_of_sessions" => all_cities.count(city_name)}
       most_played_games_sorted = all_sessions_games.sort_by { |u| all_sessions_games.count(u) }.reverse
       while most_played_games_sorted != [] && c<=5
         @currentgameid = most_played_games_sorted[0]
