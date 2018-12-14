@@ -88,7 +88,6 @@ class HomeController < ApplicationController
         puts "#{params}"
       @user = User.find(params[:user_id])
       @game=Game.find(params[:game_id])
-      puts "ça fav"
       respond_to do |format|
         format.html
         format.js {render :layout => false}
