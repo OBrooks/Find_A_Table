@@ -1,34 +1,42 @@
-<div class="container-profile">
+<div class="container-profile player-profile">
 
-    <h2 class="m-3">
-        <%= @player.nickname.capitalize %>
+    <div class="row">
+        <div class="col-lg-6 centered">
+        <div class="row">
+<div class="col-lg-1"></div>
+        <div class="col-lg-1">
+        <h2 class="m-3">
+            <%= @player.nickname.capitalize %>
+        </h2>
+        </div>
+        </div>
+        <div class="row">
+<div class="col-lg-1"></div>
+        <div class ="col-lg-3 mt-3">
+        <div class="row ml-2">
         <% if current_user != nil && current_user.id != @player.id %>
-            Lui envoyer un message ?
-<%= link_to ("<i class='fa fa-comments fa-2x fa-fw' aria-hidden='true'></i>").html_safe, conversation_user_path(conversation_id: @conversation_id, user_id: current_user.id), remote: true %>
+        <%= link_to ("<i class='fa fa-comments fa-fw fa-3x' aria-hidden='true'></i>").html_safe, conversation_user_path(conversation_id: @conversation_id, user_id: current_user.id), remote: true %>
+        <%= render "home/favorites_users/favorites" %>
         <% end %>
-    </h2>
-
-    <div class="row">
-        <div class="col">
         </div>
-        <div class="col">
         </div>
-        <div class="col">
+</div>
+</div>
+        <div class="col-lg-3 mt-3">
+                        <% if @player.profile_picture.attachment != nil %>
+        <%= image_tag @player.profile_picture, class:"player-page" %>
+                        <% else %>
+        <img src="https://uploads1.yugioh.com/card_images/4945/detail/Hero-Dice.jpg?1398377913" alt="avatar" class="player-page">
+                        <% end %>
         </div>
-        <div class="col">
-            <div class="edit-profile-pic">
-                <% if @player.profile_picture.attachment != nil %>
-                <%= image_tag @player.profile_picture, id:"avatar" %>
-                <% else %>
-                <img src="https://uploads1.yugioh.com/card_images/4945/detail/Hero-Dice.jpg?1398377913" alt="avatar" id="avatar">
-                <% end %>
-            </div>
-        </div>
+    <div class="col-lg-2"></div>
     </div>
-
+    <div class="row">
+        <br>
+    </div>
     <div class="row">
         <div class="col">
-            <h3>Description</h3>
+            <h2>Description</h2>
             <span>
                 <% if @player.description.length >0 %>
                 <%= @player.description %>
@@ -38,41 +46,63 @@
             </span>
         </div>
         <div class="col">
-            <h3>Nombre de sessions jouées</h3>
-            <% if @player.sessions.count == 0 %>
-            <%= @player.nickname %> n'a pas encore joué de parties !
-            <% elsif @player.sessions.count == 1 %>
-            1 partie a son actif !
-            <% else %>
-            <%= @player.sessions.count %>
-            <% end %>
-        </div>
-
-    </div>
-
-    <div class="row mt-3">
-        <div class="col">
-            <% if @common_sessions == nil %>
-            Vous n'avez aucune partie en commun !
-            <% elsif @common_sessions != nil && @common_sessions == 1 %>
-            Vous avez joué
-            <%= @common_sessions.count %> partie ensemble %>
-            <% elsif @common_sessions != nil %>
-            Vous avez joué
-            <%= @common_sessions.count %> parties ensemble !
-            <% end %>
-        </div>
-        <div class="col">
+            <h2>Stats</h2>
+                <div class="row">
+                    <span>
+                        <% if @player.sessions.count == 0 %>
+                            <%= @player.nickname %> n'a pas encore joué de parties !
+                        <% elsif @player.sessions.count == 1 %>
+                            1 partie à son actif !
+                        <% else %>
+                            <%= @player.sessions.count %> parties déjà jouées !
+                        <% end %>
+                    </span>
+                </div>
+                <div class="row">
+                    <br>
+                </div>
+                <div class="row">
+                    <span>
+                        <% if @likes.length < 1 %>
+                            Ce joueur n'a pas encore été liké pour ses parties jouées
+                        <% else %>
+                            Ce joueur a été liké
+                            <%=@likes.length%> fois pour ses parties jouées !
+                        <% end %>
+                    </span>
+                </div>
+                <div class="row"><br></div>
+                <div class="row">
+                    <span>
+                        <% if @common_sessions == nil %>
+                            Vous n'avez aucune partie en commun !
+                        <% elsif @common_sessions.count == 1 %>
+                            Vous avez joué <%= @common_sessions.count %> partie ensemble !
+                        <% elsif %>
+                            Vous avez joué <%= @common_sessions.count %> parties ensemble !
+                        <% end %>
+                    </span>
+                </div>
         </div>
     </div>
     <div class="row">
         <div class="col">
-        <% if current_user != nil && current_user.id != @player.id %>
-            <%= render "home/favorites_users/favorites" %>
-        <% end %>
+            <h2>Ses jeux favoris</h2>
+            <br>
+                <% if @favorites_games.length < 1 %>
+                    Pas de jeu ajouté aux favoris !
+                <% else %>
+                    <% @favorites_games.each do |favoris| %>
+                    <div class="row ml-3">
+                        <span>
+                        <a href="/games/<%= favoris.game.id %>"><%= favoris.game.title %></a>
+                        </span>
+                    </div>
+                    <div class="row"><br></div>
+                    <% end %>
+                <% end %>
         </div>
     </div>
-    
     <div class="col-lg-9" id="conversation-messages-user-to-user">
 
     </div>

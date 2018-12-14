@@ -45,6 +45,8 @@ Rails.application.routes.draw do
   get "mysessions",                     to: "home#mysessions"
   get "player/:id",                     to: "home#player"
   get "list_users",                     to:"home#list_users"
+  get "like_user",                      to:"home#like_user"
+  get "unlike_user",                    to:"home#unlike_user"
 
 
   resources :gamesession
@@ -71,6 +73,7 @@ Rails.application.routes.draw do
   get "display_calendar",               to: "calendar#display_calendar"
 
   post "mark_as_read", to: "notifications#mark_as_read"
+  post "mark_all_as_read", to: "notifications#mark_all_as_read"
   get "notifications", to: "notifications#index"
   #get "*path" => 'error#handle_404'
 

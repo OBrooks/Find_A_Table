@@ -2,7 +2,7 @@
   <div class="container game-sticker">
     <div class="row">
       <div class="col d-flex justify-content-start">
-        <h4 class="signup-title"><b><%=@game.title %></b></h4>
+        <h4 class="signup-title"><b><%= @game.title %></b></h4>
         <div class="ml-4 review d-flex justify-content-start align-items-center">
           <% if current_user != nil %>
             <%= render "home/favorites_games/favorites" %>

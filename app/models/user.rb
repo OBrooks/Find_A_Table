@@ -24,16 +24,24 @@ class User < ApplicationRecord
 
   #Favorites
 
+    #Favorites games
   has_many :favorites
   has_many :games, through: :favorites
 
   #Favorites users
-  has_many :favorites_users
-  has_many :adders, through: :favorites_users
-  has_many :addeds, through: :favorites_users
+  has_many :adder_links, class_name: "FavoritesUser" , foreign_key: :adder_id, inverse_of: :added
+  has_many :addeds, through: :adder_links
+  has_many :added_links, class_name: "FavoritesUser" , foreign_key: :added_id, inverse_of: :adder
+  has_many :adders, through: :added_links
 
   #Comments' games
   has_many :gamecoms
+  
+  #Likes
+  has_many :likes_to_users, foreign_key: :liker_id
+  has_many :likes_to_users, foreign_key: :liked_id
+  has_many :likers, through: :likes_to_users
+  has_many :likeds, through: :likes_to_users
 
   validates_presence_of :nickname, uniqueness: true, on: :create
   validates_presence_of :birthdate, on: :create
