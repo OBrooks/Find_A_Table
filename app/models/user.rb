@@ -10,13 +10,13 @@ class User < ApplicationRecord
   enum status: {unwanted: 0, peasant: 1, admin: 2, webmaster: 3}
 
   #User-to-user conversation
-  has_many :messages
-  has_many :conversations, foreign_key: :sender_id
+  has_many :messages, dependent: :destroy
+  has_many :conversations, foreign_key: :sender_id, dependent: :destroy
   
   #Chatroom conversation
   has_many :chatroom_users, dependent: :destroy
   has_many :chatrooms, through: :chatroom_users, dependent: :destroy
-  has_many :usersmessages
+  has_many :usersmessages, dependent: :destroy
 
   #Sessions
   has_many :requests
