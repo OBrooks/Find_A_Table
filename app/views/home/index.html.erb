@@ -5,116 +5,119 @@
       <h2 class="text-white">Bienvenue sur Table Finder !</h2>
     </div>
   </div>
-  <div class="row">
-    <div class="col">
-      <p class="text-white">Vous pouvez naviguer sur le site à l'aide du menu sur votre gauche.</p>
-    </div>
-  </div>
 </div>
 
+
 <div class="container">
-  <div class="row">
-    <div class="col m-5">
-      <h2 class="text-white">Voila la liste des jeux les plus appréciés par les utilisateurs du site !</h2>
+ <div class="container game-sticker">
+    <div class="row">
+      <div class="col m-5">
+        <h2 class="text-white">Voila la liste des jeux les plus appréciés par les utilisateurs du site !</h2>
+      </div>
     </div>
-  </div>
-  <div class="row">
-    <div class="col">
-      <%if @faved_games == []%>
-        <p class="text-white">Il n'y a pas encore de jeux dans les favoris</p>
-      <%else%>
-        <%c=1%>
-        <%@faved_games.each do |faved_game|%>
-          <div class="row">
-            <div class="col">
-              <p class="text-white"><b>Classement</b></p>
-              <p class="text-white">n°<%=c%></p>
+    <div class="row">
+      <div class="col">
+        <%if @faved_games == []%>
+          <p class="text-white">Il n'y a pas encore de jeux dans les favoris</p>
+        <%else%>
+          <%c=1%>
+          <%@faved_games.each do |faved_game|%>
+            <div class="row">
+              <div class="col">
+                <p class="text-white"><b>Classement</b></p>
+                <p class="text-white">n°<%=c%></p>
+              </div>
+              <div class="col">
+                <p class="text-white"><b>Jeu</b></p>
+                <p class="text-white">Le jeu <b><%=Game.find(faved_game["game_id"]).title%></b></p>
+              </div>
+              <div class="col">
+                <p class="text-white"><b>Nombre de favs</b></p>
+                <p class="text-white">Qui a été ajouté aux favoris <b><%=faved_game["favs"]%></b> fois</p>
+              </div>
+              <div class="col">
+                <p class="text-white"><b>Image</b></p>
+                <% if Game.find(faved_game["game_id"]).game_picture.attachment != nil %>
+                  <%= image_tag Game.find(faved_game["game_id"]).game_picture, class: "games_image_index_home" %>
+                <% else %>
+                  <img src="<%= Game.find(faved_game["game_id"]).image_url%>" class="games_image_index_home">
+                <% end %>
+              </div>
             </div>
-            <div class="col">
-              <p class="text-white"><b>Jeu</b></p>
-              <p class="text-white">Le jeu <b><%=Game.find(faved_game["game_id"]).title%></b></p>
-            </div>
-            <div class="col">
-              <p class="text-white"><b>Nombre de favs</b></p>
-              <p class="text-white">Qui a été ajouté aux favoris <b><%=faved_game["favs"]%></b> fois</p>
-            </div>
-            <div class="col">
-              <p class="text-white"><b>Image</b></p>
-              <% if Game.find(faved_game["game_id"]).game_picture.attachment != nil %>
-                <%= image_tag Game.find(faved_game["game_id"]).game_picture, class: "games_image" %>
-              <% else %>
-                <img src="<%= Game.find(faved_game["game_id"]).image_url%>" class="games_image">
-              <% end %>
-            </div>
-          </div>
-          <%c+=1%>
+            <%c+=1%>
+          <%end%>
         <%end%>
-      <%end%>
+      </div>
     </div>
   </div>
 
   <br>
 
-  <div class="row">
-    <div class="col m-5">
-      <h2 class="text-white">Voila la ville ou le plus de sessions ont été jouées !</h2>
+  <div class="container game-sticker">
+    <div class="row">
+      <div class="col m-5">
+        <h2 class="text-white">Voila la ville ou le plus de sessions ont été jouées !</h2>
+      </div>
     </div>
-  </div>
-  <div class="row">
-    <div class="col">
-      <%if @best_city == {}%>
-        <p class="text-white">Il n'y a pas encore de sessions crées dans les villes</p>
-      <%else%>
-        <div class="row">
-          <div class="col">
-            <p class="text-white"><b><%=@best_city["city_name"]%></b> est la ville où il y a le plus de sessions avec <b><%=@best_city["number_of_sessions"]%></b> sessions crées, on vous aime </p>
-          </div>
-          <div class="col">
-            <p class="text-white"><b>GOOGLE MAPS</b> sessions crées, on vous aime </p>
-          </div>
-        </div>
-      <%end%>  
-    </div>
-  </div>
-
-
-  <div class="row">
-    <div class="col m-5">
-      <h2 class="text-white">Voila la liste des jeux les plus joués !</h2>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col">
-      <%if @most_played_games == []%>
-        <p class="text-white">Il n'y a pas encore de sessions terminées</p>
-      <%else%>
-        <%c=1%>
-        <%@most_played_games.each do |most_played_game|%>
+    <div class="row">
+      <div class="col">
+        <%if @best_city == {}%>
+          <p class="text-white">Il n'y a pas encore de sessions crées dans les villes</p>
+        <%else%>
           <div class="row">
             <div class="col">
-              <p class="text-white"><b>Classement</b></p>
-              <p class="text-white">n°<%=c%></p>
+              <p class="text-white"><b><%=@best_city["city_name"]%></b> est la ville où il y a le plus de sessions avec <b><%=@best_city["number_of_sessions"]%></b> sessions crées, on vous aime </p>
             </div>
             <div class="col">
-              <p class="text-white"><b>Jeu</b></p>
-              <p class="text-white">Le jeu <b><%=Game.find(most_played_game["game_id"]).title%></b></p>
-            </div>
-            <div class="col">
-              <p class="text-white"><b>Nombre de sessions</b></p>
-              <p class="text-white">Qui a été joué <b><%=most_played_game["number_of_played_session"]%></b> fois, quel succès</p>
-            </div>
-            <div class="col">
-              <p class="text-white"><b>Image</b></p>
-              <% if Game.find(most_played_game["game_id"]).game_picture.attachment != nil %>
-                <%= image_tag Game.find(most_played_game["game_id"]).game_picture, class: "games_image" %>
-              <% else %>
-                <img src="<%= Game.find(most_played_game["game_id"]).image_url%>" class="games_image">
-              <% end %>
+              <p class="text-white"><b>GOOGLE MAPS</b> sessions crées, on vous aime </p>
             </div>
           </div>
-          <%c+=1%>
+        <%end%>  
+      </div>
+    </div>
+  </div>
+
+  <br>
+
+  <div class="container game-sticker">
+    <div class="row">
+      <div class="col m-5">
+        <h2 class="text-white">Voila la liste des jeux les plus joués !</h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <%if @most_played_games == []%>
+          <p class="text-white">Il n'y a pas encore de sessions terminées</p>
+        <%else%>
+          <%c=1%>
+          <%@most_played_games.each do |most_played_game|%>
+            <div class="row">
+              <div class="col">
+                <p class="text-white"><b>Classement</b></p>
+                <p class="text-white">n°<%=c%></p>
+              </div>
+              <div class="col">
+                <p class="text-white"><b>Jeu</b></p>
+                <p class="text-white">Le jeu <b><%=Game.find(most_played_game["game_id"]).title%></b></p>
+              </div>
+              <div class="col">
+                <p class="text-white"><b>Nombre de sessions</b></p>
+                <p class="text-white">Qui a été joué <b><%=most_played_game["number_of_played_session"]%></b> fois, quel succès</p>
+              </div>
+              <div class="col">
+                <p class="text-white"><b>Image</b></p>
+                <% if Game.find(most_played_game["game_id"]).game_picture.attachment != nil %>
+                  <%= image_tag Game.find(most_played_game["game_id"]).game_picture, class: "games_image_index_home" %>
+                <% else %>
+                  <img src="<%= Game.find(most_played_game["game_id"]).image_url%>" class="games_image_index_home">
+                <% end %>
+              </div>
+            </div>
+            <%c+=1%>
+          <%end%>
         <%end%>
-      <%end%>
+      </div>
     </div>
 </div>
 

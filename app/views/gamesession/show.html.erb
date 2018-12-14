@@ -11,7 +11,7 @@
   <%if @session.cancelled?%>
     <p>SESSION ANNULE</p>
   <%else%>
-    <div class="row">
+    <div class="row" id="shower">
       <div class="col">
         <div class="row">
           <div class="col">
@@ -22,6 +22,11 @@
         <div class="row">
           <div class="col d-flex justify-content-start">
             <p>Organisé par <b><%=@session.host.nickname%></b></p>
+          </div>
+          <div class="col d-flex justify-content-start">
+            <% if @session.host == current_user %>
+              <p><%= link_to 'Editer la session', edit_gamesession_path(session_id: @session.id)%></p>
+            <%end%>
           </div>
           <div class="col d-flex justify-content-end">
             <% if @session.host == current_user %>
@@ -45,7 +50,7 @@
           </div>
           <div class="col d-flex justify-content-end">
             <p>Niveau recommandé : <b>
-              <% if @session.any? %>
+              <% if @session.anylevel? %>
                 Tout niveaux
               <% elsif @session.noob? %>
                 Debutants
@@ -61,17 +66,6 @@
         <div class="row">
           <div class="col d-flex justify-content-start">
             <p>Durée estimée : <b><%=@session.time%>h</b></p>
-          </div>
-          <div class="col d-flex justify-content-end">
-            <p>Statut de la session : <b>
-              <% if @session.done? %>
-                Terminé
-              <% elsif @session.available? %>
-                Disponible
-              <% elsif @session.full? %>
-                Pleine
-              <% end %>
-            </b></p>
           </div>
         </div>
 
@@ -112,38 +106,38 @@
             </div>
             <% end %>
             <div class="row d-flex flex-nowrap">
-                <% if @session.players.include?(current_user)%>
-                  <% @request = Request.find_by(session_id: @session.id, user_id: current_user.id) %>
-                  <% if @request.accepted? %>
-                    <div class="col d-flex justify-content-start align-items-center">
-                      <p>Votre Statut : <b>Requete accepté</b></p>
-                    </div>
-                    <div class="col d-flex justify-content-start align-items-center">
-                      <p><%=link_to "Quitter la session", leavegame_path(id: @session.id)%></p>
-                    </div>
-                  <% elsif @request.denied? %>
-                    <div class="col d-flex justify-content-start align-items-center">
-                      <p>Votre Statut : <b>Requete refusé</b></p>
-                    </div>
-                    <div class="col d-flex justify-content-start align-items-center">
-                      <p><%=link_to "Retirer la requète", removerequest_path(id: @session.id)%></p>
-                    </div>
-                  <% elsif @request.pending? %>
-                    <div class="col d-flex justify-content-start align-items-center">
-                      <p>Votre Statut : <b>Requete en attente</b></p>
-                    </div>
-                    <div class="col d-flex justify-content-start align-items-center">
-                      <p><%=link_to "Retirer la requète", removerequest_path(id: @session.id)%></p>
-                    </div>
-                  <% end %>
-                <% else %>
+              <% if @session.players.include?(current_user)%>
+                <% @request = Request.find_by(session_id: @session.id, user_id: current_user.id) %>
+                <% if @request.accepted? %>
                   <div class="col d-flex justify-content-start align-items-center">
-                    <p>Votre Statut : <b>Sans requêtes</b></p>
+                    <p>Votre Statut : <b>Requete accepté</b></p>
                   </div>
                   <div class="col d-flex justify-content-start align-items-center">
-                    <p><%=link_to "Rejoindre la session", joingame_path(id: @session.id)%></p>
+                    <p><%=link_to "Quitter la session", leavegame_path(id: @session.id)%></p>
+                  </div>
+                <% elsif @request.denied? %>
+                  <div class="col d-flex justify-content-start align-items-center">
+                    <p>Votre Statut : <b>Requete refusé</b></p>
+                  </div>
+                  <div class="col d-flex justify-content-start align-items-center">
+                    <p><%=link_to "Retirer la requète", removerequest_path(id: @session.id)%></p>
+                  </div>
+                <% elsif @request.pending? %>
+                  <div class="col d-flex justify-content-start align-items-center">
+                    <p>Votre Statut : <b>Requete en attente</b></p>
+                  </div>
+                  <div class="col d-flex justify-content-start align-items-center">
+                    <p><%=link_to "Retirer la requète", removerequest_path(id: @session.id)%></p>
                   </div>
                 <% end %>
+              <% else %>
+                <div class="col d-flex justify-content-start align-items-center">
+                  <p>Votre Statut : <b>Sans requête</b></p>
+                </div>
+                <div class="col d-flex justify-content-start align-items-center">
+                  <p><%=link_to "Rejoindre la session", joingame_path(id: @session.id)%></p>
+                </div>
+              <% end %>
             </div>
           </div>
         </div>

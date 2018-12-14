@@ -91,7 +91,15 @@ class GamesessionController < ApplicationController
 
   def update
     @session = Session.find(params[:id])
-    @session = @session.update(host_id: current_user.id, game_id: params[:game], time: params[:time], date: params[:date], city: params[:city], adress: params[:adress], description: params[:description], playernb: params[:playernb].to_i, maxplayers: params[:maxplayers], status: params[:status].to_i, playerskill: params[:playerskill].to_i)
+    @session = @session.update!(host_id: current_user.id, time: params[:time], date: params[:date], city: params[:city], adress: params[:adress], description: params[:description], playernb: params[:playernb].to_i, maxplayers: params[:maxplayers])
+    if params[:game] != ""
+      @session = Session.find(params[:id])
+      @session = @session.update!(game_id: params[:game])
+    end
+    if params[:playerskill] != ""
+      @session = Session.find(params[:id])
+      @session = @session.update!(playerskill: params[:playerskill].to_i)
+    end
     redirect_to gamesession_path
   end
 
