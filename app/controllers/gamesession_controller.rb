@@ -70,6 +70,7 @@ class GamesessionController < ApplicationController
       @request = Request.find_by(user: current_user, session: @session)
       @request.accepted!
       @chatroom = Chatroom.create!(session_id: @session.id)
+      @chatroom_user = ChatroomUser.where(user_id: current_user.id, chatroom_id: @chatroom.id).first_or_create
       User.all.each do |user|
         if user != current_user
           if user.games.include?(@session.game) || user.addeds.include?(current_user)
