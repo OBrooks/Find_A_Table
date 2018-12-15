@@ -51,7 +51,7 @@ class ConversationsController < ApplicationController
 
   def close
     @conversation = Conversation.find(params[:id])
-
+    
     session[:conversations].delete(@conversation.id)
 
     respond_to do |format|
