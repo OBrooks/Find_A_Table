@@ -85,7 +85,6 @@ class HomeController < ApplicationController
 
   #Favorites Games
     def add_to_favorites
-        puts "#{params}"
       @user = User.find(params[:user_id])
       @game=Game.find(params[:game_id])
       respond_to do |format|
@@ -98,7 +97,6 @@ class HomeController < ApplicationController
     def remove_from_favorites
       @user = User.find(params[:user_id])
       @game=Game.find(params[:game_id])
-      puts "ça défav"
       respond_to do |format|
         format.html
         format.js {render :layout => false}
@@ -128,10 +126,8 @@ class HomeController < ApplicationController
 
 #Likes
     def like_user
-        puts "Les params sont#{params}"
       @user = User.find(params[:liked_id])
       @session_id = Session.find(params[:session_id]).id
-      puts "ça fav"
       respond_to do |format|
         format.html
         format.js {render :layout => false}
@@ -140,10 +136,8 @@ class HomeController < ApplicationController
   end
 
     def unlike_user
-      puts "Les params du remove sont#{params}"
       @user = User.find(params[:liked_id])
       @session_id = Session.find(params[:session_id]).id
-      puts "ça défav"
       respond_to do |format|
         format.html
         format.js {render :layout => false}
@@ -201,6 +195,8 @@ class HomeController < ApplicationController
       else
         @conversation_id=@conversation_last_id
       end
+    else
+      @conversation_id=1
     end
     #Likes
     @likes=LikesToUser.where(liked_id: @user.id)
