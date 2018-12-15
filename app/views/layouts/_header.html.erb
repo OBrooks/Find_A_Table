@@ -23,8 +23,10 @@
       <% if @usernotifs != [] %>
         <li class="nav-item btn-group d-flex align-items-center">
           <a class="dropdown-toggle nav-link" onclick="headerDropdown2()" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <img src="/img/yellowbell.jpg" alt="Yellow Bell" height="35" width="35"><span class="sidebar-hello" style="color:red;margin-top:30px;"><%= "#{@usernotifs.length}" %></span>
+        <i class="fa fa-bell fa-2x" aria-hidden="true"><span class="notifications">
+            <%= "#{@usernotifs.length}" %></span></i>
           </a>
+          
           <div class="dropdown-menu" id="header-dropdown-content-2" aria-labelledby="dropdownMenu1">
             <% @usernotifs.each do |notif| %>
               <% if notif.action == "chatmessage" %>
@@ -50,7 +52,7 @@
       <% else %>
         <li class="nav-item btn-group d-flex align-items-center">
           <a class="dropdown-toggle nav-link" onclick="headerDropdown2()" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <img src="/img/greybell.png" alt="Grey Bell" height="42" width="42">
+            <i class="fa fa-bell fa-2x" aria-hidden="true"></i>
           </a>
           <div class="dropdown-menu" id="header-dropdown-content-2" aria-labelledby="dropdownMenu1">
             <p>Vous n'avez pas de nouvelles notifications</p>
