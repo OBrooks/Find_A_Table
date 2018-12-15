@@ -157,12 +157,16 @@ class HomeController < ApplicationController
   def mysessions
     @myhostsessions = []
     @myplayersessions = []
+    @myplayersessionsdone = []
     Session.all.each do |session|
-      if session.host == current_user
+      if session.host == current_user && session.done? == false
         @myhostsessions << session
       end
-      if session.players.include?(current_user)
+      if session.players.include?(current_user) && session.done? == false && session.host != current_user
         @myplayersessions << session
+      end
+      if session.players.include?(current_user) && session.done? == true
+        @myplayersessionsdone << session
       end
     end
     @likes=LikesToUser.all

@@ -1,7 +1,7 @@
 <h2 class="m-2 signup-title">LES SESSIONS DONT JE SUIS HÔTE</h2>
 
 <%if @myhostsessions == [] %>
-  <p class="text-white">Vous n'avez aucune sessions en cours</p>
+  <p class="text-white">Vous n'avez pas de session à venir</p>
 <%else%>
 <%@myhostsessions.each do |session|%>
   <div class="container game-sticker">
@@ -89,7 +89,7 @@
 <h2 class="m-2 signup-title">LES SESSIONS OÙ JE SUIS JOUEUR</h2>
 
 <%if @myplayersessions == [] %>
-  <p class="text-white">Vous n'avez pas encore rejoint de sessions</p>
+  <p class="text-white">Vous n'avez pas de session à venir</p>
 <%else%>
 <%@myplayersessions.each do |session|%>
   <div class="container game-sticker">
@@ -177,10 +177,10 @@
 
 <h2 class="m-2 signup-title">LES SESSIONS PASSÉES</h2>
 
-<%if @myplayersessions == [] %>
-<p class="text-white">Vous n'avez encore eu aucune session en cours</p>
+<%if @myplayersessionsdone == [] %>
+<p class="text-white">Vous n'avez pas encore eu de session</p>
 <%else%>
-<%@myplayersessions.each do |session|%>
+<%@myplayersessionsdone.each do |session|%>
 <div class="container game-sticker">
   <div class="row">
     <div class="col-lg-1 d-flex justify-content-center align-items-center">
