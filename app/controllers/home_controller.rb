@@ -29,6 +29,9 @@ class HomeController < ApplicationController
 
       city_name = all_cities.max_by { |i| all_cities.count(i)}
       @best_city = {"city_name" => city_name, "number_of_sessions" => all_cities.count(city_name)}
+      @location = Geocoder.search(@best_city["city_name"])
+      @city_coordinates = [@location.first.coordinates[0], @location.first.coordinates[1]]
+      # @circle= [(@location.first.coordinates[0]+@adress.first.coordinates[0])/2,(@location.first.coordinates[1]+@adress.first.coordinates[1])/2]
       most_played_games_sorted = all_sessions_games.sort_by { |u| all_sessions_games.count(u) }.reverse
       while most_played_games_sorted != [] && c<=5
         @currentgameid = most_played_games_sorted[0]
