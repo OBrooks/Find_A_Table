@@ -1,6 +1,10 @@
 <div class="messenger messenger-default conversationbox" data-conversation-id="<%= @conversation.id %>">
 <div class="messenger-body">
-
+    <div class="messager-heading">
+    <p>
+        <a href="/player/<%=@user.id%>"><%= @user.nickname %></a>
+    </p>
+    </div>
     <div class="messages-list" id="messagelist">
         <ul>
             <%= render 'conversations/conversation_content', messages: @conversation.messages, user: @user %>
@@ -10,7 +14,7 @@
     <form class="new_message">
         <input name="conversation_id" type="hidden" value="<%= @conversation.id %>">
         <input name="user_id" type="hidden" value="<%= @user.id %>">
-        <textarea name="body" class="chatboxtextarea"></textarea>
+        <textarea name="body" class="messagearea"></textarea>
         <input type="submit" class="button-message" value="Send">
     </form>
 </div>
