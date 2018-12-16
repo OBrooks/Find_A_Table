@@ -1,17 +1,20 @@
 <!DOCTYPE html>
-<html prefix="og: http://ogp.me/ns#">
+<html>
 <head>
     <title>Table Finder</title>
-    
-    <meta name="description" content="Table Finder vous aide à trouver des joueurs pour des parties de jeux de société endiablés ! Vous pouvez créer où retrouver une session de joueurs débutants à expérimentés, à travers toute la France !" />
-    <meta property="og:title" content="Table Finder, le site qui va révolutionner vos parties de jeux de société !" />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://find-a-table.herokuapp.com/" />
-    <meta property="og:image" content="/img/logo.png" />
-
-    <link rel="icon" href="/favicon.ico" />
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <link rel="icon" href="/favicon.ico" />
+
+    <meta name="description" content="Table Finder vous aide à trouver des joueurs pour des parties de jeux de société endiablés ! Vous pouvez créer où retrouver une session de joueurs débutants à expérimentés, à travers toute la France !" />
+    
+    <meta property="og:url" content="https://find-a-table.herokuapp.com/" />
+    <meta property="og:title" content="Table Finder, le site qui va révolutionner vos parties de jeux de société !" />
+    <meta property="og:type" content="website" />
+
+    <meta property="og:image" content="/img/logo.png" />
+
+
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 
