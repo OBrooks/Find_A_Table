@@ -2,18 +2,21 @@
 <html prefix="og: http://ogp.me/ns#">
 <head>
     <title>Table Finder</title>
+    
+    <meta charset="UTF-8">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <link rel="icon" href="/favicon.ico" />
 
     <meta name="description" content="Table Finder vous aide à trouver des joueurs pour des parties de jeux de société endiablés ! Vous pouvez créer où retrouver une session de joueurs débutants à expérimentés, à travers toute la France !" />
+    <meta name="keywords" content="Table,Finder,Find,Jeux,Jeu,Société">
 
     <meta property="og:title" content="Table Finder" />
     <meta property="og:url" content="http://find-a-table.herokuapp.com/" />
-    
+
     <meta property="og:type" content="website" />
 
-  <meta property="og:image" content="http://image.noelshack.com/fichiers/2018/50/7/1544977608-logo.png" />
+    <meta property="og:image" content="http://find-a-table.herokuapp.com/img/logo.png" />
 
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
