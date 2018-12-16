@@ -2,7 +2,7 @@
 <div class="messenger-body">
     <div class="messager-heading">
     <p>
-        <a href="/player/<%=@user.id%>"><%= @user.nickname %></a>
+    <a href="/player/<%=@conversation.opposed_user(@user).id%>"><%= @conversation.opposed_user(@user).nickname %></a>
     </p>
     </div>
     <div class="messages-list" id="messagelist">

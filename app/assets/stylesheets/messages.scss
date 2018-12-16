@@ -21,11 +21,11 @@ ul {
     background: #e5e5e5;
     line-height: 1.3em;
     list-style: none;
+    
 }
 #messages-list ul li {
     padding: 0.5rem;
     overflow: hidden;
-    display: flex;
 }
 
 .self {
@@ -92,20 +92,39 @@ ul {
 
 
 .message-sent {
-    position: relative;
-    background-color: #D9EDF7;
-    border-color: #BCE8F1;
+    background-color: rgba(50, 80, 110, .7);
+    border-radius: 12px;
+    color: white;
+    border-radius: 12px;
     margin: 5px 20px;
     padding: 10px;
+
 }
 
 .message-received {
     background-color: #F1F0F0;
     border-color: #EEEEEE;
+    border-radius: 12px;
     margin: 5px 20px;
     padding: 10px;
+
+}
+.message-received time {
+        font-size: 9px;
+        color: #ccc;
 }
 
+.message-sent time {
+            font-size: 9px;
+            color: #ccc;
+}
+
+.avatar-received {
+    float: right;
+}
+
+.avatar-sender {
+}
 // Form input
 
 .chatboxinput {

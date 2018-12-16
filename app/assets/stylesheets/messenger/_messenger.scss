@@ -70,5 +70,18 @@
 }
 
 .messenger {
+padding-left: 50px;
+padding-top: 10px;
+}
 
+.messenger-heading{
+    background:#2E3D4A;
+    color:white;
+    padding:8px;
+    font-weight:bold;
+    cursor:pointer;
+    border-radius:5px 5px 0px 0px;
+    -webkit-box-shadow: 3px -1px 19px -4px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 3px -1px 19px -4px rgba(0, 0, 0, 0.75);
+    box-shadow: 3px -1px 19px -4px rgba(0, 0, 0, 0.75);
 }
