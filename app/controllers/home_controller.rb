@@ -22,8 +22,9 @@ class HomeController < ApplicationController
       all_sessions_games = []
       Session.all.each do |session|
         all_cities << session.city
-        if session.done?
+        if session.done? == true
           all_sessions_games << session.game_id
+          puts "La session terminée est #{session.game_id}"
         end
       end
       puts all_cities
