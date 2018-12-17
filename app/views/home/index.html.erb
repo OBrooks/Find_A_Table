@@ -134,6 +134,9 @@
   </div>
   <div class="row d-flex align-items-center">
     <div class="col">
+      <% if @most_played_games == [] %>
+        <p class="text-white">Il n'y a pas encore de sessions terminées</p>
+      <% else %>
         <% c=1 %>
         <%@most_played_games.each do |most_played_game|%>
           <div class="row">
@@ -156,6 +159,7 @@
           </div>
           <%c+=1%>
           <br>
+        <%end%>
       <% end %>
     </div>
   </div>

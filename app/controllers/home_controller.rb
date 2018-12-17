@@ -40,7 +40,7 @@ class HomeController < ApplicationController
         most_played_games_sorted = most_played_games_sorted[@currentgameoccurence..-1]
         c+=1
       end
-
+      puts "Les most played games sont #{@most_played_games}"
     end
 
     def profile
