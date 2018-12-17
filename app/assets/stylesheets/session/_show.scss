@@ -4,6 +4,8 @@
 .session-show-container {
   margin: 5px;
   padding: 5px;
+  // margin-right: 0px !important;
+  padding-right: 1px !important;
   border-style: solid;
   border-radius: 8px;
   border-width: 1px;
@@ -40,6 +42,15 @@
   font-size: 10px;
 }
 
+#shower {
+  margin-right: -3vh !important;
+  padding-right: 0px !important;
+}
+
+#shower .col .row {
+  padding-top: 10px;
+}
+
 #map {
-  height: 250px !important;
+  height: 300px !important;
 }

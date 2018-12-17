@@ -31,7 +31,7 @@
         <div class="col-3 red-background">
           <p class="text-white"><b>Image</b></p>
         </div>
-      </div>      
+      </div>
     </div>
   </div>
 
@@ -39,7 +39,7 @@
     <div class="col">
       <%if @faved_games == []%>
         <p class="text-white">Il n'y a pas encore de jeux dans les favoris</p>
-      <%else%>
+      <% else %>
         <%c=1%>
         <%@faved_games.each do |faved_game|%>
           <div class="row d-flex align-items-center">
@@ -60,10 +60,10 @@
               <% end %>
             </div>
           </div>
-          <%c+=1%>
+          <% c+=1 %>
           <br>
-        <%end%>
-      </div>
+        <% end %>
+      <% end %>
     </div>
   </div>
 </div>
@@ -100,7 +100,7 @@
               </script>
             </div>
           </div>
-        <%end%>  
+        <%end%>
       </div>
     </div>
   </div>
@@ -129,22 +129,22 @@
         <div class="col-3 red-background">
           <p class="text-white"><b>Image</b></p>
         </div>
-      </div>      
+      </div>
     </div>
   </div>
   <div class="row d-flex align-items-center">
     <div class="col">
-      <%if @most_played_games == []%>
+      <% if @most_played_games == [] %>
         <p class="text-white">Il n'y a pas encore de sessions terminées</p>
-      <%else%>
-        <%c=1%>
+      <% else %>
+        <% c=1 %>
         <%@most_played_games.each do |most_played_game|%>
           <div class="row">
             <div class="col-2">
               <p class="text-white">n°<%=c%></p>
             </div>
             <div class="col-4">
-              <p class="text-white">Le jeu <b><%=Game.find(most_played_game["game_id"]).title%></b></p>
+              <p class="text-white">Le jeu <b><%= Game.find(most_played_game["game_id"]).title %></b></p>
             </div>
             <div class="col-3">
               <p class="text-white">Qui a été joué <b><%=most_played_game["number_of_played_session"]%></b> fois, quel succès</p>
@@ -160,8 +160,7 @@
           <%c+=1%>
           <br>
         <%end%>
-      </div>
+      <% end %>
     </div>
   </div>
 </div>
-

@@ -43,12 +43,6 @@
         <% end %>
         <div class="row">
           <div class="col d-flex justify-content-start">
-            <p>Nombre de joueurs : <b><%=@session.playernb%></b></p>
-          </div>
-          <div class="col d-flex justify-content-start">
-            <p>Places restantes : <b><%=@session.maxplayers - @session.playernb%></b></p>
-          </div>
-          <div class="col d-flex justify-content-end">
             <p>Niveau recommandé : <b>
               <% if @session.anylevel? %>
                 Tout niveaux
@@ -61,10 +55,7 @@
               <% end %>
             </b></p>
           </div>
-        </div>
-
-        <div class="row">
-          <div class="col d-flex justify-content-start">
+          <div class="col d-flex justify-content-end">
             <p>Durée estimée : <b><%=@session.time%>h</b></p>
           </div>
         </div>
@@ -72,6 +63,9 @@
         <div class="row">
           <div class="col d-flex justify-content-start">
             <p>LISTE DES JOUEURS : <b><%=@session.playernb%> / <%=@session.maxplayers%></b></p>
+          </div>
+          <div class="col d-flex justify-content-end">
+            <p>Places restantes : <b><%=@session.maxplayers - @session.playernb%></b></p>
           </div>
         </div>
         <div class="row">
@@ -142,7 +136,7 @@
           </div>
         </div>
       </div>
-      <div class="col-lg-4">
+      <div id="shower" class="col-lg-4">
         <div class="row">
           <div class="col d-flex justify-content-end">
             <h2><%=@session.city.capitalize %>, <%=@session.date%></h2>
