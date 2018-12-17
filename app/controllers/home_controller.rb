@@ -24,7 +24,6 @@ class HomeController < ApplicationController
         all_cities << session.city
         if session.done? == true
           all_sessions_games << session.game_id
-          puts "La session terminée est #{session.game_id}"
         end
       end
       puts all_cities
@@ -34,18 +33,14 @@ class HomeController < ApplicationController
       @city_coordinates = [@location.first.coordinates[0], @location.first.coordinates[1]]
       # @circle= [(@location.first.coordinates[0]+@adress.first.coordinates[0])/2,(@location.first.coordinates[1]+@adress.first.coordinates[1])/2]
       most_played_games_sorted = all_sessions_games.sort_by { |u| all_sessions_games.count(u) }.reverse
-      puts "Most_played_games sorted sont #{most_played_games_sorted}"
-      puts "#{c}"
       c=0
       while most_played_games_sorted != [] && c<=5
-        puts "in the while with c = #{c}"
-        puts @currentgameid = most_played_games_sorted[0]
-        puts @currentgameoccurence = most_played_games_sorted.count(@currentgameid)
-        puts @most_played_games << {"game_id" => @currentgameid, "number_of_played_session" => @currentgameoccurence}
-        puts most_played_games_sorted = most_played_games_sorted[@currentgameoccurence..-1]
+        @currentgameid = most_played_games_sorted[0]
+        @currentgameoccurence = most_played_games_sorted.count(@currentgameid)
+        @most_played_games << {"game_id" => @currentgameid, "number_of_played_session" => @currentgameoccurence}
+        most_played_games_sorted = most_played_games_sorted[@currentgameoccurence..-1]
         c+=1
       end
-      puts "Les most played games sont #{@most_played_games}"
     end
 
     def profile
