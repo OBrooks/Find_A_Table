@@ -55,7 +55,7 @@
               <% end %>
             </b></p>
           </div>
-          <div class="col d-flex justify-content-end">
+            <div class="col d-flex justify-content-end">
             <p>Durée estimée : <b><%=@session.time%>h</b></p>
           </div>
         </div>
@@ -64,6 +64,18 @@
           <div class="col d-flex justify-content-start">
             <p>LISTE DES JOUEURS : <b><%=@session.playernb%> / <%=@session.maxplayers%></b></p>
           </div>
+          <div class="col d-flex justify-content-center align-items-center">
+            <p>Statut : <b>
+              <% if @session.done? %>
+                Terminé
+              <% elsif @session.available? %>
+                Disponible
+              <% elsif @session.full? %>
+                Pleine
+              <% end %>
+            </b></p>
+          </div>
+
           <div class="col d-flex justify-content-end">
             <p>Places restantes : <b><%=@session.maxplayers - @session.playernb%></b></p>
           </div>
