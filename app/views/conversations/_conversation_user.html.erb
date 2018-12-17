@@ -1,8 +1,9 @@
 <li>
-    <div class="panel panel-default messenger messenger-default" data-conversation-id="<%= conversation.id %>">
-        <div class="panel-heading messenger-heading">
+    <div class="messenger messenger-default" data-conversation-id="<%= conversation.id %>">
+        <div class="messenger-heading">
             <%= link_to conversation.opposed_user(current_user).nickname, conversation_user_path(conversation_id: conversation.id, user_id: current_user.id), remote: true %>
-            <%= link_to "x", close_conversation_path(conversation), class: "btn btn-default btn-xs pull-right", remote: true, method: :post %>
+<i class="fa fa-comments fa-fw" aria-hidden="true"></i>
+            <%# link_to "x", close_conversation_path(conversation), class: "btn btn-default btn-xs pull-right", remote: true, method: :post %>
         </div>
     </div>
 </li>

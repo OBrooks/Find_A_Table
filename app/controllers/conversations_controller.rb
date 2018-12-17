@@ -5,9 +5,7 @@ class ConversationsController < ApplicationController
     @conversations_recipients = Conversation.where(recipient_id: current_user.id)
     @conversations_senders
     @conversations_recipients
-      puts "Voilà les conversations #{@conversations}"
       @chatroom_users=ChatroomUser.where(user_id: current_user.id)
-      puts "Voilà le chatroom_users#{@chatroom_users}" 
 
   end
 
@@ -21,18 +19,19 @@ class ConversationsController < ApplicationController
             Conversation.create!(sender_id: current_user.id, recipient_id: user_favorite.added.id)
           end
         end
-    if params[:conversation_id] != nil && params[:user_id] != nil
+
+    @converses=Conversation.all
+    if params[:conversation_id] != nil && params[:user_id] != nil && @converses != nil
       @user=User.find(params[:user_id])
       @conversation_last_id=Conversation.maximum(:id).next
-      puts "La conversation_id#{params[:conversation_id]}"
-      puts "La conversation_last_id#{@conversation_last_id}"
       if params[:conversation_id].to_i == @conversation_last_id.to_i
-        puts "LÀÀÀÀÀÀÀÀ"
         Conversation.create!(sender_id: current_user.id, recipient_id: @user.id)
+         @conversation=Conversation.find(params[:conversation_id])
       else
         @conversation=Conversation.find(params[:conversation_id])
       end
-
+    else 
+      Conversation.create!(sender_id: current_user.id, recipient_id: @user.id)
     end
     respond_to do |format|
         format.html
@@ -52,7 +51,7 @@ class ConversationsController < ApplicationController
 
   def close
     @conversation = Conversation.find(params[:id])
-
+    
     session[:conversations].delete(@conversation.id)
 
     respond_to do |format|

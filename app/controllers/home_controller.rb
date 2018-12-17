@@ -29,6 +29,9 @@ class HomeController < ApplicationController
       puts all_cities
       city_name = all_cities.max_by { |i| all_cities.count(i)}
       @best_city = {"city_name" => city_name, "number_of_sessions" => all_cities.count(city_name)}
+      @location = Geocoder.search(@best_city["city_name"])
+      @city_coordinates = [@location.first.coordinates[0], @location.first.coordinates[1]]
+      # @circle= [(@location.first.coordinates[0]+@adress.first.coordinates[0])/2,(@location.first.coordinates[1]+@adress.first.coordinates[1])/2]
       most_played_games_sorted = all_sessions_games.sort_by { |u| all_sessions_games.count(u) }.reverse
       while most_played_games_sorted != [] && c<=5
         @currentgameid = most_played_games_sorted[0]
@@ -85,7 +88,6 @@ class HomeController < ApplicationController
 
   #Favorites Games
     def add_to_favorites
-        puts "#{params}"
       @user = User.find(params[:user_id])
       @game=Game.find(params[:game_id])
       respond_to do |format|
@@ -98,7 +100,6 @@ class HomeController < ApplicationController
     def remove_from_favorites
       @user = User.find(params[:user_id])
       @game=Game.find(params[:game_id])
-      puts "ça défav"
       respond_to do |format|
         format.html
         format.js {render :layout => false}
@@ -128,10 +129,8 @@ class HomeController < ApplicationController
 
 #Likes
     def like_user
-        puts "Les params sont#{params}"
       @user = User.find(params[:liked_id])
       @session_id = Session.find(params[:session_id]).id
-      puts "ça fav"
       respond_to do |format|
         format.html
         format.js {render :layout => false}
@@ -140,10 +139,8 @@ class HomeController < ApplicationController
   end
 
     def unlike_user
-      puts "Les params du remove sont#{params}"
       @user = User.find(params[:liked_id])
       @session_id = Session.find(params[:session_id]).id
-      puts "ça défav"
       respond_to do |format|
         format.html
         format.js {render :layout => false}
@@ -157,12 +154,16 @@ class HomeController < ApplicationController
   def mysessions
     @myhostsessions = []
     @myplayersessions = []
+    @myplayersessionsdone = []
     Session.all.each do |session|
-      if session.host == current_user
+      if session.host == current_user && session.done? == false
         @myhostsessions << session
       end
-      if session.players.include?(current_user)
+      if session.players.include?(current_user) && session.done? == false && session.host != current_user
         @myplayersessions << session
+      end
+      if session.players.include?(current_user) && session.done? == true
+        @myplayersessionsdone << session
       end
     end
     @likes=LikesToUser.all
@@ -197,6 +198,8 @@ class HomeController < ApplicationController
       else
         @conversation_id=@conversation_last_id
       end
+    else
+      @conversation_id=1
     end
     #Likes
     @likes=LikesToUser.where(liked_id: @user.id)

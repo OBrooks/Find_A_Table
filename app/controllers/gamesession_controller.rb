@@ -45,7 +45,6 @@ class GamesessionController < ApplicationController
         end
       end
     end
-    puts @sessions_array
   end
 
   def show
@@ -121,6 +120,8 @@ class GamesessionController < ApplicationController
     Notification.create(recipient: @session.host, actor: current_user, action: "joinrequest", notifiable: @session)
     redirect_back fallback_location: root_path
     flash[:notice]="SessionJoined"
+    @chatroom = Chatroom.find_by(session_id: params[:id])
+    @chatroom_user = ChatroomUser.where(user_id: current_user.id, chatroom_id: @chatroom.id).first_or_create
   end
 
   def leavegame

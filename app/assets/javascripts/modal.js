@@ -2,14 +2,11 @@ $(document).ready(function() {
     document.addEventListener("turbolinks:load", function() {
 
         $(".modal-inscription").click(function() {
-            console.log("salut")
             $(".modal1").addClass("visible");
-            console.log("Visible");
         });
 
         $(".js-close-modal1").click(function() {
             $(".modal1").removeClass("visible");
-            console.log("Invisible");
         });
 
         $(document).click(function(event) {

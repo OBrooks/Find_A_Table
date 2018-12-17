@@ -3,7 +3,7 @@
     <div class="d-flex justify-content-start flex-nowrap align-items-center">
       <h2 class="m-3"><%= @player.nickname.capitalize %></h2>
       <% if current_user != nil && current_user.id != @player.id %>
-      <%= link_to ("<i class='fa fa-comments fa-fw fa-3x' aria-hidden='true'></i>").html_safe, conversation_user_path(conversation_id: @conversation_id, user_id: current_user.id), remote: true %>
+      <%= link_to ("<i class='fa fa-comments fa-fw fa-3x' aria-hidden='true'></i>").html_safe, conversation_user_path(conversation_id: @conversation_id, user_id: @user.id), remote: true %>
       <%= render "home/favorites_users/favorites" %>
       <% end %>
     </div>
@@ -18,7 +18,7 @@
         <% if @player.profile_picture.attachment != nil %>
           <%= image_tag @player.profile_picture, class:"player-page border border-white" %>
         <% else %>
-          <img src="https://uploads1.yugioh.com/card_images/4945/detail/Hero-Dice.jpg?1398377913" alt="avatar" class="player-page border border-white">
+    <img src="/img/ninja.png" alt="avatar" class="player-page border border-white">
         <% end %>
       </div>
     </div>

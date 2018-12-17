@@ -1,5 +1,5 @@
 .messenger .button-message {
-    display: inline-block;
+    float: right;
     padding: 0.7em 1.4em;
     margin: 0 0.3em 0.3em 0;
     border-radius: 0.15em;
@@ -11,7 +11,6 @@
     background-color: #829FBE;
     box-shadow: inset 0 -0.6em 0 -0.35em rgba(0, 0, 0, 0.17);
     text-align: center;
-    position: relative;
 }
 
 .messenger .button-message:active {
@@ -25,28 +24,64 @@
     }
 }
 
-.new-message form {
+.new-message {
     display: flex;
     flex-direction: row;
 }
 
-.new-message form .button-message {
 
-
+.messagearea{
+     width:100%;
+     height: 55px;
+     border: 1px solid white;
+     border-top:1px solid #DDDDDD;
+     -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+     box-sizing: border-box;
 }
 
-textarea.chatboxarea{
-    height: 300px;
+.messager-heading{
+     background:#2E3D4A;
+     color:white;
+     padding:8px;
+     font-weight:bold;
+     cursor:pointer;
+     border-radius:5px 5px 0px 0px;
 }
 
-form.new-message {
-
-}
-
-.messenger .messenger-heading a{
-    color: black;
-}
 
 .panel {
     background-color: black;
+}
+
+.messenger-body {
+    background-color: white;
+    width: 280px;
+    -webkit-box-shadow: 3px -1px 19px -4px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 3px -1px 19px -4px rgba(0, 0, 0, 0.75);
+    box-shadow: 3px -1px 19px -4px rgba(0, 0, 0, 0.75);
+     border-radius:5px 5px 0px 0px;
+}
+
+#conversation-messages-user-to-user {
+    position:fixed;
+    bottom:-5px;
+    left:60%;
+}
+
+.messenger {
+padding-left: 50px;
+padding-top: 10px;
+}
+
+.messenger-heading{
+    background:#2E3D4A;
+    color:white;
+    padding:8px;
+    font-weight:bold;
+    cursor:pointer;
+    border-radius:5px 5px 0px 0px;
+    -webkit-box-shadow: 3px -1px 19px -4px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 3px -1px 19px -4px rgba(0, 0, 0, 0.75);
+    box-shadow: 3px -1px 19px -4px rgba(0, 0, 0, 0.75);
 }

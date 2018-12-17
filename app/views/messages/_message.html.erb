@@ -2,14 +2,14 @@
   <li>
     <div class="row">
       <div class="col">
-        <div class="avatar">
+    <div class="<%=user.id==message.user_id ? 'avatar-sender' : 'avatar-received' %>">
           <% if message.user.profile_picture.attachment != nil %>
         <%= image_tag rails_blob_path(message.user.profile_picture, disposition: "attachement"), id:"avatar" %>
           <% else %>
             <img src="/img/ninja.png" alt="avatar" id="avatar">
           <% end %>
         </div>
-        <div class="chatboxmessagecontent <%= user.id == message.user_id ? 'message-sent' : 'message-received' %> self_or_other(message)" id="messages">
+    <div class="<%= user.id == message.user_id ? 'message-sent ' : 'message-received' %> self_or_other(message)" id="messages">
           <p><%= message.body %></p>
             <time datetime="<%= message.created_at %>" title="<%= message.created_at.strftime(" %d %b %Y at %I:%M%p") %>">
               <%= message_interlocutor(message).nickname %> • <%= message.created_at.strftime("%H:%M %p") %>

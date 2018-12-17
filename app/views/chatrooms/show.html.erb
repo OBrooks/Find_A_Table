@@ -20,9 +20,11 @@
   <% @chatroom.users.each do |user| %>
   <div class="col-1 d-flex justify-content-start userinchatroom">
     <% if user.profile_picture.attachment != nil %>
-      <%= image_tag user.profile_picture, id:"avatar", title:user.nickname %>
+    <a href="player/<%=user.id%>">
+<%= image_tag user.profile_picture, id:"avatar", title:user.nickname %></a>
     <% else %>
-      <img src="/img/ninja.png" alt="avatar" id="avatar" title="coucou">
+<a href="/player/<%=user.id%>">
+<img src="/img/ninja.png" alt="avatar" id="avatar" title="coucou"></a>
     <% end %>
   </div>
   <% end %>
