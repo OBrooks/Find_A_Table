@@ -150,16 +150,4 @@ class Gamescrap
         else 
         end
     end
-
-    # def create_db
-    #     @games_infos.each do |game|
-    #         if Category.first.nil?
-    #             Category.create!(category_name: game["Category"])
-    #         elsif Category.find_by(category_name: game["Category"])
-    #         else
-    #             Category.create!(category_name: game["Category"])
-    #         end
-    #         Game.create!(title: game["Title"], description: game["Description"], min_players: game["Min"], max_players: game["Max"], image_url: game["Image"], time: game["Time"], category_id: Category.find_by(category_name: game["Category"]).id)
-    #     end
-    # end    
 end

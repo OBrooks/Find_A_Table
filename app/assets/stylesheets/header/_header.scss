@@ -1,22 +1,27 @@
 @import "theme/index";
-
 header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 56px;
-  width: 100%;
-  z-index: 1;
-  border-bottom-style: solid;
-  border-width: 1px;
-  border-color: white;
-  background-color: $bg-nav;
-  background: linear-gradient(90deg, rgba(130,160,190,1) 0%, rgba(130,160,190,1) 17%, rgba(130,160,190,0) 100%);
-
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100px;
+    width: 100%;
+    z-index: 1;
+    border-bottom-style: solid;
+    border-width: 1px;
+    border-color: white;
+    background-image: url(/img/Table-finder-header.jpg);
+    background-size: cover !important;
+    background-position: center;
+    // background-color: $bg-nav;
+    // background: linear-gradient(90deg, rgba(130, 160, 190, 1) 0%, rgba(130, 160, 190, 1) 17%, rgba(130, 160, 190, 0) 100%);
+    display: flex !important;
+    align-items: center !important;
 }
 
 .row-header {
     min-height: 5vh;
     z-index: 99;
 }
+
+.center-items {}

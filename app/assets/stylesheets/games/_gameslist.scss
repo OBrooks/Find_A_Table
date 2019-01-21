@@ -1,58 +1,60 @@
 @import "theme/index";
-
 .game-sticker {
-  margin: 5px;
-  padding: 5px;
-  border-style: solid;
-  border-radius: 8px;
-  border-width: 1px;
-  border-color: white;
-  background-color: $bg-nav;
-  background: linear-gradient(180deg, rgba(130,160,190,0.9) 0%, rgba(130,160,190,0.8) 17%, rgba(130,160,190,0.5) 100%);
+    margin-top: 20px;
+    // padding: 5px;
+    border-style: solid;
+    border-radius: 8px;
+    border-width: 1px;
+    border-color: white;
+    background-color: rgba(0, 0, 0, 0);
+    background-size: cover !important;
+    background-position: center;
+    // background-color: $bg-nav;
+    // background: linear-gradient(180deg, rgba(130,160,190,0.9) 0%, rgba(130,160,190,0.8) 17%, rgba(130,160,190,0.5) 100%);
 }
 
 .games_image {
-  border-style: solid;
-  border-radius: 3px;
-  border-color: rgba(150, 180, 220, 1);
-  border-width: 2px;
+    border-style: solid;
+    border-radius: 3px;
+    border-color: rgba(150, 180, 220, 1);
+    border-width: 2px;
 }
 
 .game-sticker-title {
-  font-family: $font-belleza;
-  color: white;
-  font-size: 32px;
-  animation-play-state: paused;
+    font-family: $font-belleza;
+    color: white;
+    font-size: 32px;
+    animation-play-state: paused;
 }
 
 .game-sticker-title:hover {
-  color: white;
-  text-decoration-line: none;
-animation-play-state: running;
+    color: white;
+    text-decoration-line: none;
+    animation-play-state: running;
 }
 
 .game-sticker p {
-  padding: 5px;
-  color: white;
-  background-color: rgba(24, 69, 94, .7)
+    padding: 5px;
+    color: white;
+    background-color: rgba(24, 69, 94, .7)
 }
 
 .row-game-sticker {
-  justify-content: space-between;
-  height: 150px;
-  margin-top: 5px;
-  margin-bottom: 5px;
-  border-style: solid;
-  border-width: 2px;
-  border-radius: 10px;
-  background-color: rgba(224, 169, 154, .7);
+    justify-content: space-between;
+    height: 150px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 10px;
+    background-color: rgba(224, 169, 154, .7);
 }
 
 .col-game-pic {
-  display: flex;
-  align-items: center !important;
-  border-style: solid;
-  border-radius: 3px;
-  border-color: blue;
-  border-width: 2px;
+    display: flex;
+    align-items: center !important;
+    border-style: solid;
+    border-radius: 3px;
+    border-color: blue;
+    border-width: 2px;
 }

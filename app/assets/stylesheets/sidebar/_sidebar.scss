@@ -1,28 +1,26 @@
 @import "theme/index";
-
 .col-sidebar {
-  z-index: 2;
-  top: 55px;
-  left: 0;
-  bottom: 0;
-  width: 16.666%;
-  border-right-style: solid;
-  border-width: 1px;
-  border-color: white;
-  background-color: $bg-nav;
-  background: linear-gradient(180deg, rgba(130,160,190,1) 0%, rgba(130,160,190,1) 17%, rgba(130,160,190,0) 100%);
-
+    z-index: 2;
+    top: 101px;
+    left: 0;
+    bottom: 0;
+    width: 16.666%;
+    // border-right-style: solid;
+    // border-width: 1px;
+    // border-color: white;
+    // background-color: $bg-nav;
+    // background: linear-gradient(180deg, rgba(130, 160, 190, 1) 0%, rgba(130, 160, 190, 1) 17%, rgba(130, 160, 190, 0) 100%);
 }
 
 .sidebar-hello {
-  margin-left: 10px;
-  margin-top: 5px;
-  font-family: $font-federo;
-  font-weight: bold;
-  font-size: 22px;
-  color: white;
+    margin-left: 10px;
+    margin-top: 5px;
+    font-family: $font-federo;
+    font-weight: bold;
+    font-size: 22px;
+    color: white;
 }
 
 .username {
-  color: cornsilk;
+    color: cornsilk;
 }
